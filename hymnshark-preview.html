@@ -11,8 +11,7 @@
     <style>
         /* Tiny preview-only frame so the page looks like Lioden:
            a top breadcrumb, an h1 with the den name, and that's it.
-           These styles are NOT part of the theme — they only exist
-           in this preview file. */
+           These styles are NOT part of the theme — only this preview. */
         body { margin: 0; padding: 18px; }
         .preview-frame { max-width: 980px; margin: 0 auto; }
         .preview-breadcrumb {
@@ -25,14 +24,21 @@
             padding: 6px 16px;
             margin-bottom: 14px;
         }
+        /* Faux cave-grid demo strip so we can see the cave SVGs */
+        .preview-caves-demo {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 16px 0;
+        }
+        .preview-caves-demo .cave-grid { height: 130px; }
     </style>
 </head>
 <body>
 
 <div class="preview-frame">
 
-    <!-- Fake Lioden breadcrumb so the preview matches what the live
-         page will show above the den description. -->
+    <!-- Fake Lioden breadcrumb -->
     <div class="preview-breadcrumb">
         Home › Members › Hymnshark › <b>Hymnshark's Den</b>
     </div>
@@ -41,10 +47,7 @@
 
 
     <!-- =========================================================
-         Lioden's PLAYER TABLE (table#player) — Lioden renders this
-         automatically. Mocked here with a placeholder image so we
-         can see how the "round player avatar" looks in this theme.
-         The actual Lioden version uses the same structure.
+         Lioden's PLAYER TABLE (table#player)
     ========================================================= -->
     <table id="player" class="table">
         <tbody>
@@ -86,12 +89,35 @@
 
 
     <!-- =========================================================
-         Lioden's ABOUT TABLE (table#about) — this is where the
-         LIVE king image lives. For preview we put a placeholder
-         SVG inside #lion_image. On the real Lioden page, Lioden
-         injects the current pride male's composite PNGs there.
-         The theme's mist halo + illusion orbs are attached to
-         THIS table's cells via ::before / ::after.
+         COMMENT BOX — the theme styles #commentBox automatically
+         when Lioden injects it. Faked here so we can preview.
+    ========================================================= -->
+    <div id="commentBox">
+        <div class="comment">
+            <div class="commentTag" style="background: linear-gradient(135deg, #f0b893, #e5b8c4);"></div>
+            <div class="commentText">
+                <b>visitor</b> — drifted in to admire your king…
+                <small>2 hours ago</small>
+            </div>
+        </div>
+        <div class="comment">
+            <div class="commentTag" style="background: linear-gradient(135deg, #c5b3c8, #f0b893);"></div>
+            <div class="commentText">
+                <b>another wanderer</b> — gorgeous den. love the misty palette.
+                <small>yesterday</small>
+            </div>
+        </div>
+    </div>
+    <div id="makeComment">
+        <input type="text" name="comment" id="comment" placeholder="Comment" maxlength="240">
+        <input type="submit" id="postComment" value="Post">
+    </div>
+
+
+    <!-- =========================================================
+         Lioden's ABOUT TABLE (table#about)
+         The LIVE king image lives here.
+         Theme attaches the animation to ::before / ::after.
     ========================================================= -->
     <form method="post">
     <table class="table" id="about">
@@ -154,27 +180,54 @@
     </form>
 
 
+    <!-- Quick demo strip of the cave/banner SVGs so we can see
+         they look on-theme. The real Lioden page renders these
+         in the cave-overview area. -->
+    <div class="preview-caves-demo">
+        <a href="#unsorted.php"><div class="cave-grid"></div></a>
+        <a href="#nesting.php"><div class="cave-grid"></div></a>
+        <a href="#prideoverview"><div class="cave-grid"></div></a>
+        <a href="#"><div class="cave-grid"></div></a>
+        <a href="#"><div class="cave-grid"></div></a>
+    </div>
+
+
     <!-- =========================================================
-         THE DESCRIPTION — the actual den description content.
-         This is what the customer pastes into Lioden's territory
-         description editor. It's the entire contents of
-         hymnshark-den.html (minus the outer <link> tag, which
-         we already loaded at the top of this preview).
+         THE DESCRIPTION — what the customer pastes into Lioden.
     ========================================================= -->
 
     <div class="hof-territory">
 
-        <!-- Top ornament row -->
-        <div class="hof-ornament-row">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
+        <!-- TITLE BLOCK -->
+        <div class="hof-title-block">
+
+            <p class="hof-title-scroll">⁕  ⁕  ⁕</p>
+
+            <div class="hof-title-flourish">
+                <span class="endcap">❦</span>
+                <span class="line"></span>
+                <span class="center">✦ ❀ ✦</span>
+                <span class="line"></span>
+                <span class="endcap">❦</span>
+            </div>
+
+            <h1 class="hof-title">Heaven's On Fire</h1>
+
+            <p class="hof-subtitle">where illusions follow your wake</p>
+            <p class="hof-motto">— a soft place to land —</p>
+
+            <div class="hof-title-flourish">
+                <span class="endcap">❦</span>
+                <span class="line"></span>
+                <span class="center">✦ ❀ ✦</span>
+                <span class="line"></span>
+                <span class="endcap">❦</span>
+            </div>
+
+            <p class="hof-title-scroll">⁕  ⁕  ⁕</p>
+
         </div>
 
-        <!-- Title block -->
-        <h1 class="hof-title">Heaven's On Fire</h1>
-        <p class="hof-subtitle">where illusions follow your wake</p>
-        <p class="hof-motto">— a soft place to land —</p>
 
         <!-- Section divider -->
         <div class="hof-divider-full" style="margin: 18px 0 14px;">
@@ -183,12 +236,10 @@
             </span>
         </div>
 
-        <!-- =====================================================
-             ROW 1 — two boxes side by side
-        ===================================================== -->
+
+        <!-- ROW 1 -->
         <div class="hof-row">
 
-            <!-- BOX 1: THE PLAYER -->
             <div class="hof-box hof-box-half">
                 <span class="hof-box-corner hof-tl"></span>
                 <span class="hof-box-corner hof-tr"></span>
@@ -234,7 +285,6 @@
                 </div>
             </div>
 
-            <!-- BOX 2: THE KING -->
             <div class="hof-box hof-box-half">
                 <span class="hof-box-corner hof-tl"></span>
                 <span class="hof-box-corner hof-tr"></span>
@@ -293,30 +343,40 @@
                 <span class="sym">❀</span> Pride Lore <span class="sym">❀</span>
             </h2>
 
-            <div class="hof-text">
+            <div class="hof-text hof-text-dropcapped">
                 <span class="hof-dropcap">H</span>
 
                 <p style="margin: 0 0 10px;">
-                    [YOUR PRIDE LORE — paragraph one. The drop-cap above pulls
-                    the first letter out, so DON'T repeat it here. Start this
-                    paragraph as if its first letter is missing.]
+                    eaven's On Fire was born of a long quiet — lorem ipsum dolor sit
+                    amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
+                    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate
+                    velit esse cillum dolore eu fugiat nulla pariatur.
                 </p>
 
                 <p style="margin: 0 0 10px;">
-                    [YOUR PRIDE LORE — paragraph two. Anything you want here:
-                    how the pride was founded, your aesthetic / vibe, what
-                    outsiders should know before approaching.]
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                    officia deserunt mollit anim id est laborum. Curabitur pretium
+                    tincidunt lacus, nulla gravida orci a odio. Nullam varius, turpis
+                    et commodo pharetra, est eros bibendum elit, nec luctus magna felis
+                    sollicitudin mauris. Integer in mauris eu nibh euismod gravida.
+                    Duis ac tellus et risus vulputate vehicula. Donec lobortis risus
+                    a elit. Etiam tempor.
                 </p>
 
                 <blockquote class="hof-quote">
-                    [A LINE WORTH HIGHLIGHTING — a motto, a refrain, a piece of
-                    pride scripture]
-                    <span class="attrib">— [attribution, optional]</span>
+                    where dawn breaks soft, the fire still remembers our names —
+                    and the mist holds every promise we never spoke aloud.
+                    <span class="attrib">— pride scripture, fragment iii</span>
                 </blockquote>
 
                 <p style="margin: 0;">
-                    [YOUR PRIDE LORE — closing paragraph. Anything to leave the
-                    reader with: a hope, a warning, an open door.]
+                    Aliquam erat volutpat. Nunc sed turpis. Aliquam erat volutpat.
+                    Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus,
+                    metus. Praesent fauci. Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Vivamus elementum semper nisi. Aenean vulputate
+                    eleifend tellus.
                 </p>
             </div>
         </div>
@@ -356,7 +416,7 @@
                     <span class="hof-info-value">[FEW TIMES A WEEK]</span>
                 </div>
 
-                <p style="margin: 18px 0 6px;" class="hof-text-bright">
+                <p style="margin: 14px 0 4px;" class="hof-text-bright">
                     <span class="hof-glyph">✦</span> Yes Please:
                 </p>
                 <ul class="hof-list">
@@ -365,7 +425,7 @@
                     <li>[YES — another]</li>
                 </ul>
 
-                <p style="margin: 14px 0 6px;" class="hof-text-bright">
+                <p style="margin: 12px 0 4px;" class="hof-text-bright">
                     <span class="hof-glyph">✦</span> Soft No / Ask First:
                 </p>
                 <ul class="hof-list">
@@ -373,7 +433,7 @@
                     <li>[SOFT NO — another]</li>
                 </ul>
 
-                <p style="margin: 14px 0 6px;" class="hof-text-bright">
+                <p style="margin: 12px 0 4px;" class="hof-text-bright">
                     <span class="hof-glyph">✦</span> Hard No:
                 </p>
                 <ul class="hof-list">
@@ -381,7 +441,7 @@
                     <li>[HARD NO — another]</li>
                 </ul>
 
-                <p style="margin: 18px 0 0;" class="hof-text-sm hof-text-center hof-text-muted">
+                <p style="margin: 14px 0 0;" class="hof-text-sm hof-text-center hof-text-muted">
                     [OPTIONAL CLOSING LINE]
                 </p>
             </div>
@@ -397,56 +457,50 @@
         </div>
 
 
-        <!-- GALLERY — character cards -->
+        <!-- GALLERY — 5 cards with simple symbol placeholders -->
         <div class="hof-gallery">
 
             <div class="hof-gal-card">
-                <img class="hof-gal-img" src="./placeholder-hymnshark-avatar.svg" alt="character 1">
+                <div class="hof-gal-img hof-gal-placeholder"><span>✦</span></div>
                 <p class="hof-gal-name">[NAME 1]</p>
                 <p class="hof-gal-desc hof-status-open">open for rp</p>
             </div>
 
             <div class="hof-gal-card">
-                <img class="hof-gal-img" src="./placeholder-hymnshark-avatar.svg" alt="character 2">
+                <div class="hof-gal-img hof-gal-placeholder"><span>❀</span></div>
                 <p class="hof-gal-name">[NAME 2]</p>
                 <p class="hof-gal-desc">vampire</p>
             </div>
 
             <div class="hof-gal-card">
-                <img class="hof-gal-img" src="./placeholder-hymnshark-avatar.svg" alt="character 3">
+                <div class="hof-gal-img hof-gal-placeholder"><span>❦</span></div>
                 <p class="hof-gal-name">[NAME 3]</p>
                 <p class="hof-gal-desc hof-status-rose">plotting</p>
             </div>
 
             <div class="hof-gal-card">
-                <img class="hof-gal-img" src="./placeholder-hymnshark-avatar.svg" alt="character 4">
+                <div class="hof-gal-img hof-gal-placeholder"><span>♛</span></div>
                 <p class="hof-gal-name">[NAME 4]</p>
                 <p class="hof-gal-desc hof-status-closed">closed</p>
             </div>
 
             <div class="hof-gal-card">
-                <img class="hof-gal-img" src="./placeholder-hymnshark-avatar.svg" alt="character 5">
+                <div class="hof-gal-img hof-gal-placeholder"><span>✧</span></div>
                 <p class="hof-gal-name">[NAME 5]</p>
-                <p class="hof-gal-desc">[short descriptor]</p>
-            </div>
-
-            <div class="hof-gal-card">
-                <img class="hof-gal-img" src="./placeholder-hymnshark-avatar.svg" alt="character 6">
-                <p class="hof-gal-name">[NAME 6]</p>
                 <p class="hof-gal-desc hof-status-open">open for rp</p>
             </div>
 
         </div>
 
 
-        <!-- Footer -->
+        <!-- Footer — subtle thank-you + tiny credit -->
         <div class="hof-footer">
             <div class="hof-footer-line">
                 <span class="star">✦</span> thank you for stopping by <span class="star">✦</span>
             </div>
-            <p class="hof-footer-credit">
-                theme by <a href="#">nub #166079</a>
-            </p>
+            <span class="hof-footer-credit">
+                theme · <a href="#">nub</a>
+            </span>
         </div>
 
     </div>

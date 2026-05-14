@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HEAVEN'S ON FIRE · cave-slot thumbnail — misty pastel sunrise -->
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="170" viewBox="0 0 260 170" preserveAspectRatio="xMidYMid slice">
+
+    <defs>
+        <linearGradient id="caveSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stop-color="#f4ebe0"/>
+            <stop offset="38%" stop-color="#f5d3c0"/>
+            <stop offset="70%" stop-color="#e8b8c0"/>
+            <stop offset="100%" stop-color="#c8b5d0"/>
+        </linearGradient>
+        <radialGradient id="caveSun" cx="50%" cy="58%" r="50%">
+            <stop offset="0%"   stop-color="#ffe5c8" stop-opacity="1"/>
+            <stop offset="35%"  stop-color="#ffcfa8" stop-opacity="0.65"/>
+            <stop offset="100%" stop-color="#f0b893" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="caveFrame" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%"  stop-color="#f0b893"/>
+            <stop offset="60%" stop-color="#e5b8c4"/>
+            <stop offset="100%" stop-color="#c5b3c8"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Sky / misty backdrop -->
+    <rect width="260" height="170" fill="url(#caveSky)"/>
+
+    <!-- Subtle gold-pastel frame -->
+    <rect x="2" y="2" width="256" height="166" fill="none" stroke="url(#caveFrame)" stroke-width="1.5" opacity="0.65"/>
+
+    <!-- Diffuse sun glow -->
+    <circle cx="130" cy="100" r="80" fill="url(#caveSun)"/>
+    <circle cx="130" cy="96"  r="18" fill="#ffe5c8" opacity="0.85"/>
+
+    <!-- Far tree silhouettes -->
+    <g fill="#5a4a5a" opacity="0.45">
+        <path d="M 24 130 L 24 96  L 26 92 L 24 88 L 28 90 L 30 130 Z"/>
+        <path d="M 50 132 L 50 100 L 52 96 L 50 92 L 54 94 L 56 132 Z"/>
+        <path d="M 204 130 L 204 96 L 206 92 L 204 88 L 208 90 L 210 130 Z"/>
+        <path d="M 232 132 L 232 100 L 234 96 L 232 92 L 236 94 L 238 132 Z"/>
+    </g>
+
+    <!-- Mid-ground bare trees with delicate branches -->
+    <g fill="#2a1d2a" opacity="0.78" stroke="#2a1d2a" stroke-width="0.7">
+        <!-- left tree -->
+        <path d="M 74 140 L 74 70 L 72 64 L 76 66 L 70 58 L 78 60 L 74 50 L 80 54 L 78 44 L 78 140 Z"/>
+        <line x1="76" y1="62" x2="64" y2="44"/>
+        <line x1="78" y1="54" x2="90" y2="36"/>
+        <line x1="76" y1="48" x2="66" y2="32"/>
+
+        <!-- right tree -->
+        <path d="M 180 140 L 180 68 L 178 60 L 184 64 L 176 54 L 188 58 L 182 46 L 186 50 L 184 38 L 184 140 Z"/>
+        <line x1="184" y1="58" x2="170" y2="40"/>
+        <line x1="186" y1="50" x2="198" y2="32"/>
+        <line x1="184" y1="44" x2="200" y2="28"/>
+    </g>
+
+    <!-- Ground mist band -->
+    <rect x="0" y="120" width="260" height="50" fill="#e8c8c8" opacity="0.50"/>
+    <ellipse cx="130" cy="130" rx="160" ry="14" fill="#ffe5c8" opacity="0.45"/>
+
+    <!-- Pastel orb dots scattered -->
+    <g>
+        <circle cx="42"  cy="42"  r="2"   fill="#f0b893" opacity="0.85"/>
+        <circle cx="222" cy="38"  r="2"   fill="#e5b8c4" opacity="0.85"/>
+        <circle cx="100" cy="30"  r="1.5" fill="#ffe5c8" opacity="0.95"/>
+        <circle cx="170" cy="28"  r="1.5" fill="#f0b893" opacity="0.85"/>
+        <circle cx="30"  cy="76"  r="1.5" fill="#e5b8c4" opacity="0.75"/>
+        <circle cx="234" cy="80"  r="1.8" fill="#c5b3c8" opacity="0.85"/>
+    </g>
+
+    <!-- Small "cave-slot" text on bottom -->
+    <text x="130" y="158" text-anchor="middle"
+          font-family="'Cinzel', serif" font-size="8" letter-spacing="3"
+          fill="#8a6478" opacity="0.65">CAVE</text>
+</svg>

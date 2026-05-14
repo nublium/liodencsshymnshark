@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HEAVEN'S ON FIRE · pride-overview banner — brighter sun + rays -->
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="170" viewBox="0 0 260 170" preserveAspectRatio="xMidYMid slice">
+
+    <defs>
+        <linearGradient id="prSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stop-color="#f4ebe0"/>
+            <stop offset="40%" stop-color="#f5c8a8"/>
+            <stop offset="100%" stop-color="#e0a8b8"/>
+        </linearGradient>
+        <radialGradient id="prSun" cx="50%" cy="55%" r="55%">
+            <stop offset="0%"   stop-color="#ffe5c8" stop-opacity="1"/>
+            <stop offset="40%"  stop-color="#ffcfa8" stop-opacity="0.65"/>
+            <stop offset="100%" stop-color="#f0b893" stop-opacity="0"/>
+        </radialGradient>
+    </defs>
+
+    <rect width="260" height="170" fill="url(#prSky)"/>
+    <rect x="2" y="2" width="256" height="166" fill="none" stroke="#f0b893" stroke-width="1.5" opacity="0.75"/>
+
+    <!-- Rays radiating from a centre sun -->
+    <g transform="translate(130 92)" stroke="#ffcfa8" stroke-width="1.5" opacity="0.55">
+        <line x1="0" y1="0" x2="0"   y2="-72"/>
+        <line x1="0" y1="0" x2="50"  y2="-50"/>
+        <line x1="0" y1="0" x2="72"  y2="0"/>
+        <line x1="0" y1="0" x2="50"  y2="50"/>
+        <line x1="0" y1="0" x2="0"   y2="72"/>
+        <line x1="0" y1="0" x2="-50" y2="50"/>
+        <line x1="0" y1="0" x2="-72" y2="0"/>
+        <line x1="0" y1="0" x2="-50" y2="-50"/>
+        <line x1="0" y1="0" x2="-30" y2="-65"/>
+        <line x1="0" y1="0" x2="30"  y2="-65"/>
+        <line x1="0" y1="0" x2="65"  y2="-30"/>
+        <line x1="0" y1="0" x2="65"  y2="30"/>
+    </g>
+
+    <!-- Sun -->
+    <circle cx="130" cy="92" r="56" fill="url(#prSun)"/>
+    <circle cx="130" cy="88" r="16" fill="#ffe5c8" opacity="0.95"/>
+    <circle cx="130" cy="88" r="9" fill="#fff5e8"/>
+
+    <!-- Title -->
+    <text x="130" y="40" text-anchor="middle"
+          font-family="'Italiana', 'Cinzel', serif" font-size="20" letter-spacing="6"
+          fill="#8a6478" opacity="0.95">THE PRIDE</text>
+    <line x1="60" y1="49" x2="200" y2="49" stroke="#f0b893" stroke-width="0.8" opacity="0.85"/>
+
+    <!-- Three small lion-silhouette dots at the base -->
+    <g fill="#2a1d2a" opacity="0.65">
+        <!-- left lion -->
+        <ellipse cx="78"  cy="142" rx="13" ry="8"/>
+        <circle  cx="66"  cy="138" r="6"/>
+
+        <!-- center king (with subtle crown notch) -->
+        <ellipse cx="130" cy="146" rx="15" ry="9"/>
+        <circle  cx="116" cy="141" r="7"/>
+        <path d="M 109 135 L 110 130 L 113 134 L 116 130 L 119 134 L 122 130 L 123 135 Z" fill="#d99878" opacity="0.85"/>
+
+        <!-- right lion -->
+        <ellipse cx="182" cy="142" rx="13" ry="8"/>
+        <circle  cx="170" cy="138" r="6"/>
+    </g>
+
+    <!-- Corner sparkles -->
+    <g>
+        <circle cx="22"  cy="22"  r="2"   fill="#f0b893" opacity="0.95"/>
+        <circle cx="238" cy="22"  r="2"   fill="#e5b8c4" opacity="0.95"/>
+        <circle cx="22"  cy="148" r="1.8" fill="#c5b3c8" opacity="0.85"/>
+        <circle cx="238" cy="148" r="1.8" fill="#c5b3c8" opacity="0.85"/>
+    </g>
+</svg>

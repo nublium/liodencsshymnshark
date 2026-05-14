@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HEAVEN'S ON FIRE · pregnant-lionesses (nesting) banner — soft rose -->
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="170" viewBox="0 0 260 170" preserveAspectRatio="xMidYMid slice">
+
+    <defs>
+        <linearGradient id="nstSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stop-color="#f8e8e0"/>
+            <stop offset="50%" stop-color="#f0d0d8"/>
+            <stop offset="100%" stop-color="#e0c0d0"/>
+        </linearGradient>
+        <radialGradient id="nstGlow" cx="50%" cy="55%" r="60%">
+            <stop offset="0%"  stop-color="#ffe0e8" stop-opacity="0.75"/>
+            <stop offset="60%" stop-color="#f5c0d0" stop-opacity="0.32"/>
+            <stop offset="100%" stop-color="#e5b8c4" stop-opacity="0"/>
+        </radialGradient>
+    </defs>
+
+    <rect width="260" height="170" fill="url(#nstSky)"/>
+    <rect x="2" y="2" width="256" height="166" fill="none" stroke="#e5b8c4" stroke-width="1.5" opacity="0.6"/>
+
+    <circle cx="130" cy="92" r="70" fill="url(#nstGlow)"/>
+
+    <!-- Title -->
+    <text x="130" y="56" text-anchor="middle"
+          font-family="'Italiana', 'Cinzel', serif" font-size="20" letter-spacing="5"
+          fill="#8a4f63" opacity="0.95">EXPECTING</text>
+    <line x1="60" y1="65" x2="200" y2="65" stroke="#e5b8c4" stroke-width="0.8" opacity="0.85"/>
+    <text x="130" y="79" text-anchor="middle"
+          font-family="'Cinzel', serif" font-size="9" letter-spacing="4"
+          fill="#b07c95" opacity="0.95">♡  LIONESSES  ♡</text>
+
+    <!-- A soft cluster of pastel-pink eggs/cubs as overlapping circles -->
+    <g>
+        <ellipse cx="98"  cy="125" rx="14" ry="11" fill="#f5d0d8" opacity="0.85"/>
+        <ellipse cx="98"  cy="125" rx="6"  ry="4"  fill="#fff0f5" opacity="0.7"/>
+
+        <ellipse cx="130" cy="132" rx="14" ry="11" fill="#f0c0d0" opacity="0.85"/>
+        <ellipse cx="130" cy="132" rx="6"  ry="4"  fill="#fff0f5" opacity="0.7"/>
+
+        <ellipse cx="162" cy="125" rx="14" ry="11" fill="#f5d0d8" opacity="0.85"/>
+        <ellipse cx="162" cy="125" rx="6"  ry="4"  fill="#fff0f5" opacity="0.7"/>
+    </g>
+
+    <!-- Floating hearts -->
+    <g fill="#d99878" opacity="0.55" font-family="serif" font-size="10" text-anchor="middle">
+        <text x="55" y="105">♡</text>
+        <text x="205" y="108">♡</text>
+        <text x="78" y="148">♡</text>
+        <text x="182" y="150">♡</text>
+    </g>
+
+    <!-- Corner sparkles -->
+    <g>
+        <circle cx="22" cy="22"  r="2"   fill="#e5b8c4" opacity="0.85"/>
+        <circle cx="238" cy="22" r="2"   fill="#f0b893" opacity="0.85"/>
+        <circle cx="22" cy="148" r="1.5" fill="#c5b3c8" opacity="0.75"/>
+        <circle cx="238" cy="148" r="1.5" fill="#c5b3c8" opacity="0.75"/>
+    </g>
+</svg>

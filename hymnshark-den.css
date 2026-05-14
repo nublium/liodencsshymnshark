@@ -59,16 +59,29 @@
     50%      { transform: scale(1.06); opacity: 1; }
 }
 
-@keyframes hof-mist-drift {
-    /* Subtle clockwise rotation — the mist around the king
-       drifts so slowly it reads as breathing, not spinning. */
+/* The big aura behind the king breathes in & out — a soft peach
+   "sun-through-mist" halo. Visible at any zoom. */
+@keyframes hof-aura-breathe {
+    0%, 100% {
+        opacity: 0.65;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50%      {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.08);
+    }
+}
+
+/* Diffuse pastel rays rotating CLOCKWISE around the king.
+   Slower than the orbs so the layers feel distinct. */
+@keyframes hof-ray-spin {
     0%   { transform: translate(-50%, -50%) rotate(0deg); }
     100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
+/* Illusion-orbs orbit COUNTER-clockwise — the "wake" of light
+   that gives the den its name. Faster so it reads as motion. */
 @keyframes hof-orb-spin {
-    /* Counter-clockwise orbit for the illusion-orbs ring.
-       Pairs with hof-mist-drift's clockwise to create depth. */
     0%   { transform: translate(-50%, -50%) rotate(0deg); }
     100% { transform: translate(-50%, -50%) rotate(-360deg); }
 }
@@ -634,6 +647,164 @@ html.nolayout, html.nolayout body, body.nolayout {
 
 
 /* ============================================================
+   [7.5] COMMENT BOX — the visitor-comment thread that lives
+        just above the territory description.
+        Lioden injects this with inline #commentBox styling;
+        these rules override that to match the theme.
+   ============================================================ */
+#commentBox {
+    background:
+        linear-gradient(180deg, rgba(255, 248, 244, 0.92) 0%, rgba(248, 232, 232, 0.85) 100%) !important;
+    border: 1px solid rgba(229, 184, 196, 0.55) !important;
+    border-radius: 14px !important;
+    padding: 0 !important;
+    margin: 14px 0 !important;
+    height: 320px !important;
+    overflow: auto !important;
+    box-shadow:
+        inset 0 0 28px rgba(255, 220, 195, 0.32),
+        0 4px 14px rgba(138, 117, 133, 0.18) !important;
+    color: #5a4a5a !important;
+    font-family: "Quicksand", sans-serif !important;
+}
+
+/* Individual comment rows — alternate soft pastel stripes */
+.comment {
+    background: rgba(255, 248, 244, 0.55) !important;
+    border-bottom: 1px dotted rgba(229, 184, 196, 0.55) !important;
+    padding: 10px 14px !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    color: #5a4a5a !important;
+    transition: background 0.3s ease !important;
+}
+.comment:nth-child(odd)  { background: rgba(255, 248, 244, 0.85) !important; }
+.comment:nth-child(even) { background: rgba(248, 232, 232, 0.65) !important; }
+.comment:hover           { background: rgba(255, 220, 195, 0.55) !important; }
+.comment:last-child      { border-bottom: none !important; }
+
+/* The round avatar to the left of each comment */
+.comment .commentTag {
+    width: 42px !important; height: 42px !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+    border: 2px solid rgba(229, 184, 196, 0.85) !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 248, 244, 0.95),
+        0 0 6px rgba(240, 184, 147, 0.45) !important;
+    background: rgba(255, 248, 244, 0.85) !important;
+}
+
+/* The comment text block */
+.comment .commentText {
+    flex-grow: 1 !important;
+    color: #5a4a5a !important;
+    font-family: "Quicksand", sans-serif !important;
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+}
+.comment .commentText b,
+.comment .commentText strong,
+.comment .commentText a {
+    color: #8a6478 !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+.comment .commentText a:hover { color: #d99878 !important; }
+.comment .commentText small,
+.comment .commentText .timestamp {
+    display: block !important;
+    color: #a89098 !important;
+    font-family: "Cormorant Garamond", serif !important;
+    font-style: italic !important;
+    font-size: 11px !important;
+    margin-top: 2px !important;
+}
+
+/* "Bad" / report flag on a comment */
+.comment .bad {
+    color: rgba(176, 124, 149, 0.85) !important;
+    font-family: "Cinzel", serif !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+}
+
+/* Empty-state placeholder ("No comments have been left…") */
+#commentBox .comment:only-child {
+    justify-content: center !important;
+    text-align: center !important;
+    color: rgba(176, 124, 149, 0.85) !important;
+    font-style: italic !important;
+    font-family: "Cormorant Garamond", serif !important;
+    background: transparent !important;
+}
+
+/* The input row at the bottom: text field + Post button */
+#makeComment {
+    display: flex !important;
+    gap: 8px !important;
+    align-items: stretch !important;
+    margin: 10px 0 14px !important;
+    padding: 0 !important;
+}
+#comment {
+    flex-grow: 1 !important;
+    background: rgba(255, 248, 244, 0.95) !important;
+    border: 1px solid rgba(229, 184, 196, 0.65) !important;
+    border-radius: 14px !important;
+    padding: 8px 14px !important;
+    color: #5a4a5a !important;
+    font-family: "Quicksand", sans-serif !important;
+    font-size: 13px !important;
+    text-align: left !important;
+    width: auto !important;
+    box-shadow: inset 0 1px 3px rgba(138, 117, 133, 0.15) !important;
+    transition: all 0.3s ease !important;
+}
+#comment:focus {
+    border-color: rgba(240, 184, 147, 0.85) !important;
+    box-shadow:
+        0 0 10px rgba(240, 184, 147, 0.42),
+        inset 0 1px 3px rgba(138, 117, 133, 0.10) !important;
+    outline: none !important;
+}
+#postComment {
+    background:
+        linear-gradient(180deg, rgba(255, 220, 195, 0.95) 0%, rgba(240, 184, 147, 0.85) 100%) !important;
+    border: 1px solid rgba(240, 184, 147, 0.85) !important;
+    color: #6e5e6e !important;
+    font-family: "Cinzel", serif !important;
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    padding: 6px 18px !important;
+    border-radius: 14px !important;
+    cursor: pointer !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.55),
+        0 2px 6px rgba(240, 184, 147, 0.32) !important;
+    transition: all 0.3s ease !important;
+}
+#postComment:hover {
+    background:
+        linear-gradient(180deg, rgba(255, 230, 200, 1) 0%, rgba(240, 184, 147, 1) 100%) !important;
+    color: #6e5e6e !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.65),
+        0 4px 14px rgba(240, 184, 147, 0.55) !important;
+    transform: translateY(-1px);
+}
+#commentErrors {
+    color: #b06870 !important;
+    font-family: "Cormorant Garamond", serif !important;
+    font-style: italic !important;
+    font-size: 13px !important;
+    padding: 4px 14px !important;
+}
+
+
+/* ============================================================
    [8] TERRITORY DESCRIPTION (.hof-*)
        === THIS IS THE PART YOU EDIT IN THE HTML ===
        Class names use the .hof- prefix to avoid collisions with
@@ -686,21 +857,70 @@ html.nolayout, html.nolayout body, body.nolayout {
 .hof-territory::after  { bottom: 0; box-shadow: 0 -4px 0 -3px rgba(229, 184, 196, 0.45); }
 
 
-/* === TOP ORNAMENT ROW (small dotted row above the title) === */
-.hof-ornament-row {
-    display: flex; justify-content: center; align-items: center;
-    gap: 14px; margin: 6px 0 -2px;
-    color: rgba(240, 184, 147, 0.75);
-    font-size: 16px; letter-spacing: 12px;
-    font-family: "Italiana", serif;
+/* === TITLE BLOCK — the entire framed banner with flourishes ===
+   The whole title sits inside a .hof-title-block wrapper that
+   gives it a decorative top + bottom crest, so the title feels
+   like a properly framed heraldic banner rather than a bare line
+   of text. */
+.hof-title-block {
+    position: relative;
+    margin: 14px 4px 10px;
+    padding: 10px 24px 18px;
 }
-.hof-ornament-row .dot {
-    display: inline-block;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #ffd5b8 0%, #f0b893 60%, #d99878 100%);
-    box-shadow: 0 0 8px rgba(240, 184, 147, 0.65);
-    vertical-align: middle;
+/* The ornate top + bottom crest — a centered flourish flanked
+   by tapering pastel rules. Two heavy ❦ marks bracket a string
+   of small ornaments. */
+.hof-title-flourish {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0;
+    font-family: "Italiana", serif;
+    color: #d99878;
+    line-height: 1;
+}
+.hof-title-flourish > .endcap {
+    font-size: 22px;
+    color: #b07c95;
+    text-shadow:
+        0 0 12px rgba(229, 184, 196, 0.75),
+        0 0 22px rgba(240, 184, 147, 0.45);
+    flex: 0 0 auto;
+    animation: hof-pulse-soft 7s ease-in-out infinite;
+}
+.hof-title-flourish > .line {
+    flex: 0 1 110px;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(229, 184, 196, 0.65),
+        rgba(240, 184, 147, 0.85),
+        rgba(229, 184, 196, 0.65),
+        transparent);
+    opacity: 0.85;
+}
+.hof-title-flourish > .center {
+    flex: 0 0 auto;
+    font-size: 16px;
+    letter-spacing: 8px;
+    color: #f0b893;
+    text-shadow:
+        0 0 10px rgba(240, 184, 147, 0.85),
+        0 0 22px rgba(255, 220, 195, 0.55);
+}
+
+/* Tiny decorative scroll-flourishes ABOVE the top crest and
+   BELOW the bottom crest — adds a final layer of ornament. */
+.hof-title-scroll {
+    text-align: center;
+    font-family: "Italiana", serif;
+    color: rgba(176, 124, 149, 0.65);
+    font-size: 13px;
+    letter-spacing: 14px;
+    line-height: 1;
+    margin: 0;
+    text-shadow: 0 0 8px rgba(240, 184, 147, 0.35);
 }
 
 
@@ -709,8 +929,8 @@ html.nolayout, html.nolayout body, body.nolayout {
    editorial vibe — not cartoony, not gothic. */
 .hof-title {
     text-align: center;
-    padding: 6px 10px 4px;
-    margin: 0;
+    padding: 14px 10px 12px;
+    margin: 8px 0 4px;
     font-family: "Italiana", "Cinzel", serif;
     font-size: 64px;
     font-weight: 400;
@@ -725,27 +945,41 @@ html.nolayout, html.nolayout body, body.nolayout {
         0 2px 4px rgba(138, 117, 133, 0.30);
     animation: hof-dawn-glow 8s ease-in-out infinite;
     position: relative;
-    /* Flex layout so the ✦ ornaments truly center with the text
+    /* Flex layout so the ornament glyphs truly center with the text
        — otherwise letter-spacing trails offset the centring. */
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 22px;
+    gap: 26px;
     text-indent: 6px;       /* compensates for trailing letter-spacing */
 }
-/* Ornaments on either side of the title — small pastel suns */
-.hof-title::before, .hof-title::after {
-    content: "✦";
-    color: #f0b893;
+/* Compound ornaments on either side of the title — large flourishes
+   that wrap the title like the side-pieces of a heraldic crest. */
+.hof-title::before {
+    content: "❦";
+    color: #d99878;
     font-family: "Italiana", serif;
-    font-size: 26px;
+    font-size: 32px;
     letter-spacing: 0 !important;
     margin: 0 !important;
     text-shadow:
-        0 0 14px rgba(240, 184, 147, 0.85),
-        0 0 28px rgba(255, 220, 195, 0.55);
+        0 0 16px rgba(240, 184, 147, 0.95),
+        0 0 32px rgba(255, 220, 195, 0.55);
     display: inline-block;
     animation: hof-pulse-soft 5s ease-in-out infinite;
+}
+.hof-title::after {
+    content: "❦";
+    color: #d99878;
+    font-family: "Italiana", serif;
+    font-size: 32px;
+    letter-spacing: 0 !important;
+    margin: 0 !important;
+    text-shadow:
+        0 0 16px rgba(240, 184, 147, 0.95),
+        0 0 32px rgba(255, 220, 195, 0.55);
+    display: inline-block;
+    animation: hof-pulse-soft 5s ease-in-out infinite reverse;
 }
 
 
@@ -1043,24 +1277,43 @@ html.nolayout, html.nolayout body, body.nolayout {
 }
 
 
-/* === DROP-CAP — soft illuminated first letter === */
+/* === DROP-CAP — soft illuminated first letter ===
+   Wrapped in `<div class="hof-text hof-text-dropcapped">` so the
+   ::first-line treatment kicks in for the surrounding paragraph.
+   Sized so 3 body lines wrap snugly beside it. */
 .hof-dropcap {
     float: left;
     font-family: "Italiana", "Cinzel", serif;
-    font-size: 54px; line-height: 0.85;
+    font-size: 58px;
+    line-height: 0.82;
     color: #8a6478;
-    margin: 4px 12px 0 0;
-    padding: 6px 10px 4px;
+    margin: 4px 14px -4px 0;     /* slight negative bottom pulls the next paragraph up */
+    padding: 8px 12px 6px;
     text-shadow:
         0 0 12px rgba(240, 184, 147, 0.55),
         0 0 6px rgba(255, 220, 195, 0.45),
         0 2px 4px rgba(138, 117, 133, 0.30);
-    border: 1px solid rgba(229, 184, 196, 0.65);
-    border-radius: 8px;
+    border: 1px solid rgba(229, 184, 196, 0.75);
+    border-radius: 10px;
     background:
-        radial-gradient(ellipse at 50% 30%, rgba(255, 220, 195, 0.55) 0%, transparent 65%),
-        linear-gradient(135deg, rgba(255, 248, 244, 0.85) 0%, rgba(248, 224, 224, 0.85) 100%);
-    box-shadow: inset 0 0 14px rgba(240, 184, 147, 0.22);
+        radial-gradient(ellipse at 50% 30%, rgba(255, 220, 195, 0.65) 0%, transparent 65%),
+        linear-gradient(135deg, rgba(255, 248, 244, 0.95) 0%, rgba(248, 224, 224, 0.92) 100%);
+    box-shadow:
+        inset 0 0 18px rgba(240, 184, 147, 0.28),
+        0 2px 8px rgba(229, 184, 196, 0.35);
+}
+
+/* When a text block has `.hof-text-dropcapped`, the first line of
+   the FIRST paragraph gets a small-caps editorial treatment so the
+   prose feels visually tied to the dropcap above it. */
+.hof-text-dropcapped > p:first-of-type {
+    margin-top: 0 !important;
+}
+.hof-text-dropcapped > p:first-of-type::first-line {
+    font-variant: small-caps;
+    letter-spacing: 2px;
+    color: #8a6478;
+    font-weight: 500;
 }
 
 
@@ -1086,20 +1339,22 @@ html.nolayout, html.nolayout body, body.nolayout {
 }
 
 
-/* === LIST — auto-rotates through five pastel glyphs === */
+/* === LIST — auto-rotates through five pastel glyphs ===
+   Tightened so bullets sit close together (looks denser, less
+   "drift"). Increase `padding-block` here if you want it airier. */
 .hof-list {
     list-style: none;
-    padding: 0; margin: 6px 0;
+    padding: 0; margin: 4px 0;
 }
 .hof-list li {
-    padding: 6px 0 6px 26px;
+    padding: 2px 0 2px 24px;     /* was 6px 0 6px 26px — tighter */
     position: relative;
     font-size: 13.5px;
     color: #5a4a5a;
-    line-height: 1.65;
+    line-height: 1.45;           /* was 1.65 — tighter */
 }
 .hof-list li::before {
-    position: absolute; left: 0; top: 7px;
+    position: absolute; left: 0; top: 4px;
     color: #f0b893;
     font-family: "Italiana", serif;
     font-size: 12px;
@@ -1112,16 +1367,17 @@ html.nolayout, html.nolayout body, body.nolayout {
 .hof-list li:nth-child(5n)::before   { content: "❦"; }
 
 /* If you forget and use a plain <ul> inside .hof-text, it still styles */
-.hof-text ul          { list-style: none; padding: 0; margin: 6px 0; }
+.hof-text ul          { list-style: none; padding: 0; margin: 4px 0; }
 .hof-text ul li       {
-    padding: 6px 0 6px 26px;
+    padding: 2px 0 2px 24px;
     position: relative;
     font-size: 13.5px;
     color: #5a4a5a;
+    line-height: 1.45;
 }
 .hof-text ul li::before {
     content: "✦";
-    position: absolute; left: 0; top: 7px;
+    position: absolute; left: 0; top: 4px;
     color: #f0b893;
     font-family: "Italiana", serif;
     font-size: 11px;
@@ -1129,49 +1385,96 @@ html.nolayout, html.nolayout body, body.nolayout {
 }
 
 
-/* === PULL-QUOTE === */
+/* === PULL-QUOTE ===
+   An ornate, deliberately attention-grabbing block. Sits inside
+   the lore box and reads as a piece of pride scripture or motto.
+   Heavy border, ornament marks top & bottom, peach-rose glow.
+   ─────────────────────────────────────────────────────────
+   Wrap it like this in HTML:
+     <blockquote class="hof-quote">
+         Your highlighted line here.
+         <span class="attrib">— attribution</span>
+     </blockquote>
+*/
 .hof-quote {
-    border-left: 2px solid rgba(240, 184, 147, 0.85);
-    border-right: 2px solid rgba(229, 184, 196, 0.65);
-    padding: 14px 24px 14px 30px;
-    margin: 14px 6px;
+    /* Heavier double-border feel */
+    border-left: 3px solid rgba(240, 184, 147, 0.95);
+    border-right: 3px solid rgba(229, 184, 196, 0.85);
+    border-top: 1px solid rgba(229, 184, 196, 0.55);
+    border-bottom: 1px solid rgba(229, 184, 196, 0.55);
+    padding: 28px 38px 30px 38px;
+    margin: 26px 4px 32px;       /* extra room so the top/bottom ornaments don't clip */
     background:
-        linear-gradient(180deg, rgba(255, 220, 195, 0.18) 0%, rgba(229, 184, 196, 0.20) 100%);
-    border-radius: 8px;
+        radial-gradient(ellipse at 50% 0%, rgba(255, 220, 195, 0.55) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 100%, rgba(229, 184, 196, 0.45) 0%, transparent 60%),
+        linear-gradient(180deg, rgba(255, 240, 232, 0.85) 0%, rgba(248, 224, 224, 0.85) 100%);
+    border-radius: 10px;
     font-family: "Cormorant Garamond", serif;
     font-style: italic;
     color: #6e5e6e;
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1.75;
     position: relative;
     text-align: center;
+    box-shadow:
+        inset 0 0 28px rgba(255, 240, 232, 0.65),
+        0 6px 22px rgba(240, 184, 147, 0.32);
 }
+/* Ornate top medallion — a heavy ❦ on a pastel disc */
 .hof-quote::before {
-    content: "\201C";
-    position: absolute; top: -2px; left: 6px;
-    font-size: 42px;
-    color: rgba(240, 184, 147, 0.75);
-    font-style: normal;
+    content: "❦";
+    position: absolute;
+    top: -16px; left: 50%;
+    transform: translateX(-50%);
+    width: 36px; height: 32px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 22px;
+    color: #d99878;
     font-family: "Italiana", serif;
-    line-height: 1;
+    font-style: normal;
+    background:
+        radial-gradient(circle, rgba(255, 240, 232, 1) 0%, rgba(255, 220, 195, 0.95) 70%);
+    border: 1px solid rgba(240, 184, 147, 0.85);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 3px rgba(248, 232, 224, 0.95),
+        0 0 12px rgba(240, 184, 147, 0.65);
+    text-shadow: 0 0 8px rgba(240, 184, 147, 0.55);
 }
+/* Mirrored ornate bottom medallion */
 .hof-quote::after {
-    content: "\201D";
-    position: absolute; bottom: -18px; right: 8px;
-    font-size: 42px;
-    color: rgba(240, 184, 147, 0.75);
-    font-style: normal;
+    content: "❦";
+    position: absolute;
+    bottom: -16px; left: 50%;
+    transform: translateX(-50%);
+    width: 36px; height: 32px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 22px;
+    color: #b07c95;
     font-family: "Italiana", serif;
-    line-height: 1;
+    font-style: normal;
+    background:
+        radial-gradient(circle, rgba(255, 240, 232, 1) 0%, rgba(229, 184, 196, 0.95) 70%);
+    border: 1px solid rgba(229, 184, 196, 0.85);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 3px rgba(248, 232, 224, 0.95),
+        0 0 12px rgba(229, 184, 196, 0.65);
+    text-shadow: 0 0 8px rgba(229, 184, 196, 0.55);
 }
+/* Attribution line at the bottom of the quote */
 .hof-quote .attrib {
     display: block;
-    margin-top: 10px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dotted rgba(229, 184, 196, 0.55);
     font-style: normal;
     font-family: "Cinzel", serif;
-    font-size: 9.5px;
-    color: rgba(138, 117, 133, 0.85);
-    letter-spacing: 4px;
+    font-size: 10px;
+    color: rgba(176, 124, 149, 0.95);
+    letter-spacing: 5px;
     text-transform: uppercase;
 }
 
@@ -1254,7 +1557,9 @@ html.nolayout, html.nolayout body, body.nolayout {
     transform: translateY(-3px);
 }
 
-/* Image inside card — square thumb with rounded mask */
+/* Image inside card — square thumb with rounded mask.
+   Works with either <img class="hof-gal-img" src="..."> OR with the
+   simpler placeholder pattern below (<div class="hof-gal-img hof-gal-placeholder">). */
 .hof-gal-img {
     display: block;
     width: 100%;
@@ -1270,6 +1575,38 @@ html.nolayout, html.nolayout body, body.nolayout {
 .hof-gal-card:hover .hof-gal-img {
     filter: saturate(1.1) contrast(1.05);
     border-color: rgba(240, 184, 147, 0.85);
+}
+
+/* === SIMPLE PLACEHOLDER — when you don't have a character image yet,
+   drop a <div class="hof-gal-img hof-gal-placeholder"><span>✦</span></div>
+   in the card instead of an <img>. The symbol can be any single character
+   or emoji — sun, flower, heart, crown, whatever fits the character. */
+.hof-gal-img.hof-gal-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 30% 25%, rgba(255, 220, 195, 0.85) 0%, transparent 55%),
+        radial-gradient(circle at 75% 75%, rgba(229, 184, 196, 0.65) 0%, transparent 55%),
+        linear-gradient(135deg, rgba(255, 240, 232, 0.95) 0%, rgba(229, 184, 196, 0.55) 100%);
+}
+.hof-gal-img.hof-gal-placeholder > span {
+    font-family: "Italiana", serif;
+    font-size: 46px;
+    color: rgba(176, 124, 149, 0.85);
+    text-shadow:
+        0 0 12px rgba(255, 240, 232, 0.95),
+        0 0 22px rgba(240, 184, 147, 0.55);
+    line-height: 1;
+    z-index: 1;
+}
+.hof-gal-card:hover .hof-gal-img.hof-gal-placeholder > span {
+    color: rgba(176, 124, 149, 1);
+    text-shadow:
+        0 0 14px rgba(255, 240, 232, 0.95),
+        0 0 28px rgba(240, 184, 147, 0.85);
 }
 
 /* Character name — Italiana for elegant feel */
@@ -1408,35 +1745,35 @@ table#about > tbody > tr.right > td:first-child::after {
     animation: hof-pulse-soft 6s ease-in-out infinite !important;
 }
 
-/* THE MIST HALO — a soft drifting pastel ring behind the king
-   (uses ::before on the cell, masked to a doughnut shape).
-   Reads as breathing mist rather than spinning rays. */
+/* THE BREATHING AURA — large soft peach-and-lavender halo that
+   pulses in and out behind the king. This is the BIG visible
+   effect: sun-through-mist glow. */
 table#about > tbody > tr.right > td:first-child::before {
     content: "" !important;
     position: absolute !important;
     top: 50%; left: 50%;
-    width: 280px; height: 280px;
+    width: 340px; height: 340px;
     transform: translate(-50%, -50%);
     pointer-events: none !important;
-    /* Stacked radial gradients = soft cloudy mist with peach + lavender tints */
+    /* Big diffuse peach core fading through lavender — like a sun
+       diffused by morning fog. */
     background:
-        radial-gradient(circle at 28% 32%, rgba(240, 184, 147, 0.40) 0%, transparent 35%),
-        radial-gradient(circle at 72% 28%, rgba(229, 184, 196, 0.38) 0%, transparent 38%),
-        radial-gradient(circle at 18% 78%, rgba(197, 179, 200, 0.42) 0%, transparent 36%),
-        radial-gradient(circle at 82% 78%, rgba(255, 220, 195, 0.40) 0%, transparent 36%),
-        radial-gradient(circle at 50% 50%, transparent 32%, rgba(255, 240, 232, 0.18) 50%, transparent 70%) !important;
+        radial-gradient(circle,
+            rgba(255, 220, 195, 0.65) 0%,
+            rgba(240, 184, 147, 0.55) 15%,
+            rgba(229, 184, 196, 0.45) 32%,
+            rgba(197, 179, 200, 0.30) 50%,
+            rgba(229, 184, 196, 0.12) 65%,
+            transparent 78%) !important;
     border-radius: 50% !important;
-    -webkit-mask-image: radial-gradient(circle, transparent 38%, black 56%, transparent 70%) !important;
-    mask-image: radial-gradient(circle, transparent 38%, black 56%, transparent 70%) !important;
-    filter: blur(8px) !important;
-    animation: hof-mist-drift 80s linear infinite !important;
+    filter: blur(4px) !important;
+    animation: hof-aura-breathe 5.5s ease-in-out infinite !important;
     z-index: 0 !important;
 }
 
-/* THE ILLUSION ORBS — a counter-rotating ring of tiny pastel dots
-   (uses ::after on #lion_image's parent anchor). The orbs orbit
-   slightly OUTSIDE the king image, suggesting "illusions follow
-   your wake" without ever crossing the king itself. */
+/* THE RAY-CORONA — 12 wide soft pastel wedges rotating slowly
+   clockwise around the king (the "fire" radiating from him).
+   Pseudo-element on the anchor so it sits between aura and king. */
 table#about > tbody > tr.right > td:first-child > a {
     position: relative !important;
     display: inline-block !important;
@@ -1446,41 +1783,48 @@ table#about > tbody > tr.right > td:first-child > a::before {
     content: "" !important;
     position: absolute !important;
     top: 50%; left: 50%;
-    width: 240px; height: 240px;
+    width: 300px; height: 300px;
     transform: translate(-50%, -50%);
     pointer-events: none !important;
     border-radius: 50% !important;
-    /* Eight tiny dots evenly spaced around the ring via
-       repeating-conic-gradient (3deg ON, 42deg OFF). */
+    /* 12 wedges at 30deg each — 6deg of peach ray, 24deg of gap.
+       Wide rays read as soft beams, not thin lines. */
     background: repeating-conic-gradient(from 0deg,
-        rgba(240, 184, 147, 0.0) 0deg 1deg,
-        rgba(240, 184, 147, 0.85) 1deg 3deg,
-        transparent 3deg 45deg) !important;
-    /* Doughnut mask keeps the orbs in a thin ring */
-    -webkit-mask-image: radial-gradient(circle, transparent 45%, black 47%, black 49%, transparent 51%) !important;
-    mask-image: radial-gradient(circle, transparent 45%, black 47%, black 49%, transparent 51%) !important;
-    filter: drop-shadow(0 0 4px rgba(240, 184, 147, 0.75));
-    animation: hof-orb-spin 45s linear infinite !important;
+        rgba(240, 184, 147, 0.45) 0deg 6deg,
+        transparent 6deg 30deg) !important;
+    /* Doughnut mask — rays start just outside the king (200px)
+       and fade out before the aura edge. */
+    -webkit-mask-image: radial-gradient(circle, transparent 36%, black 52%, transparent 70%) !important;
+    mask-image: radial-gradient(circle, transparent 36%, black 52%, transparent 70%) !important;
+    filter: blur(1.5px) drop-shadow(0 0 6px rgba(240, 184, 147, 0.55));
+    animation: hof-ray-spin 35s linear infinite !important;
     z-index: 1 !important;
 }
-/* A second, lavender, faster-counter-rotating orb ring for depth */
+
+/* THE ILLUSION ORBS — bright pastel dots orbiting counter-clockwise
+   just outside the king's gold rim. This is the "illusions follow
+   your wake" layer — visible bright pinpricks of light moving
+   against the slower rotating rays. */
 table#about > tbody > tr.right > td:first-child > a::after {
     content: "" !important;
     position: absolute !important;
     top: 50%; left: 50%;
-    width: 260px; height: 260px;
+    width: 250px; height: 250px;
     transform: translate(-50%, -50%);
     pointer-events: none !important;
     border-radius: 50% !important;
-    background: repeating-conic-gradient(from 15deg,
-        rgba(197, 179, 200, 0.0) 0deg 1deg,
-        rgba(197, 179, 200, 0.75) 1deg 2.5deg,
-        transparent 2.5deg 60deg) !important;
-    -webkit-mask-image: radial-gradient(circle, transparent 47%, black 49%, black 51%, transparent 53%) !important;
-    mask-image: radial-gradient(circle, transparent 47%, black 49%, black 51%, transparent 53%) !important;
-    filter: drop-shadow(0 0 3px rgba(197, 179, 200, 0.75));
-    animation: hof-mist-drift 65s linear infinite !important;
-    z-index: 1 !important;
+    /* 8 bright orbs — each 5deg wide, spaced every 45deg.
+       Higher opacity than the rays so they pop. */
+    background: repeating-conic-gradient(from 0deg,
+        transparent 0deg 1.5deg,
+        rgba(255, 230, 200, 0.95) 1.5deg 5deg,
+        transparent 5deg 45deg) !important;
+    /* Thin doughnut at the orbit radius */
+    -webkit-mask-image: radial-gradient(circle, transparent 44%, black 47%, black 53%, transparent 56%) !important;
+    mask-image: radial-gradient(circle, transparent 44%, black 47%, black 53%, transparent 56%) !important;
+    filter: drop-shadow(0 0 6px rgba(255, 220, 195, 1)) drop-shadow(0 0 10px rgba(240, 184, 147, 0.65));
+    animation: hof-orb-spin 22s linear infinite !important;
+    z-index: 3 !important;
 }
 
 /* THE LIVE KING — Lioden's #lion_image rendered as a circle */
@@ -1502,7 +1846,8 @@ table#about > tbody > tr.right > td:first-child > a::after {
         0 4px 24px rgba(138, 117, 133, 0.32),
         inset 0 0 22px rgba(255, 220, 195, 0.32) !important;
     transition: all 0.4s ease !important;
-    z-index: 2 !important;
+    /* Higher than the orbs (z-index 3) so the king always sits on top */
+    z-index: 5 !important;
 }
 #lion_image:hover {
     border-color: rgba(240, 184, 147, 1.0) !important;
@@ -1579,45 +1924,60 @@ table#player {
 }
 
 
-/* === FOOTER === */
+/* === FOOTER ===
+   Kept intentionally quiet: a small thank-you line on top, then
+   a barely-there credit underneath. The credit fades up only on
+   hover so it doesn't compete with the rest of the page. */
 .hof-footer {
     text-align: center;
     margin: 22px 0 6px;
-    padding: 14px 10px 8px;
-    border-top: 1px solid rgba(229, 184, 196, 0.45);
+    padding: 14px 10px 6px;
+    border-top: 1px solid rgba(229, 184, 196, 0.32);
     position: relative;
 }
 .hof-footer::before {
     content: "✦";
     position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
-    color: #f0b893;
+    color: rgba(240, 184, 147, 0.85);
     background: #f4ebe0;
-    font-size: 14px;
+    font-size: 12px;
     padding: 0 8px;
-    text-shadow: 0 0 8px rgba(240, 184, 147, 0.75);
+    text-shadow: 0 0 8px rgba(240, 184, 147, 0.55);
 }
 .hof-footer-line {
     font-family: "Cinzel", serif;
     font-size: 9px;
-    color: rgba(138, 117, 133, 0.75);
+    color: rgba(138, 117, 133, 0.65);
     letter-spacing: 4px;
     text-transform: uppercase;
-    margin: 4px 0;
+    margin: 0 0 2px;
 }
 .hof-footer-line .star {
-    color: #f0b893;
+    color: rgba(240, 184, 147, 0.85);
     margin: 0 6px;
-    text-shadow: 0 0 6px rgba(240, 184, 147, 0.75);
+    text-shadow: 0 0 6px rgba(240, 184, 147, 0.55);
 }
+/* The tiny credit — small, low-contrast, lowercase, sits under
+   the thank-you line. Hovering brings it up a little. */
 .hof-footer-credit {
-    font-family: "Italianno", cursive;
-    font-size: 20px;
-    color: rgba(176, 124, 149, 0.85);
-    margin: 6px 0 0;
+    display: block;
+    font-family: "Quicksand", sans-serif;
+    font-size: 9px;
+    color: rgba(168, 144, 152, 0.45);
+    letter-spacing: 2px;
+    text-transform: lowercase;
+    margin: 4px 0 0;
+    opacity: 0.65;
+    transition: opacity 0.4s ease;
 }
+.hof-footer-credit:hover { opacity: 1; }
 .hof-footer-credit a {
-    color: rgba(176, 124, 149, 0.95) !important;
-    border-bottom: 1px dotted rgba(229, 184, 196, 0.55);
+    color: rgba(168, 144, 152, 0.55) !important;
+    border-bottom: none !important;
+    text-decoration: none !important;
+}
+.hof-footer-credit a:hover {
+    color: rgba(217, 152, 120, 0.85) !important;
 }
 
 

@@ -14,20 +14,19 @@
      3. Wherever you see [YOUR TEXT HERE], replace it.
      4. Wherever you see <!-- COMMENT --> blocks, those are
         instructions explaining what the next chunk does.
-        You can DELETE comments before pasting if you want a
-        cleaner editor view, but they don't hurt anything if
-        you leave them in — Lioden ignores HTML comments.
-     5. To add more characters to the gallery, copy any
-        <div class="hof-gal-card">…</div> block and paste it.
-        The grid auto-wraps.
-     6. You don't have to use every box / divider / section —
-        delete anything you don't need.
+        Lioden ignores HTML comments — you can delete them
+        before pasting if you want a cleaner editor view.
+     5. Pride-Lore is pre-filled with lorem ipsum so you can see
+        the visual flow. Replace it with your own writing.
+     6. Gallery cards use a SIMPLE PLACEHOLDER (a symbol on a
+        pastel gradient). When you have a character image, swap
+        <div class="hof-gal-img hof-gal-placeholder">…</div>
+        for <img class="hof-gal-img" src="YOUR_IMG_URL"/>.
      ─────────────────────────────────────────────────────────
      COLOUR / FONT / ANIMATION CHANGES live in hymnshark-den.css.
      Open that file, find the section header you want
      (e.g. "[8] TERRITORY DESCRIPTION") and edit the values
-     in there. Comments at the top of every section explain
-     what's what.
+     in there.
 ============================================================ -->
 
 
@@ -44,34 +43,51 @@
 
 
     <!-- =====================================================
-         TITLE BLOCK — top of the page
-         The ✦ ornaments come from CSS automatically.
-         Change the words inside <h1> and <p class="hof-subtitle">
+         TITLE BLOCK — heraldic banner with ornate flourishes
+         The crests above & below the title are pure ornament.
+         Edit the words inside <h1>, <p class="hof-subtitle">
          and <p class="hof-motto"> below.
     ===================================================== -->
+    <div class="hof-title-block">
 
-    <!-- The little dotted row above the title (purely decorative) -->
-    <div class="hof-ornament-row">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
+        <!-- A faint top scroll of dots (very subtle) -->
+        <p class="hof-title-scroll">⁕  ⁕  ⁕</p>
+
+        <!-- The big ornate top crest:
+                ❦ ──── ✦ ❀ ✦ ──── ❦ -->
+        <div class="hof-title-flourish">
+            <span class="endcap">❦</span>
+            <span class="line"></span>
+            <span class="center">✦ ❀ ✦</span>
+            <span class="line"></span>
+            <span class="endcap">❦</span>
+        </div>
+
+        <!-- The grand title with ❦ ornaments on either side -->
+        <h1 class="hof-title">Heaven's On Fire</h1>
+
+        <!-- The flowing cursive subtitle -->
+        <p class="hof-subtitle">where illusions follow your wake</p>
+
+        <!-- Tiny uppercase tagline. Delete this <p> if not wanted. -->
+        <p class="hof-motto">— a soft place to land —</p>
+
+        <!-- Mirrored bottom crest -->
+        <div class="hof-title-flourish">
+            <span class="endcap">❦</span>
+            <span class="line"></span>
+            <span class="center">✦ ❀ ✦</span>
+            <span class="line"></span>
+            <span class="endcap">❦</span>
+        </div>
+
+        <p class="hof-title-scroll">⁕  ⁕  ⁕</p>
+
     </div>
-
-    <!-- The grand title -->
-    <h1 class="hof-title">Heaven's On Fire</h1>
-
-    <!-- The flowing cursive subtitle -->
-    <p class="hof-subtitle">where illusions follow your wake</p>
-
-    <!-- A tiny uppercase tagline under the subtitle.
-         Optional — delete this <p> if you don't want one. -->
-    <p class="hof-motto">— a soft place to land —</p>
 
 
     <!-- =====================================================
          SECTION DIVIDER — small ornamental label
-         You can drop this between any sections to break up
-         the page rhythm.
     ===================================================== -->
     <div class="hof-divider-full" style="margin: 18px 0 14px;">
         <span class="hof-divider-mark">
@@ -88,13 +104,10 @@
 
 
         <!-- ▽▽▽ BOX 1 — THE PLAYER ▽▽▽
-             Customer-facing info about YOU as a player.
-             The .hof-info-row pattern is "Label … Value"
-             with a dotted divider underneath. Add or remove
-             rows as you like. -->
+             The .hof-info-row pattern is "Label … Value" with
+             a dotted divider underneath. Add or remove rows. -->
         <div class="hof-box hof-box-half">
 
-            <!-- Decorative corner ticks (pure ornament) -->
             <span class="hof-box-corner hof-tl"></span>
             <span class="hof-box-corner hof-tr"></span>
             <span class="hof-box-corner hof-bl"></span>
@@ -107,14 +120,10 @@
 
             <div class="hof-text">
 
-                <!-- Optional short intro sentence above the info rows.
-                     Delete the <p> if you'd rather jump straight to rows. -->
                 <p class="hof-text-italic hof-text-center" style="margin: 0 0 12px;">
                     [A SHORT LINE ABOUT YOURSELF — e.g. a quote, a feeling, anything]
                 </p>
 
-                <!-- Info rows — Label : Value
-                     Add / remove these freely. -->
                 <div class="hof-info-row">
                     <span class="hof-info-label">Call me</span>
                     <span class="hof-info-value">[YOUR NAME / NICKNAME]</span>
@@ -147,11 +156,9 @@
 
 
         <!-- ▽▽▽ BOX 2 — THE KING ▽▽▽
-             Short introduction of the king. The LIVE king image
-             auto-renders from Lioden's About table further down
-             the page — you don't paste an image here.
-             This box gives the king's *personality* / lore-snippet.
-        -->
+             The LIVE king image auto-renders from Lioden's About
+             table further up the page — you don't paste an image
+             here. This box gives the king's *personality*. -->
         <div class="hof-box hof-box-half">
 
             <span class="hof-box-corner hof-tl"></span>
@@ -166,7 +173,6 @@
 
             <div class="hof-text">
 
-                <!-- Quick stat-block for the king. Edit freely. -->
                 <div class="hof-info-row">
                     <span class="hof-info-label">Name</span>
                     <span class="hof-info-value">[KING'S NAME]</span>
@@ -184,8 +190,6 @@
                     <span class="hof-info-value hof-text-italic">[ONE WORD — proud, weary, tender…]</span>
                 </div>
 
-                <!-- A pull-quote or one-line summary about the king's character.
-                     Keep it short — there's a bigger lore box below for the whole pride. -->
                 <p class="hof-text-italic hof-text-center" style="margin: 12px 0 0;">
                     [ONE SENTENCE THAT CAPTURES HIM]
                 </p>
@@ -210,6 +214,8 @@
     <!-- =====================================================
          BOX 3 — PRIDE LORE   (full width, alone)
          The big lore-dump for the pride's history / setting.
+         Pre-filled with LOREM IPSUM so you can see the flow —
+         replace with your own writing.
     ===================================================== -->
     <div class="hof-box hof-box-full" style="margin: 4px 0 18px;">
 
@@ -223,36 +229,48 @@
             <span class="sym">❀</span> Pride Lore <span class="sym">❀</span>
         </h2>
 
-        <div class="hof-text">
+        <!-- NOTE: the extra "hof-text-dropcapped" class on the
+             text wrapper activates a small-caps treatment on the
+             first line of the first paragraph so the prose feels
+             visually tied to the big "H" dropcap. -->
+        <div class="hof-text hof-text-dropcapped">
 
-            <!-- The big drop-cap first letter. Replace the H with whatever
-                 letter your first paragraph starts with. -->
+            <!-- The illuminated first letter. Replace the H with
+                 whatever letter your first paragraph starts with. -->
             <span class="hof-dropcap">H</span>
 
-            <!-- Body paragraph(s). You can have multiple <p> blocks. -->
             <p style="margin: 0 0 10px;">
-                [YOUR PRIDE LORE — paragraph one. The drop-cap above pulls
-                the first letter out, so DON'T repeat it here. Start this
-                paragraph as if its first letter is missing.]
+                eaven's On Fire was born of a long quiet — lorem ipsum dolor sit
+                amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
+                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate
+                velit esse cillum dolore eu fugiat nulla pariatur.
             </p>
 
             <p style="margin: 0 0 10px;">
-                [YOUR PRIDE LORE — paragraph two. Anything you want here:
-                how the pride was founded, your aesthetic / vibe, what
-                outsiders should know before approaching.]
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                officia deserunt mollit anim id est laborum. Curabitur pretium
+                tincidunt lacus, nulla gravida orci a odio. Nullam varius, turpis
+                et commodo pharetra, est eros bibendum elit, nec luctus magna felis
+                sollicitudin mauris. Integer in mauris eu nibh euismod gravida.
+                Duis ac tellus et risus vulputate vehicula. Donec lobortis risus
+                a elit. Etiam tempor.
             </p>
 
-            <!-- A pull-quote for a sentence you want to highlight.
-                 Comment it out (or delete) if you don't want one. -->
+            <!-- The big highlight quote. Edit or remove it. -->
             <blockquote class="hof-quote">
-                [A LINE WORTH HIGHLIGHTING — a motto, a refrain, a piece of
-                pride scripture]
-                <span class="attrib">— [attribution / source, optional]</span>
+                where dawn breaks soft, the fire still remembers our names —
+                and the mist holds every promise we never spoke aloud.
+                <span class="attrib">— pride scripture, fragment iii</span>
             </blockquote>
 
             <p style="margin: 0;">
-                [YOUR PRIDE LORE — closing paragraph. Anything to leave the
-                reader with: a hope, a warning, an open door.]
+                Aliquam erat volutpat. Nunc sed turpis. Aliquam erat volutpat.
+                Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus,
+                metus. Praesent fauci. Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Vivamus elementum semper nisi. Aenean vulputate
+                eleifend tellus.
             </p>
 
         </div>
@@ -261,7 +279,6 @@
 
     <!-- =====================================================
          BOX 4 — ROLEPLAY INFORMATION   (full width, alone)
-         RP guidelines — yes's, no's, etc.
     ===================================================== -->
     <div class="hof-box hof-box-full" style="margin: 4px 0 18px;">
 
@@ -278,14 +295,12 @@
         <div class="hof-text">
 
             <p style="margin: 0 0 10px;" class="hof-text-italic hof-text-center">
-                [A SHORT OPENING LINE — set the tone for what kind of RP you do]
+                [A SHORT OPENING LINE — set the tone for your RP style]
             </p>
 
-            <!-- Two-column-style info using the same info-row pattern.
-                 Useful for quick scannable RP facts. -->
             <div class="hof-info-row">
                 <span class="hof-info-label">Style</span>
-                <span class="hof-info-value">[LITERATE / PARA / SEMI-LIT / WHATEVER]</span>
+                <span class="hof-info-value">[LITERATE / PARA / SEMI-LIT / ETC]</span>
             </div>
             <div class="hof-info-row">
                 <span class="hof-info-label">Length</span>
@@ -300,8 +315,8 @@
                 <span class="hof-info-value">[E.G. "FEW TIMES A WEEK"]</span>
             </div>
 
-            <!-- Guidelines list -->
-            <p style="margin: 18px 0 6px;" class="hof-text-bright">
+            <!-- Guideline lists — tightened spacing -->
+            <p style="margin: 14px 0 4px;" class="hof-text-bright">
                 <span class="hof-glyph">✦</span> Yes Please:
             </p>
             <ul class="hof-list">
@@ -310,7 +325,7 @@
                 <li>[YES — another]</li>
             </ul>
 
-            <p style="margin: 14px 0 6px;" class="hof-text-bright">
+            <p style="margin: 12px 0 4px;" class="hof-text-bright">
                 <span class="hof-glyph">✦</span> Soft No / Ask First:
             </p>
             <ul class="hof-list">
@@ -318,7 +333,7 @@
                 <li>[SOFT NO — another]</li>
             </ul>
 
-            <p style="margin: 14px 0 6px;" class="hof-text-bright">
+            <p style="margin: 12px 0 4px;" class="hof-text-bright">
                 <span class="hof-glyph">✦</span> Hard No:
             </p>
             <ul class="hof-list">
@@ -326,7 +341,7 @@
                 <li>[HARD NO — another]</li>
             </ul>
 
-            <p style="margin: 18px 0 0;" class="hof-text-sm hof-text-center hof-text-muted">
+            <p style="margin: 14px 0 0;" class="hof-text-sm hof-text-center hof-text-muted">
                 [OPTIONAL CLOSING — e.g. "DM me to plot, I love brainstorming"]
             </p>
 
@@ -346,72 +361,71 @@
 
 
     <!-- =====================================================
-         GALLERY — character introduction cards
-         (customer-requested: "type of gallery you have on your
-          own den page", placed after the RP box)
+         GALLERY — character introduction cards (5 cards)
 
          HOW TO USE:
          • Each <div class="hof-gal-card"> is ONE character.
-         • Copy-paste a whole card block to add more characters.
+         • To add MORE cards, copy a whole card block and paste
+           it just before the closing </div> of .hof-gallery.
          • The grid auto-wraps onto rows.
-         • For the descriptor under the name you have 4 options:
-             1. Plain italic line   — <p class="hof-gal-desc">vampire</p>
-             2. Peach status pill   — add class hof-status-open    → "open for rp"
-             3. Lavender status pill — add class hof-status-closed → "closed"
-             4. Rose status pill    — add class hof-status-rose   → "anything you like"
-         • Image: replace src="" with your character's image URL.
-           Aspect-ratio is auto-squared, so any image works.
+
+         THE PLACEHOLDER:
+         • Each card shows a SYMBOL on a pastel gradient as its
+           placeholder image (instead of a fancy SVG).
+         • Replace the SYMBOL by editing the character inside
+           <span>…</span> — try: ✦ ❀ ❦ ♛ ✧ ❖ ☾ ⚜ ☆ ☘ 🌙 🌸 🦊
+         • When you have a real character image, swap the whole
+           <div class="hof-gal-img hof-gal-placeholder">…</div>
+           for <img class="hof-gal-img" src="YOUR_URL" alt="…">.
+
+         THE STATUS BADGE under the name:
+         • Plain italic line     → <p class="hof-gal-desc">vampire</p>
+         • Peach pill            → add class hof-status-open    ("open for rp")
+         • Lavender pill         → add class hof-status-closed  ("closed")
+         • Rose pill             → add class hof-status-rose    ("plotting")
     ===================================================== -->
     <div class="hof-gallery">
 
 
-        <!-- ▽▽▽ GALLERY CARD — copy this whole div to add more ▽▽▽ -->
+        <!-- ▽▽▽ GALLERY CARD — copy this whole block to add more ▽▽▽ -->
         <div class="hof-gal-card">
-            <img class="hof-gal-img"
-                 src="https://nublium.github.io/liodencsshymnshark/placeholder-hymnshark-avatar.svg"
-                 alt="[character 1 name]">
+            <div class="hof-gal-img hof-gal-placeholder">
+                <span>✦</span>
+            </div>
             <p class="hof-gal-name">[NAME 1]</p>
             <p class="hof-gal-desc hof-status-open">open for rp</p>
         </div>
         <!-- ▲▲▲ -->
 
         <div class="hof-gal-card">
-            <img class="hof-gal-img"
-                 src="https://nublium.github.io/liodencsshymnshark/placeholder-hymnshark-avatar.svg"
-                 alt="[character 2 name]">
+            <div class="hof-gal-img hof-gal-placeholder">
+                <span>❀</span>
+            </div>
             <p class="hof-gal-name">[NAME 2]</p>
             <p class="hof-gal-desc">vampire</p>
         </div>
 
         <div class="hof-gal-card">
-            <img class="hof-gal-img"
-                 src="https://nublium.github.io/liodencsshymnshark/placeholder-hymnshark-avatar.svg"
-                 alt="[character 3 name]">
+            <div class="hof-gal-img hof-gal-placeholder">
+                <span>❦</span>
+            </div>
             <p class="hof-gal-name">[NAME 3]</p>
             <p class="hof-gal-desc hof-status-rose">plotting</p>
         </div>
 
         <div class="hof-gal-card">
-            <img class="hof-gal-img"
-                 src="https://nublium.github.io/liodencsshymnshark/placeholder-hymnshark-avatar.svg"
-                 alt="[character 4 name]">
+            <div class="hof-gal-img hof-gal-placeholder">
+                <span>♛</span>
+            </div>
             <p class="hof-gal-name">[NAME 4]</p>
             <p class="hof-gal-desc hof-status-closed">closed</p>
         </div>
 
         <div class="hof-gal-card">
-            <img class="hof-gal-img"
-                 src="https://nublium.github.io/liodencsshymnshark/placeholder-hymnshark-avatar.svg"
-                 alt="[character 5 name]">
+            <div class="hof-gal-img hof-gal-placeholder">
+                <span>✧</span>
+            </div>
             <p class="hof-gal-name">[NAME 5]</p>
-            <p class="hof-gal-desc">[short descriptor]</p>
-        </div>
-
-        <div class="hof-gal-card">
-            <img class="hof-gal-img"
-                 src="https://nublium.github.io/liodencsshymnshark/placeholder-hymnshark-avatar.svg"
-                 alt="[character 6 name]">
-            <p class="hof-gal-name">[NAME 6]</p>
             <p class="hof-gal-desc hof-status-open">open for rp</p>
         </div>
 
@@ -419,16 +433,16 @@
 
 
     <!-- =====================================================
-         FOOTER — small credit / thanks-for-visiting line
-         Delete or edit freely.
+         FOOTER — subtle thank-you line + tiny credit
+         (Credit fades in on hover so it stays unobtrusive.)
     ===================================================== -->
     <div class="hof-footer">
         <div class="hof-footer-line">
             <span class="star">✦</span> thank you for stopping by <span class="star">✦</span>
         </div>
-        <p class="hof-footer-credit">
-            theme by <a href="https://www.lioden.com/territory.php?id=166079">nub #166079</a>
-        </p>
+        <span class="hof-footer-credit">
+            theme · <a href="https://www.lioden.com/territory.php?id=166079">nub</a>
+        </span>
     </div>
 
 

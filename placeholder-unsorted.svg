@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HEAVEN'S ON FIRE · unsorted-lions banner -->
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="170" viewBox="0 0 260 170" preserveAspectRatio="xMidYMid slice">
+
+    <defs>
+        <linearGradient id="usSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stop-color="#f4ebe0"/>
+            <stop offset="50%" stop-color="#e8c8d4"/>
+            <stop offset="100%" stop-color="#c8b5d0"/>
+        </linearGradient>
+        <radialGradient id="usSun" cx="50%" cy="50%" r="55%">
+            <stop offset="0%"  stop-color="#ffe5c8" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#f0b893" stop-opacity="0"/>
+        </radialGradient>
+    </defs>
+
+    <rect width="260" height="170" fill="url(#usSky)"/>
+    <rect x="2" y="2" width="256" height="166" fill="none" stroke="#f0b893" stroke-width="1.5" opacity="0.6"/>
+
+    <circle cx="130" cy="85" r="65" fill="url(#usSun)"/>
+
+    <!-- Title -->
+    <text x="130" y="55" text-anchor="middle"
+          font-family="'Italiana', 'Cinzel', serif" font-size="20" letter-spacing="6"
+          fill="#8a6478" opacity="0.95">UNSORTED</text>
+    <line x1="60" y1="64" x2="200" y2="64" stroke="#f0b893" stroke-width="0.8" opacity="0.75"/>
+    <text x="130" y="78" text-anchor="middle"
+          font-family="'Cinzel', serif" font-size="9" letter-spacing="4"
+          fill="#b07c95" opacity="0.85">✦  LIONS  ✦</text>
+
+    <!-- Scattered pastel orbs (representing unsorted lions) -->
+    <g>
+        <circle cx="60"  cy="110" r="9" fill="#f0b893" opacity="0.75"/>
+        <circle cx="60"  cy="110" r="4" fill="#ffe5c8" opacity="0.95"/>
+        <circle cx="100" cy="125" r="8" fill="#e5b8c4" opacity="0.75"/>
+        <circle cx="100" cy="125" r="3" fill="#ffe5c8" opacity="0.95"/>
+        <circle cx="140" cy="115" r="9" fill="#c5b3c8" opacity="0.75"/>
+        <circle cx="140" cy="115" r="4" fill="#ffe5c8" opacity="0.95"/>
+        <circle cx="180" cy="128" r="8" fill="#f0b893" opacity="0.75"/>
+        <circle cx="180" cy="128" r="3" fill="#ffe5c8" opacity="0.95"/>
+        <circle cx="215" cy="118" r="9" fill="#e5b8c4" opacity="0.75"/>
+        <circle cx="215" cy="118" r="4" fill="#ffe5c8" opacity="0.95"/>
+    </g>
+
+    <!-- Tiny corner sparkles -->
+    <g>
+        <circle cx="22" cy="22"  r="2"   fill="#f0b893" opacity="0.85"/>
+        <circle cx="238" cy="22" r="2"   fill="#e5b8c4" opacity="0.85"/>
+        <circle cx="22" cy="148" r="1.5" fill="#c5b3c8" opacity="0.75"/>
+        <circle cx="238" cy="148" r="1.5" fill="#c5b3c8" opacity="0.75"/>
+    </g>
+</svg>
