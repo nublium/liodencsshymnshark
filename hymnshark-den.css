@@ -2198,6 +2198,434 @@ table#player {
 
 
 /* ============================================================
+   [12] AMBIENT POLISH — extra animations, tint and "below-fold"
+        section styling.  All purely additive on top of the
+        baseline theme.  Sub-sections:
+          12.1  Lioden logo tint
+          12.2  Navbar hover enhancements
+          12.3  Body aurora drift
+          12.4  Section medallion pulse ring
+          12.5  Box corner breathing
+          12.6  Quote medallions slow rotation
+          12.7  Tag hover shimmer
+          12.8  Gallery card hover echo (illusions-follow-wake)
+          12.9  Dynasty Collection styling
+          12.10 Recent Allies / Clan Memberships tables
+          12.11 Misc below-fold ("everything else") panels
+   ============================================================ */
+
+
+/* ─── [12.1] LIODEN LOGO TINT ─────────────────────────────────
+   The default logo is Lioden orange; we drift it into our peach
+   palette via a hue-rotate filter. Hovering brightens it. */
+.navbar-brand img,
+.navbar-brand img[src*="logo"] {
+    filter: sepia(0.45) hue-rotate(-18deg) saturate(1.35) brightness(1.05) !important;
+    transition: filter 0.5s ease, transform 0.5s ease !important;
+}
+.navbar-brand:hover img {
+    filter: sepia(0.35) hue-rotate(-22deg) saturate(1.55) brightness(1.15) !important;
+    transform: scale(1.02);
+}
+
+
+/* ─── [12.2] NAVBAR HOVER ENHANCEMENT ─────────────────────────
+   Animated underline + scale on hover. Subtle but clear. */
+.navbar-default .navbar-nav > li,
+.navbar .navbar-nav > li {
+    position: relative !important;
+}
+.navbar-default .navbar-nav > li > a,
+.navbar .navbar-nav > li > a {
+    position: relative !important;
+    transition: all 0.35s ease !important;
+}
+/* Tiny pastel underline that grows on hover */
+.navbar-default .navbar-nav > li > a::after,
+.navbar .navbar-nav > li > a::after {
+    content: "" !important;
+    position: absolute !important;
+    bottom: 6px !important;
+    left: 50% !important;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(240, 184, 147, 0.95),
+        rgba(229, 184, 196, 0.95),
+        rgba(240, 184, 147, 0.95),
+        transparent) !important;
+    transform: translateX(-50%);
+    transition: width 0.4s ease !important;
+    pointer-events: none;
+}
+.navbar-default .navbar-nav > li > a:hover::after,
+.navbar .navbar-nav > li > a:hover::after,
+.navbar-default .navbar-nav > li.active > a::after,
+.navbar .navbar-nav > li.active > a::after {
+    width: 80% !important;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar .navbar-nav > li > a:hover {
+    transform: translateY(-1px);
+    text-shadow:
+        0 0 8px rgba(240, 184, 147, 0.65),
+        0 0 18px rgba(229, 184, 196, 0.45) !important;
+}
+
+
+/* ─── [12.3] BODY AURORA DRIFT ────────────────────────────────
+   The pastel sun + lavender + rose gradients on body slowly
+   migrate, so the page feels like dawn shifting through the
+   morning. 90s cycle so it never feels jittery. */
+@keyframes hof-aurora-drift {
+    0%, 100% { background-position: 22% 18%, 78% 82%, 50% 50%, 50% 50%; }
+    50%      { background-position: 30% 35%, 70% 65%, 55% 45%, 50% 50%; }
+}
+body {
+    background-size:
+        140% 140%,
+        140% 140%,
+        140% 140%,
+        100% 100% !important;
+    animation: hof-aurora-drift 90s ease-in-out infinite !important;
+}
+
+
+/* ─── [12.4] SECTION MEDALLION PULSE RING ────────────────────
+   A faint ring expands out of every sun-medallion every 4s, like
+   a soft sonar ping. Matches the "illusions follow your wake"
+   theme (a halo of the medallion radiating outward). */
+@keyframes hof-medallion-ring {
+    0%   {
+        transform: translate(-50%, -50%) scale(0.95);
+        opacity: 0.85;
+        border-color: rgba(240, 184, 147, 0.95);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+        border-color: rgba(229, 184, 196, 0);
+    }
+}
+.hof-territory .hof-sun-medallion {
+    overflow: visible !important;
+}
+.hof-territory .hof-sun-medallion::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 50%; left: 50%;
+    width: 100%; height: 100%;
+    border-radius: 50% !important;
+    border: 1.5px solid rgba(240, 184, 147, 0.85);
+    animation: hof-medallion-ring 4s ease-out infinite !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+}
+/* second ring with delay, for a continuous double-ping */
+.hof-territory .hof-sun-medallion::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 50%; left: 50%;
+    width: 100%; height: 100%;
+    border-radius: 50% !important;
+    border: 1px solid rgba(229, 184, 196, 0.75);
+    animation: hof-medallion-ring 4s ease-out 2s infinite !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+}
+
+
+/* ─── [12.5] BOX CORNER BREATHING ────────────────────────────
+   The four decorative gold corners on each box pulse softly,
+   staggered by 1.25s each so they cycle around the box clockwise.
+   Reads like a soft heartbeat in the frame. */
+@keyframes hof-corner-breathe {
+    0%, 100% { opacity: 1;    transform: scale(1);    border-color: rgba(240, 184, 147, 0.85); }
+    50%      { opacity: 0.55; transform: scale(0.88); border-color: rgba(229, 184, 196, 0.95); }
+}
+.hof-territory .hof-box-corner {
+    animation: hof-corner-breathe 5s ease-in-out infinite !important;
+    transform-origin: center !important;
+}
+.hof-territory .hof-box-corner.hof-tl { animation-delay: 0s    !important; }
+.hof-territory .hof-box-corner.hof-tr { animation-delay: 1.25s !important; }
+.hof-territory .hof-box-corner.hof-br { animation-delay: 2.5s  !important; }
+.hof-territory .hof-box-corner.hof-bl { animation-delay: 3.75s !important; }
+
+
+/* ─── [12.6] QUOTE MEDALLIONS SLOW ROTATION ──────────────────
+   The two ❦ medallions framing a pull-quote rotate VERY slowly
+   in opposite directions — barely perceptible but adds life. */
+@keyframes hof-quote-spin {
+    0%   { transform: translateX(-50%) rotate(0deg); }
+    100% { transform: translateX(-50%) rotate(360deg); }
+}
+@keyframes hof-quote-spin-reverse {
+    0%   { transform: translateX(-50%) rotate(0deg); }
+    100% { transform: translateX(-50%) rotate(-360deg); }
+}
+.hof-territory .hof-quote::before {
+    animation: hof-quote-spin 45s linear infinite !important;
+}
+.hof-territory .hof-quote::after {
+    animation: hof-quote-spin-reverse 45s linear infinite !important;
+}
+
+
+/* ─── [12.7] TAG HOVER SHIMMER ───────────────────────────────
+   A light streak passes from left to right across the pill on
+   hover. Pure CSS background-position animation. */
+@keyframes hof-tag-shimmer {
+    0%   { background-position: -150% 0; }
+    100% { background-position:  250% 0; }
+}
+.hof-territory .hof-tag,
+.hof-territory .hof-tag-bright,
+.hof-territory .hof-tag-sun {
+    overflow: hidden !important;
+    isolation: isolate !important;
+}
+.hof-territory .hof-tag::after,
+.hof-territory .hof-tag-bright::after,
+.hof-territory .hof-tag-sun::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(100deg,
+        transparent 35%,
+        rgba(255, 240, 220, 0.85) 50%,
+        transparent 65%) !important;
+    background-size: 200% 100% !important;
+    background-position: -150% 0 !important;
+    background-repeat: no-repeat !important;
+    pointer-events: none !important;
+    opacity: 0;
+    transition: opacity 0.3s ease !important;
+    z-index: 1 !important;
+}
+.hof-territory .hof-tag:hover::after,
+.hof-territory .hof-tag-bright:hover::after,
+.hof-territory .hof-tag-sun:hover::after {
+    opacity: 1;
+    animation: hof-tag-shimmer 1.2s ease-out !important;
+}
+
+
+/* ─── [12.8] GALLERY CARD "ILLUSION ECHO" ────────────────────
+   On hover, a soft duplicate of the card fades in offset by a
+   few pixels — literally "illusions follow your wake". */
+.hof-territory .hof-gal-card {
+    position: relative !important;
+}
+.hof-territory .hof-gal-card::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(240, 184, 147, 0.55) !important;
+    background: rgba(255, 240, 220, 0.15) !important;
+    transform: translate(0, 0);
+    opacity: 0;
+    pointer-events: none !important;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    z-index: -1 !important;
+}
+.hof-territory .hof-gal-card:hover::after {
+    opacity: 1;
+    transform: translate(6px, 6px);
+}
+
+
+/* ─── [12.9] DYNASTY COLLECTION ──────────────────────────────
+   The 5 tiles below the description: King Dynasty, Pride Dynasty,
+   Achievements, Showcase, Beetle Book. Each is a clickable card
+   with an h3 heading + image.  Mirrors the box-half styling. */
+.dynastycollection {
+    margin: 16px -5px 20px !important;
+}
+.dynastylist {
+    padding: 8px !important;
+}
+.dynastylist a {
+    display: block !important;
+    text-decoration: none !important;
+    border: none !important;
+}
+.dynastylist .left {
+    background-color: #faeee4 !important;
+    background-image:
+        radial-gradient(ellipse at 30% 20%, rgba(255, 220, 195, 0.50) 0%, transparent 60%),
+        linear-gradient(180deg, rgba(255, 248, 244, 0.55) 0%, rgba(248, 224, 224, 0.45) 100%) !important;
+    border: 1px solid rgba(229, 184, 196, 0.65) !important;
+    border-radius: 14px !important;
+    padding: 14px 12px !important;
+    text-align: center !important;
+    box-shadow:
+        0 4px 14px rgba(138, 117, 133, 0.18),
+        inset 0 0 22px rgba(255, 240, 232, 0.45) !important;
+    transition: all 0.45s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+.dynastylist .left::before {
+    /* Top highlight band, same as boxes */
+    content: "" !important;
+    position: absolute !important;
+    top: 0; left: 0; right: 0;
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent, rgba(255, 220, 195, 0.85), transparent) !important;
+}
+.dynastylist a:hover .left {
+    border-color: rgba(240, 184, 147, 0.95) !important;
+    box-shadow:
+        0 8px 26px rgba(240, 184, 147, 0.40),
+        inset 0 0 28px rgba(255, 220, 195, 0.55) !important;
+    transform: translateY(-3px);
+}
+.dynastylist h3 {
+    font-family: "Italiana", "Cinzel", serif !important;
+    font-size: 16px !important;
+    color: #8a6478 !important;
+    letter-spacing: 3px !important;
+    text-transform: uppercase !important;
+    margin: 0 0 10px !important;
+    padding: 0 0 6px !important;
+    line-height: 1.3 !important;
+    font-weight: 400 !important;
+    text-shadow: 0 0 10px rgba(240, 184, 147, 0.55) !important;
+    border-bottom: 1px solid rgba(229, 184, 196, 0.55) !important;
+}
+.dynastylist img {
+    max-width: 100% !important;
+    border-radius: 8px !important;
+    /* Tint Lioden's stock thumbnail into our peach/lavender palette */
+    filter: sepia(0.45) hue-rotate(-15deg) saturate(1.25) brightness(1.05) !important;
+    transition: filter 0.5s ease, transform 0.5s ease !important;
+    box-shadow: 0 2px 8px rgba(138, 117, 133, 0.18) !important;
+}
+.dynastylist a:hover img {
+    filter: sepia(0.30) hue-rotate(-20deg) saturate(1.50) brightness(1.10) !important;
+    transform: scale(1.02);
+}
+
+
+/* ─── [12.10] RECENT ALLIES + CLAN MEMBERSHIPS TABLES ────────
+   Same .table styling we already apply, but the wrappers around
+   them (often vanilla <table>) need explicit theming so they read
+   as part of the den. */
+
+/* The header row "Vahakn's Recent Allies" / "Clan Memberships" */
+table .top[colspan],
+.table .top[colspan] {
+    background: linear-gradient(180deg, rgba(255, 220, 200, 0.85), rgba(229, 184, 196, 0.78)) !important;
+    color: #8a6478 !important;
+    font-family: "Italiana", "Cinzel", serif !important;
+    font-size: 14px !important;
+    letter-spacing: 3px !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    padding: 10px !important;
+    border: 1px solid rgba(229, 184, 196, 0.65) !important;
+    text-shadow: 0 0 8px rgba(255, 240, 232, 0.95) !important;
+    font-weight: 400 !important;
+}
+
+/* Friend / ally rows (the columns showing each friend's lion) */
+.row > .col-xs-6 a img[src*="/lion/"],
+.row > .col-md-3 a img,
+.col-sm-6 img[style*="border-radius"] {
+    border-radius: 50% !important;
+    border: 2px solid rgba(229, 184, 196, 0.75) !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 248, 244, 0.95),
+        0 0 8px rgba(240, 184, 147, 0.35) !important;
+    transition: all 0.4s ease !important;
+}
+.row > .col-xs-6 a:hover img,
+.row > .col-md-3 a:hover img {
+    border-color: rgba(240, 184, 147, 0.95) !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 248, 244, 0.95),
+        0 0 14px rgba(240, 184, 147, 0.65) !important;
+    transform: scale(1.04);
+}
+
+
+/* ─── [12.11] MISC BELOW-FOLD PANELS ─────────────────────────
+   Anything in the right rail (date / season chip, mantle ticker,
+   doubloon counter, energy bars) — already partly themed in
+   section [4]. Extra polish here for elements we missed. */
+
+/* "Refer a Friend" / "View Your Wishlist" buttons */
+a[href*="invite"], a[href*="wishlist.php"], a[href*="cooldowns.php"] {
+    color: #d99878 !important;
+}
+a[href*="invite"]:hover, a[href*="wishlist.php"]:hover, a[href*="cooldowns.php"]:hover {
+    color: #f0b893 !important;
+    text-shadow: 0 0 6px rgba(240, 184, 147, 0.55) !important;
+}
+
+/* Date / time / season chip in the sidebar — already inherits
+   .panel styling, but explicitly soften it here */
+.panel-body.small {
+    color: #6e5e6e !important;
+    font-family: "Quicksand", sans-serif !important;
+    font-size: 12px !important;
+    line-height: 1.6 !important;
+}
+.panel-body.small img {
+    border-radius: 4px !important;
+    filter: sepia(0.30) hue-rotate(-15deg) saturate(1.25) brightness(1.05) !important;
+}
+
+/* The "Manticora Beetles" / "Doubloons" event counters */
+.panel-body.small.center a {
+    color: #d99878 !important;
+    font-weight: 500 !important;
+}
+.panel-body.small.center a:hover {
+    color: #f0b893 !important;
+    text-shadow: 0 0 6px rgba(240, 184, 147, 0.45) !important;
+}
+
+/* The "Bookmark" button to the right of the breadcrumb */
+input[name="bookmark"] {
+    background:
+        linear-gradient(180deg, rgba(255, 220, 195, 0.95), rgba(240, 184, 147, 0.85)) !important;
+    color: #6e5e6e !important;
+    border: 1px solid rgba(240, 184, 147, 0.85) !important;
+    border-radius: 14px !important;
+    font-family: "Cinzel", serif !important;
+    font-size: 10px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    padding: 4px 14px !important;
+    box-shadow: 0 2px 6px rgba(240, 184, 147, 0.32) !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+input[name="bookmark"]:hover {
+    background:
+        linear-gradient(180deg, rgba(255, 230, 200, 1), rgba(240, 184, 147, 1)) !important;
+    box-shadow: 0 4px 14px rgba(240, 184, 147, 0.55) !important;
+    transform: translateY(-1px);
+}
+
+/* The "Send Message" buttons below each ally */
+a[href*="messages"], a.btn[href*="message"] {
+    color: #d99878 !important;
+}
+
+/* General row spacing for cards below the description */
+.row > .col-md-4,
+.row > .col-sm-6,
+.row > .col-xs-6 {
+    margin-bottom: 10px !important;
+}
+
+
+/* ============================================================
    [11] RESPONSIVE — small-screen tweaks
    ============================================================ */
 @media (max-width: 760px) {
@@ -2214,4 +2642,7 @@ table#player {
     table#about > tbody > tr.right > td:first-child::before { width: 240px; height: 240px; }
     table#about > tbody > tr.right > td:first-child > a::before { width: 220px; height: 220px; }
     table#about > tbody > tr.right > td:first-child > a::after  { width: 240px; height: 240px; }
+    /* Dynasty tiles stack to 2-up on tablets, 1-up on phones */
+    .dynastylist { padding: 4px !important; }
+    .dynastylist h3 { font-size: 14px !important; letter-spacing: 2px !important; }
 }
