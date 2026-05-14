@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    HEAVEN'S ON FIRE — placeholder avatar
+    Misty pastel sunrise scene with silhouetted trees + a lion in profile.
+    Deliberately ethereal: peach sun core + lavender / rose mist + dark
+    silhouettes. Drop your own king / character images on top of this if
+    you want — it's just a fall-back.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+
+    <defs>
+        <!-- Circular clip so the whole avatar reads as a round portrait -->
+        <clipPath id="hofClip">
+            <circle cx="150" cy="150" r="148"/>
+        </clipPath>
+
+        <!-- The sky / mist gradient — pastel sunrise -->
+        <linearGradient id="hofSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stop-color="#f4ebe0"/>
+            <stop offset="35%" stop-color="#f5d3c0"/>
+            <stop offset="60%" stop-color="#e8b8c0"/>
+            <stop offset="85%" stop-color="#c8b5d0"/>
+            <stop offset="100%" stop-color="#b8a5c8"/>
+        </linearGradient>
+
+        <!-- The radial sun glow — peach core fading into pastel -->
+        <radialGradient id="hofSun" cx="50%" cy="55%" r="40%">
+            <stop offset="0%"  stop-color="#ffe5c8" stop-opacity="1"/>
+            <stop offset="25%" stop-color="#ffcfa8" stop-opacity="0.85"/>
+            <stop offset="55%" stop-color="#f0b893" stop-opacity="0.40"/>
+            <stop offset="100%" stop-color="#f0b893" stop-opacity="0"/>
+        </radialGradient>
+
+        <!-- A vertical light beam from the sun (subtle) -->
+        <linearGradient id="hofBeam" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#ffe5c8" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#ffe5c8" stop-opacity="0"/>
+        </linearGradient>
+
+        <!-- Ground mist gradient — paler at top, peachier near sun's reflection -->
+        <linearGradient id="hofGround" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"  stop-color="#e8c8c8" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#c8a8b8" stop-opacity="0.85"/>
+        </linearGradient>
+
+        <!-- Outer ring frame gradient (the gold-pastel border) -->
+        <linearGradient id="hofRing" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%"  stop-color="#f0b893"/>
+            <stop offset="50%" stop-color="#e5b8c4"/>
+            <stop offset="100%" stop-color="#c5b3c8"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Outer rim -->
+    <circle cx="150" cy="150" r="149" fill="#f4ebe0" stroke="url(#hofRing)" stroke-width="2"/>
+
+    <!-- ============================================================
+         SCENE — clipped to the inner circle so the rim shows
+    ============================================================ -->
+    <g clip-path="url(#hofClip)">
+
+        <!-- Sky -->
+        <rect x="0" y="0" width="300" height="300" fill="url(#hofSky)"/>
+
+        <!-- Sun's vertical light beam (very faint) -->
+        <ellipse cx="150" cy="220" rx="38" ry="120" fill="url(#hofBeam)" opacity="0.65"/>
+
+        <!-- The big peach sun glow -->
+        <circle cx="150" cy="165" r="120" fill="url(#hofSun)"/>
+
+        <!-- Sun core — slightly brighter centre dot -->
+        <circle cx="150" cy="160" r="22" fill="#ffe5c8" opacity="0.95"/>
+        <circle cx="150" cy="160" r="14" fill="#fff2dc"/>
+
+        <!-- Far-distance tree silhouettes (very faded — atmospheric depth) -->
+        <g opacity="0.32" fill="#8a7090">
+            <path d="M 30 200 L 30 140 L 32 138 L 30 130 L 33 132 L 33 124 L 36 132 L 38 128 L 38 200 Z"/>
+            <path d="M 60 205 L 60 150 L 63 145 L 60 138 L 64 142 L 64 135 L 67 142 L 70 138 L 70 205 Z"/>
+            <path d="M 240 200 L 240 145 L 243 140 L 240 132 L 244 136 L 244 128 L 247 136 L 250 132 L 250 200 Z"/>
+            <path d="M 268 208 L 268 155 L 271 150 L 268 142 L 272 146 L 272 138 L 275 146 L 278 142 L 278 208 Z"/>
+        </g>
+
+        <!-- Mid-ground bare trees — silhouetted against the sun (the
+             classic inspo-image effect: bare branches + foggy sunrise) -->
+        <g fill="#3a2d3a" opacity="0.78">
+
+            <!-- Tree 1 — left -->
+            <path d="M 88 220
+                     L 88 130
+                     L 86 125 L 90 128
+                     L 84 118 L 92 122
+                     L 88 110 L 96 116
+                     L 86 100 L 98 108
+                     L 92 92  L 102 102
+                     L 94 88  L 104 95
+                     L 98 80  L 106 88
+                     L 100 75 L 90 220 Z"/>
+
+            <!-- Tree 2 — right -->
+            <path d="M 210 222
+                     L 210 130
+                     L 208 124 L 213 128
+                     L 206 116 L 215 121
+                     L 209 106 L 217 113
+                     L 204 96  L 218 105
+                     L 210 88  L 220 98
+                     L 213 82  L 222 92
+                     L 216 76  L 224 86
+                     L 218 70  L 212 222 Z"/>
+
+            <!-- Slim branches accent for tree 1 -->
+            <line x1="92" y1="110" x2="78" y2="86" stroke="#3a2d3a" stroke-width="1.2"/>
+            <line x1="94" y1="100" x2="108" y2="78" stroke="#3a2d3a" stroke-width="1.2"/>
+            <line x1="98" y1="90"  x2="84" y2="68" stroke="#3a2d3a" stroke-width="1"/>
+
+            <!-- Slim branches accent for tree 2 -->
+            <line x1="212" y1="106" x2="198" y2="84" stroke="#3a2d3a" stroke-width="1.2"/>
+            <line x1="214" y1="96"  x2="228" y2="74" stroke="#3a2d3a" stroke-width="1.2"/>
+            <line x1="216" y1="86"  x2="204" y2="66" stroke="#3a2d3a" stroke-width="1"/>
+        </g>
+
+        <!-- Misty ground / fog band — softens the lion silhouette base -->
+        <rect x="0" y="195" width="300" height="105" fill="url(#hofGround)"/>
+        <ellipse cx="150" cy="205" rx="180" ry="22" fill="#ffe5c8" opacity="0.35"/>
+
+        <!-- ▼ LION SILHOUETTE — in profile, gentle posture (sitting / standing in the mist).
+             Stylised so it reads as "lion" without competing with the photo aesthetic. -->
+        <g fill="#2a1d2a" opacity="0.92" transform="translate(0,4)">
+
+            <!-- Body  (a long crescent suggesting back + flank) -->
+            <path d="M 95 230
+                     C 95 215, 105 205, 130 202
+                     C 150 200, 175 202, 195 207
+                     C 215 212, 220 222, 218 235
+                     L 95 235 Z"/>
+
+            <!-- Front leg -->
+            <path d="M 132 232
+                     L 130 250
+                     L 134 252
+                     L 137 232 Z"/>
+
+            <!-- Back leg -->
+            <path d="M 198 232
+                     L 196 248
+                     L 200 250
+                     L 204 232 Z"/>
+
+            <!-- Tail with tuft -->
+            <path d="M 218 222
+                     C 232 218, 240 210, 244 198
+                     L 246 202
+                     C 244 214, 236 224, 224 230 Z"/>
+            <circle cx="246" cy="200" r="4"/>
+
+            <!-- Mane + head (left side, facing left) -->
+            <path d="M 95 222
+                     C 88 215, 80 208, 75 195
+                     C 72 184, 70 178, 76 168
+                     C 80 161, 88 156, 96 157
+                     C 102 144, 116 138, 130 142
+                     C 140 144, 145 154, 144 165
+                     C 142 178, 130 185, 120 188
+                     C 116 195, 110 202, 105 210
+                     C 102 216, 99 220, 95 222 Z"/>
+
+            <!-- Inner mane texture — just two soft tufts -->
+            <path d="M 82 200 C 78 195 76 190 79 184 C 82 182 84 188 83 195 Z" opacity="0.55"/>
+            <path d="M 92 175 C 87 170 86 165 90 159 C 94 158 95 165 93 172 Z" opacity="0.55"/>
+
+            <!-- Ear hint -->
+            <path d="M 118 144 L 122 138 L 126 142 Z"/>
+        </g>
+
+        <!-- ▼ "ILLUSION ORBS" — tiny floating pastel dots scattered around
+             the scene. These echo the king-animation orbit on the live page. -->
+        <g>
+            <circle cx="60"  cy="60"  r="2.5" fill="#f0b893" opacity="0.85"/>
+            <circle cx="240" cy="55"  r="2"   fill="#e5b8c4" opacity="0.85"/>
+            <circle cx="80"  cy="100" r="1.6" fill="#ffe5c8" opacity="0.95"/>
+            <circle cx="220" cy="95"  r="2.2" fill="#c5b3c8" opacity="0.85"/>
+            <circle cx="50"  cy="160" r="1.8" fill="#e5b8c4" opacity="0.75"/>
+            <circle cx="252" cy="170" r="2"   fill="#f0b893" opacity="0.8"/>
+            <circle cx="130" cy="58"  r="1.4" fill="#ffe5c8" opacity="0.9"/>
+            <circle cx="170" cy="48"  r="1.8" fill="#f0b893" opacity="0.85"/>
+            <circle cx="44"  cy="118" r="1.4" fill="#c5b3c8" opacity="0.85"/>
+            <circle cx="260" cy="128" r="1.6" fill="#e5b8c4" opacity="0.85"/>
+        </g>
+
+    </g>
+
+    <!-- ============================================================
+         OUTER RIM ACCENTS — pastel sparkle dots around the frame
+    ============================================================ -->
+    <g fill="#f0b893" opacity="0.85">
+        <circle cx="150" cy="6"   r="2.5"/>
+        <circle cx="150" cy="294" r="2.5"/>
+        <circle cx="6"   cy="150" r="2.5"/>
+        <circle cx="294" cy="150" r="2.5"/>
+    </g>
+    <g fill="#e5b8c4" opacity="0.75">
+        <circle cx="44"  cy="44"  r="1.8"/>
+        <circle cx="256" cy="44"  r="1.8"/>
+        <circle cx="44"  cy="256" r="1.8"/>
+        <circle cx="256" cy="256" r="1.8"/>
+    </g>
+
+    <!-- ============================================================
+         BOTTOM TEXT ARC — pride name on a curved path
+    ============================================================ -->
+    <defs>
+        <path id="hofArc"
+              d="M 60 230 A 100 100 0 0 0 240 230"
+              fill="none"/>
+    </defs>
+    <text font-family="'Italiana', 'Cinzel', serif"
+          font-size="10"
+          letter-spacing="3"
+          fill="#f4ebe0"
+          opacity="0.88">
+        <textPath href="#hofArc" startOffset="50%" text-anchor="middle">
+            HEAVEN'S ON FIRE · HYMNSHARK
+        </textPath>
+    </text>
+
+</svg>

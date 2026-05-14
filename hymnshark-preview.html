@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heaven's On Fire — Preview</title>
+
+    <!-- Load the SAME stylesheet that the live Lioden page would load.
+         For local preview we use a relative path. -->
+    <link rel="stylesheet" href="./hymnshark-den.css">
+
+    <style>
+        /* Tiny preview-only frame so the page looks like Lioden:
+           a top breadcrumb, an h1 with the den name, and that's it.
+           These styles are NOT part of the theme — they only exist
+           in this preview file. */
+        body { margin: 0; padding: 18px; }
+        .preview-frame { max-width: 980px; margin: 0 auto; }
+        .preview-breadcrumb {
+            font-family: "Quicksand", sans-serif;
+            font-size: 12px;
+            color: #8a7585;
+            background: rgba(248, 240, 232, 0.65);
+            border: 1px solid rgba(229, 184, 196, 0.4);
+            border-radius: 14px;
+            padding: 6px 16px;
+            margin-bottom: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="preview-frame">
+
+    <!-- Fake Lioden breadcrumb so the preview matches what the live
+         page will show above the den description. -->
+    <div class="preview-breadcrumb">
+        Home › Members › Hymnshark › <b>Hymnshark's Den</b>
+    </div>
+
+    <h1>Hymnshark's Den</h1>
+
+
+    <!-- =========================================================
+         Lioden's PLAYER TABLE (table#player) — Lioden renders this
+         automatically. Mocked here with a placeholder image so we
+         can see how the "round player avatar" looks in this theme.
+         The actual Lioden version uses the same structure.
+    ========================================================= -->
+    <table id="player" class="table">
+        <tbody>
+            <tr>
+                <td class="top center" colspan="2">
+                    <div class="xlarge b">Hymnshark</div>
+                </td>
+            </tr>
+            <tr class="right" style="text-align: center;">
+                <td style="width: 180px; padding: 16px;">
+                    <img
+                        src="./placeholder-hymnshark-avatar.svg"
+                        style="max-width: 150px;"
+                        alt="player avatar">
+                </td>
+                <td class="right">
+                    <table class="inner-table auto">
+                        <tbody>
+                            <tr>
+                                <td class="left" width="115"><b>Member ID:</b></td>
+                                <td class="right">142699</td>
+                                <td width="3"></td>
+                                <td class="left" width="115"><b>Joined:</b></td>
+                                <td class="right">2026</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><b>Pronouns:</b></td>
+                                <td class="right">they / them</td>
+                                <td width="3"></td>
+                                <td class="left"><b>Status:</b></td>
+                                <td class="right">online</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <!-- =========================================================
+         Lioden's ABOUT TABLE (table#about) — this is where the
+         LIVE king image lives. For preview we put a placeholder
+         SVG inside #lion_image. On the real Lioden page, Lioden
+         injects the current pride male's composite PNGs there.
+         The theme's mist halo + illusion orbs are attached to
+         THIS table's cells via ::before / ::after.
+    ========================================================= -->
+    <form method="post">
+    <table class="table" id="about">
+        <tbody>
+            <tr>
+                <td class="top center" colspan="2">
+                    <div class="xlarge b">
+                        <a href="#" class="bigger" style="border: 0;">[YOUR KING'S NAME]</a>
+                    </div>
+                </td>
+            </tr>
+            <tr class="right" style="text-align: center;">
+                <td style="width: 280px; padding: 50px 20px 30px;">
+                    <a href="#">
+                        <div id="lion_image">
+                            <img
+                                src="./placeholder-hymnshark-avatar.svg"
+                                style="width: 200px; height: 200px; object-fit: cover;"
+                                alt="king image placeholder">
+                        </div>
+                    </a>
+                </td>
+                <td class="right">
+                    <table class="inner-table auto">
+                        <tbody>
+                            <tr>
+                                <td class="left" width="115"><b>Level:</b></td>
+                                <td class="right" width="180">—</td>
+                                <td width="3"></td>
+                                <td class="left" width="115"><b>Branch:</b></td>
+                                <td class="right">—</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><b>Stats:</b></td>
+                                <td class="right">—</td>
+                                <td width="3"></td>
+                                <td class="left"><b>Territory:</b></td>
+                                <td class="right">—</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><b>Lionesses:</b></td>
+                                <td class="right">—</td>
+                                <td width="3"></td>
+                                <td class="left"><b>Beetles:</b></td>
+                                <td class="right">—</td>
+                            </tr>
+                            <tr>
+                                <td class="left"><b>Cubs:</b></td>
+                                <td class="right">—</td>
+                                <td width="3"></td>
+                                <td class="left"><b>Subs:</b></td>
+                                <td class="right">—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+
+
+    <!-- =========================================================
+         THE DESCRIPTION — the actual den description content.
+         This is what the customer pastes into Lioden's territory
+         description editor. It's the entire contents of
+         hymnshark-den.html (minus the outer <link> tag, which
+         we already loaded at the top of this preview).
+    ========================================================= -->
+
+    <div class="hof-territory">
+
+        <!-- Top ornament row -->
+        <div class="hof-ornament-row">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+        <!-- Title block -->
+        <h1 class="hof-title">Heaven's On Fire</h1>
+        <p class="hof-subtitle">where illusions follow your wake</p>
+        <p class="hof-motto">— a soft place to land —</p>
+
+        <!-- Section divider -->
+        <div class="hof-divider-full" style="margin: 18px 0 14px;">
+            <span class="hof-divider-mark">
+                <span class="star">✦</span> welcome traveller <span class="star">✦</span>
+            </span>
+        </div>
+
+        <!-- =====================================================
+             ROW 1 — two boxes side by side
+        ===================================================== -->
+        <div class="hof-row">
+
+            <!-- BOX 1: THE PLAYER -->
+            <div class="hof-box hof-box-half">
+                <span class="hof-box-corner hof-tl"></span>
+                <span class="hof-box-corner hof-tr"></span>
+                <span class="hof-box-corner hof-bl"></span>
+                <span class="hof-box-corner hof-br"></span>
+
+                <div class="hof-box-numeral">— i —</div>
+                <h2 class="hof-box-header">
+                    <span class="sym">✦</span> The Player <span class="sym">✦</span>
+                </h2>
+
+                <div class="hof-text">
+                    <p class="hof-text-italic hof-text-center" style="margin: 0 0 12px;">
+                        [A SHORT LINE ABOUT YOURSELF]
+                    </p>
+
+                    <div class="hof-info-row">
+                        <span class="hof-info-label">Call me</span>
+                        <span class="hof-info-value">[YOUR NAME]</span>
+                    </div>
+                    <div class="hof-info-row">
+                        <span class="hof-info-label">Pronouns</span>
+                        <span class="hof-info-value">[YOUR PRONOUNS]</span>
+                    </div>
+                    <div class="hof-info-row">
+                        <span class="hof-info-label">Age</span>
+                        <span class="hof-info-value">[YOUR AGE]</span>
+                    </div>
+                    <div class="hof-info-row">
+                        <span class="hof-info-label">Timezone</span>
+                        <span class="hof-info-value">[YOUR TZ]</span>
+                    </div>
+                    <div class="hof-info-row">
+                        <span class="hof-info-label">Main</span>
+                        <span class="hof-info-value">
+                            <a href="#">Tsaari #37874</a>
+                        </span>
+                    </div>
+                    <div class="hof-info-row">
+                        <span class="hof-info-label">Status</span>
+                        <span class="hof-info-value hof-text-sun">[OPEN FOR CHATS]</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOX 2: THE KING -->
+            <div class="hof-box hof-box-half">
+                <span class="hof-box-corner hof-tl"></span>
+                <span class="hof-box-corner hof-tr"></span>
+                <span class="hof-box-corner hof-bl"></span>
+                <span class="hof-box-corner hof-br"></span>
+
+                <div class="hof-box-numeral">— ii —</div>
+                <h2 class="hof-box-header">
+                    <span class="sym">♕</span> The King <span class="sym">♕</span>
+                </h2>
+
+                <div class="hof-text">
+                    <div class="hof-info-row">
+                        <span class="hof-info-label">Name</span>
+                        <span class="hof-info-value">[KING'S NAME]</span>
+                    </div>
+                    <div class="hof-info-row">
+                        <span class="hof-info-label">Title</span>
+                        <span class="hof-info-value hof-text-bright">[TITLE]</span>
+                    </div>
+                    <div class="hof-info-row">
+                        <span class="hof-info-label">Reign</span>
+                        <span class="hof-info-value">[BEGAN MAR 2026]</span>
+                    </div>
+                    <div class="hof-info-row">
+                        <span class="hof-info-label">Mood</span>
+                        <span class="hof-info-value hof-text-italic">[ONE WORD]</span>
+                    </div>
+
+                    <p class="hof-text-italic hof-text-center" style="margin: 12px 0 0;">
+                        [ONE SENTENCE ABOUT HIM]
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Section divider -->
+        <div class="hof-divider-full" style="margin: 14px 0;">
+            <span class="hof-divider-mark">
+                <span class="star">✦</span> our story <span class="star">✦</span>
+            </span>
+        </div>
+
+
+        <!-- BOX 3: PRIDE LORE -->
+        <div class="hof-box hof-box-full" style="margin: 4px 0 18px;">
+            <span class="hof-box-corner hof-tl"></span>
+            <span class="hof-box-corner hof-tr"></span>
+            <span class="hof-box-corner hof-bl"></span>
+            <span class="hof-box-corner hof-br"></span>
+
+            <div class="hof-box-numeral">— iii —</div>
+            <h2 class="hof-box-header">
+                <span class="sym">❀</span> Pride Lore <span class="sym">❀</span>
+            </h2>
+
+            <div class="hof-text">
+                <span class="hof-dropcap">H</span>
+
+                <p style="margin: 0 0 10px;">
+                    [YOUR PRIDE LORE — paragraph one. The drop-cap above pulls
+                    the first letter out, so DON'T repeat it here. Start this
+                    paragraph as if its first letter is missing.]
+                </p>
+
+                <p style="margin: 0 0 10px;">
+                    [YOUR PRIDE LORE — paragraph two. Anything you want here:
+                    how the pride was founded, your aesthetic / vibe, what
+                    outsiders should know before approaching.]
+                </p>
+
+                <blockquote class="hof-quote">
+                    [A LINE WORTH HIGHLIGHTING — a motto, a refrain, a piece of
+                    pride scripture]
+                    <span class="attrib">— [attribution, optional]</span>
+                </blockquote>
+
+                <p style="margin: 0;">
+                    [YOUR PRIDE LORE — closing paragraph. Anything to leave the
+                    reader with: a hope, a warning, an open door.]
+                </p>
+            </div>
+        </div>
+
+
+        <!-- BOX 4: ROLEPLAY INFORMATION -->
+        <div class="hof-box hof-box-full" style="margin: 4px 0 18px;">
+            <span class="hof-box-corner hof-tl"></span>
+            <span class="hof-box-corner hof-tr"></span>
+            <span class="hof-box-corner hof-bl"></span>
+            <span class="hof-box-corner hof-br"></span>
+
+            <div class="hof-box-numeral">— iv —</div>
+            <h2 class="hof-box-header">
+                <span class="sym">❖</span> Roleplay Information <span class="sym">❖</span>
+            </h2>
+
+            <div class="hof-text">
+                <p style="margin: 0 0 10px;" class="hof-text-italic hof-text-center">
+                    [A SHORT OPENING LINE]
+                </p>
+
+                <div class="hof-info-row">
+                    <span class="hof-info-label">Style</span>
+                    <span class="hof-info-value">[LITERATE / PARA / SEMI-LIT]</span>
+                </div>
+                <div class="hof-info-row">
+                    <span class="hof-info-label">Length</span>
+                    <span class="hof-info-value">[PREFERRED LENGTH]</span>
+                </div>
+                <div class="hof-info-row">
+                    <span class="hof-info-label">Tone</span>
+                    <span class="hof-info-value">[FLUFF / ANGST / MIXED]</span>
+                </div>
+                <div class="hof-info-row">
+                    <span class="hof-info-label">Reply Speed</span>
+                    <span class="hof-info-value">[FEW TIMES A WEEK]</span>
+                </div>
+
+                <p style="margin: 18px 0 6px;" class="hof-text-bright">
+                    <span class="hof-glyph">✦</span> Yes Please:
+                </p>
+                <ul class="hof-list">
+                    <li>[YES — something you love]</li>
+                    <li>[YES — another]</li>
+                    <li>[YES — another]</li>
+                </ul>
+
+                <p style="margin: 14px 0 6px;" class="hof-text-bright">
+                    <span class="hof-glyph">✦</span> Soft No / Ask First:
+                </p>
+                <ul class="hof-list">
+                    <li>[SOFT NO — ask first]</li>
+                    <li>[SOFT NO — another]</li>
+                </ul>
+
+                <p style="margin: 14px 0 6px;" class="hof-text-bright">
+                    <span class="hof-glyph">✦</span> Hard No:
+                </p>
+                <ul class="hof-list">
+                    <li>[HARD NO — please never]</li>
+                    <li>[HARD NO — another]</li>
+                </ul>
+
+                <p style="margin: 18px 0 0;" class="hof-text-sm hof-text-center hof-text-muted">
+                    [OPTIONAL CLOSING LINE]
+                </p>
+            </div>
+        </div>
+
+
+        <!-- Section divider before gallery -->
+        <div class="hof-section">
+            <div class="hof-section-label">— in character —</div>
+            <div class="hof-sun-divider">
+                <span class="hof-sun-medallion"><span>✦</span></span>
+            </div>
+        </div>
+
+
+        <!-- GALLERY — character cards -->
+        <div class="hof-gallery">
+
+            <div class="hof-gal-card">
+                <img class="hof-gal-img" src="./placeholder-hymnshark-avatar.svg" alt="character 1">
+                <p class="hof-gal-name">[NAME 1]</p>
+                <p class="hof-gal-desc hof-status-open">open for rp</p>
+            </div>
+
+            <div class="hof-gal-card">
+                <img class="hof-gal-img" src="./placeholder-hymnshark-avatar.svg" alt="character 2">
+                <p class="hof-gal-name">[NAME 2]</p>
+                <p class="hof-gal-desc">vampire</p>
+            </div>
+
+            <div class="hof-gal-card">
+                <img class="hof-gal-img" src="./placeholder-hymnshark-avatar.svg" alt="character 3">
+                <p class="hof-gal-name">[NAME 3]</p>
+                <p class="hof-gal-desc hof-status-rose">plotting</p>
+            </div>
+
+            <div class="hof-gal-card">
+                <img class="hof-gal-img" src="./placeholder-hymnshark-avatar.svg" alt="character 4">
+                <p class="hof-gal-name">[NAME 4]</p>
+                <p class="hof-gal-desc hof-status-closed">closed</p>
+            </div>
+
+            <div class="hof-gal-card">
+                <img class="hof-gal-img" src="./placeholder-hymnshark-avatar.svg" alt="character 5">
+                <p class="hof-gal-name">[NAME 5]</p>
+                <p class="hof-gal-desc">[short descriptor]</p>
+            </div>
+
+            <div class="hof-gal-card">
+                <img class="hof-gal-img" src="./placeholder-hymnshark-avatar.svg" alt="character 6">
+                <p class="hof-gal-name">[NAME 6]</p>
+                <p class="hof-gal-desc hof-status-open">open for rp</p>
+            </div>
+
+        </div>
+
+
+        <!-- Footer -->
+        <div class="hof-footer">
+            <div class="hof-footer-line">
+                <span class="star">✦</span> thank you for stopping by <span class="star">✦</span>
+            </div>
+            <p class="hof-footer-credit">
+                theme by <a href="#">nub #166079</a>
+            </p>
+        </div>
+
+    </div>
+    <!-- end .hof-territory -->
+
+</div>
+
+</body>
+</html>

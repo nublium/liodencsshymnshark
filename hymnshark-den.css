@@ -1,0 +1,1641 @@
+/* ============================================================
+   HEAVEN'S ON FIRE — CSS · Misty Pastel Sunrise Theme
+   "where illusions follow your wake"
+   Commissioned for Hymnshark · Tsaari · Lioden #142699 (#37874)
+   Designed by nub · Lioden #166079
+   ============================================================
+   FILE STRUCTURE — what lives where:
+     1. FONTS                — Google Fonts import
+     2. ANIMATIONS           — mist-drift, illusion-orbit, dawn-glow
+     3. PAGE CHROME          — body, container, navbar, breadcrumb
+     4. SIDEBAR + PANELS     — Lioden's right-rail
+     5. TABLES + FORMS       — Lioden's default UI controls
+     6. CAVES + MOUNDS       — the cub/lioness thumbnails
+     7. CHATBOX              — the sidebar chat (Lioden BEM .s-chat-*)
+     8. TERRITORY (.hof-*)   — YOUR custom den description box
+        ↑ THIS is the part you'll be editing in the HTML.
+     9. GALLERY (.hof-gal-*) — character introduction cards
+    10. KING ANIMATION       — mist halo + illusion orbs around #lion_image
+    11. RESPONSIVE           — small-screen tweaks
+   ============================================================ */
+
+
+/* ============================================================
+   [1] FONTS — imported once at top
+       Italiana  → main title (elegant, ethereal, high-fashion serif)
+       Italianno → subtitle (flowing cursive)
+       Cinzel    → headers / structure (clean, never cartoony)
+       Quicksand → body text (soft, rounded — pastel-friendly sans)
+       Cormorant Garamond → italic accents, quotes
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=Italianno&family=Cinzel:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+
+
+/* ============================================================
+   [2] ANIMATIONS
+       - hof-mist-drift:  the halo behind the king slowly drifts
+       - hof-orb-spin:    the illusion orbs orbit on different rings
+       - hof-dawn-glow:   warm halo behind the title shifts hue
+       - hof-shimmer:     subtle horizontal heat-shimmer on accents
+       - hof-pulse-soft:  gentle breathing pulse on the king crown
+   ============================================================ */
+@keyframes hof-dawn-glow {
+    0%, 100% {
+        text-shadow:
+            0 0 18px rgba(240, 184, 147, 0.45),
+            0 0 38px rgba(229, 184, 196, 0.32),
+            0 0 8px rgba(255, 220, 180, 0.40);
+    }
+    50% {
+        text-shadow:
+            0 0 28px rgba(240, 184, 147, 0.65),
+            0 0 60px rgba(229, 184, 196, 0.50),
+            0 0 14px rgba(255, 230, 195, 0.55);
+    }
+}
+
+@keyframes hof-pulse-soft {
+    0%, 100% { transform: scale(1);    opacity: 0.92; }
+    50%      { transform: scale(1.06); opacity: 1; }
+}
+
+@keyframes hof-mist-drift {
+    /* Subtle clockwise rotation — the mist around the king
+       drifts so slowly it reads as breathing, not spinning. */
+    0%   { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes hof-orb-spin {
+    /* Counter-clockwise orbit for the illusion-orbs ring.
+       Pairs with hof-mist-drift's clockwise to create depth. */
+    0%   { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+@keyframes hof-shimmer {
+    /* Used by accents — a light streak passes left to right */
+    0%   { background-position: -200% 0; }
+    100% { background-position:  200% 0; }
+}
+
+
+/* ============================================================
+   [3] PAGE CHROME — the overall Lioden frame
+       Misty cream backdrop · NO large dark areas (customer req).
+   ============================================================ */
+body {
+    /* Layered backdrop:
+       • peach sun glow top-left,
+       • lavender mist bottom-right,
+       • subtle cream base — feels like the inspo photos. */
+    background:
+        radial-gradient(ellipse at 22% 18%, rgba(240, 184, 147, 0.42) 0%, transparent 55%),
+        radial-gradient(ellipse at 78% 82%, rgba(197, 179, 200, 0.45) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 50%, rgba(229, 184, 196, 0.18) 0%, transparent 70%),
+        linear-gradient(180deg, #f4ebe0 0%, #e8d9d6 60%, #d8c8d4 100%) !important;
+    background-attachment: fixed !important;
+    color: #5a4a5a !important;
+    font-family: "Quicksand", "Cormorant Garamond", Georgia, serif !important;
+}
+
+/* Main container — soft mist-glass card */
+.container, .container-fluid {
+    background: rgba(248, 240, 232, 0.55) !important;
+    box-shadow: 0 4px 28px rgba(138, 117, 133, 0.25) !important;
+    border: 1px solid rgba(229, 184, 196, 0.35) !important;
+}
+
+/* Navbar — pastel-mist top bar */
+.navbar, .navbar-default, .navbar-inverse {
+    background:
+        linear-gradient(180deg, rgba(248, 240, 232, 0.90) 0%, rgba(229, 207, 215, 0.85) 100%) !important;
+    border-bottom: 1px solid rgba(229, 184, 196, 0.65) !important;
+    box-shadow: 0 2px 12px rgba(138, 117, 133, 0.18) !important;
+}
+.navbar a, .navbar-default a, .navbar-nav > li > a {
+    color: #6e5e6e !important;
+    font-family: "Cinzel", serif !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    font-size: 11px !important;
+    transition: all 0.3s ease !important;
+}
+.navbar a:hover, .navbar-default a:hover, .navbar-nav > li > a:hover {
+    color: #d99878 !important;
+    text-shadow: 0 0 8px rgba(240, 184, 147, 0.45) !important;
+}
+
+/* Breadcrumb — soft pastel chip bar */
+.breadcrumb {
+    background: rgba(248, 240, 232, 0.65) !important;
+    border: 1px solid rgba(229, 184, 196, 0.40) !important;
+    border-radius: 14px !important;
+    padding: 6px 16px !important;
+    color: #8a7585 !important;
+}
+.breadcrumb a { color: #d99878 !important; }
+.breadcrumb a:hover { color: #f0b893 !important; }
+.breadcrumb > .active { color: #6e5e6e !important; font-weight: 600 !important; }
+
+/* H-tags — page headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #6e5e6e !important;
+    font-family: "Italiana", "Cinzel", serif !important;
+    letter-spacing: 1.5px !important;
+}
+h1 {
+    color: #8a6478 !important;
+    font-family: "Italiana", serif !important;
+    font-weight: 400 !important;
+    letter-spacing: 3px !important;
+    text-shadow: 0 0 12px rgba(240, 184, 147, 0.35) !important;
+}
+
+/* --- LINKS --- */
+a:link, a {
+    color: #d99878 !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+}
+a:visited { color: #b88068 !important; }
+a:hover {
+    color: #f0b893 !important;
+    text-shadow: 0 0 6px rgba(240, 184, 147, 0.40) !important;
+    text-decoration: none !important;
+}
+a:active { color: #ffc89e !important; }
+
+
+/* ============================================================
+   [4] SIDEBAR + PANELS (Lioden's right rail)
+   ============================================================ */
+.sidebar, .panel, .panel-default {
+    background: rgba(248, 240, 232, 0.85) !important;
+    border: 1px solid rgba(229, 184, 196, 0.45) !important;
+    border-radius: 10px !important;
+    box-shadow:
+        0 2px 14px rgba(138, 117, 133, 0.18),
+        inset 0 0 22px rgba(255, 240, 232, 0.45) !important;
+    color: #5a4a5a !important;
+}
+.panel-heading, .panel-default > .panel-heading {
+    background: linear-gradient(180deg, rgba(255, 220, 200, 0.78) 0%, rgba(229, 184, 196, 0.72) 100%) !important;
+    border-bottom: 1px solid rgba(229, 184, 196, 0.65) !important;
+    border-radius: 10px 10px 0 0 !important;
+    color: #8a6478 !important;
+    font-family: "Cinzel", serif !important;
+    text-transform: uppercase !important;
+    font-size: 12px !important;
+    letter-spacing: 1.5px !important;
+    text-align: center !important;
+}
+.panel-body { background: transparent !important; color: #5a4a5a !important; }
+
+
+/* ============================================================
+   [5] TABLES + FORMS — Lioden's stat blocks, player info, etc.
+   ============================================================ */
+.table, table { color: #5a4a5a !important; }
+.table > thead > tr > th,
+.table > tbody > tr > td,
+.table td, .table th, td, th {
+    border-color: rgba(229, 184, 196, 0.32) !important;
+    color: #5a4a5a !important;
+    background: transparent !important;
+}
+.table .top, td.top {
+    background: linear-gradient(180deg, rgba(255, 220, 200, 0.72) 0%, rgba(229, 184, 196, 0.70) 100%) !important;
+    color: #8a6478 !important;
+    font-family: "Cinzel", serif !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    border-color: rgba(229, 184, 196, 0.50) !important;
+}
+.table .bottom, td.bottom { background: rgba(248, 240, 232, 0.75) !important; border-color: rgba(229, 184, 196, 0.32) !important; }
+.table .right, td.right, tr.right { background: rgba(248, 240, 232, 0.50) !important; }
+.table .right_odd, td.right_odd { background: rgba(240, 224, 228, 0.55) !important; }
+.table .left, td.left {
+    color: #8a6478 !important;
+    font-family: "Cinzel", serif !important;
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+.table-striped > tbody > tr:nth-of-type(odd)  { background-color: rgba(255, 220, 200, 0.20) !important; }
+.table-striped > tbody > tr:nth-of-type(even) { background-color: rgba(229, 184, 196, 0.14) !important; }
+.inner-table, .inner-table.auto, table.inner-table { background: transparent !important; }
+.inner-table td, .inner-table th { border: none !important; }
+
+.h3, .xlarge, .bigger { color: #8a6478 !important; }
+.small, small { color: #a89098 !important; }
+.member-online, .member-offline {
+    display: inline-block !important;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #f0b893;
+    box-shadow: 0 0 6px rgba(240, 184, 147, 0.65);
+    margin-right: 6px;
+    vertical-align: middle;
+}
+.text-muted   { color: rgba(138, 117, 133, 0.55) !important; }
+.floatright   { color: #a89098 !important; }
+.welcomeback  { color: #8a6478 !important; }
+
+/* --- PROGRESS BARS --- */
+.progress {
+    background-color: rgba(248, 240, 232, 0.85) !important;
+    border: 1px solid rgba(229, 184, 196, 0.40) !important;
+    border-radius: 10px !important;
+    box-shadow: inset 0 1px 4px rgba(138, 117, 133, 0.18) !important;
+    height: 18px !important;
+}
+.progress-bar, .progress-bar-success {
+    background: linear-gradient(90deg, #e5b8c4 0%, #f0b893 50%, #ecc888 100%) !important;
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.08), 0 0 8px rgba(240, 184, 147, 0.45) !important;
+    border-radius: 10px !important;
+    color: #6e5e6e; font-size: 10px; line-height: 18px;
+    text-align: center; font-family: "Cinzel", serif; letter-spacing: 1px; font-weight: 700;
+}
+.progress-bar-info    { background: linear-gradient(90deg, #c5b3c8 0%, #d8b8d0 50%, #e5b8c4 100%) !important; }
+.progress-bar-warning { background: linear-gradient(90deg, #ecc888 0%, #f0b893 100%) !important; }
+.progress-bar-danger  { background: linear-gradient(90deg, #e5a8b4 0%, #d99878 100%) !important; }
+
+/* --- BUTTONS (all Bootstrap variants reskinned) --- */
+.btn, .btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger,
+.btn-sm, .btn-xs, .btn-lg,
+input[type="submit"], input[type="button"], button {
+    background: linear-gradient(180deg, rgba(255, 240, 232, 0.95) 0%, rgba(248, 224, 224, 0.95) 100%) !important;
+    border: 1px solid rgba(229, 184, 196, 0.65) !important;
+    border-radius: 16px !important;
+    color: #8a6478 !important;
+    font-family: "Cinzel", serif !important;
+    text-transform: uppercase !important;
+    font-size: 11px !important;
+    letter-spacing: 1px !important;
+    text-shadow: none !important;
+    box-shadow: 0 1px 3px rgba(138, 117, 133, 0.18) !important;
+    transition: all 0.3s ease !important;
+}
+.btn:hover, .btn-default:hover, .btn-primary:hover, .btn-success:hover, .btn-info:hover,
+.btn-warning:hover, .btn-danger:hover, .btn-sm:hover, .btn-xs:hover, .btn-lg:hover,
+input[type="submit"]:hover, input[type="button"]:hover, button:hover {
+    background: linear-gradient(180deg, rgba(255, 220, 200, 0.95) 0%, rgba(240, 184, 147, 0.85) 100%) !important;
+    border-color: rgba(240, 184, 147, 0.85) !important;
+    color: #6e5e6e !important;
+    box-shadow: 0 0 12px rgba(240, 184, 147, 0.42) !important;
+}
+
+/* --- INPUTS --- */
+input[type="text"], input[type="number"], input[type="password"], input[type="email"],
+select, textarea, .form-control {
+    background: rgba(255, 248, 244, 0.92) !important;
+    border: 1px solid rgba(229, 184, 196, 0.50) !important;
+    border-radius: 8px !important;
+    color: #5a4a5a !important;
+    font-family: "Quicksand", sans-serif !important;
+}
+input:focus, select:focus, textarea:focus, .form-control:focus {
+    border-color: rgba(240, 184, 147, 0.85) !important;
+    box-shadow: 0 0 10px rgba(240, 184, 147, 0.42) !important;
+    outline: none !important;
+}
+
+/* --- WELLS + ALERTS --- */
+.well {
+    background: rgba(248, 240, 232, 0.85) !important;
+    border: 1px solid rgba(229, 184, 196, 0.35) !important;
+    border-radius: 10px !important;
+    color: #5a4a5a !important;
+    box-shadow: inset 0 1px 4px rgba(138, 117, 133, 0.12) !important;
+}
+.alert, .alert-success, .alert-info, .alert-warning, .alert-danger {
+    background: rgba(255, 220, 200, 0.50) !important;
+    border: 1px solid rgba(229, 184, 196, 0.55) !important;
+    color: #6e5e6e !important;
+    border-radius: 10px !important;
+}
+.alert-danger { color: #b06870 !important; }
+.alert a      { color: #d99878 !important; }
+
+/* --- LION-IMAGE area — clean container, no border by default --- */
+div#lion_image > div { background-color: transparent !important; border: none !important; }
+
+/* --- COMMENT TAG IMAGES (round avatars in chat threads) --- */
+.commentTag,
+.comment img.commentTag,
+img[src*="/images/tags/"] {
+    border-radius: 50% !important;
+    object-fit: cover !important;
+}
+
+/* --- SCROLLBAR (webkit only) — pastel mist thumb --- */
+::-webkit-scrollbar         { width: 8px !important; height: 8px !important; }
+::-webkit-scrollbar-track   { background: #f0e6dc !important; }
+::-webkit-scrollbar-thumb   {
+    background: linear-gradient(180deg, #e5b8c4 0%, #c5b3c8 100%) !important;
+    border-radius: 4px !important;
+    border: 1px solid rgba(229, 184, 196, 0.50) !important;
+}
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #f0b893 0%, #d99878 100%) !important; }
+
+
+/* ============================================================
+   [6] CAVE + MOUND THUMBNAILS — pastel-mist themed replacements
+       Soft pastel frame around Lioden's default banner art.
+       If you want to keep Lioden's original images, comment-out
+       just the `background-image` lines below.
+   ============================================================ */
+.cave-grid, .mound-grid {
+    background: rgba(248, 240, 232, 0.65) !important;
+    border: 1px solid rgba(229, 184, 196, 0.45) !important;
+    color: #6e5e6e !important;
+    font-family: "Cinzel", serif !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    font-size: 10px !important;
+    padding: 4px !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+}
+.cave-grid:hover, .mound-grid:hover {
+    border-color: rgba(240, 184, 147, 0.85) !important;
+    box-shadow: 0 0 12px rgba(240, 184, 147, 0.42) !important;
+    transform: translateY(-1px);
+}
+
+/* Hide the original Lioden banner images, show our pastel SVG instead.
+   Customer can comment out these 4 lines to restore Lioden's defaults. */
+.cave-grid img, .mound-grid img { display: none !important; }
+.cave-grid {
+    width: 100% !important; height: 130px !important;
+    background-size: cover !important; background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: #f4ebe0 !important;
+    background-image: url('https://nublium.github.io/liodencsshymnshark/placeholder-cave.svg') !important;
+    border: 1px solid rgba(229, 184, 196, 0.45) !important;
+    box-sizing: border-box !important; display: block !important;
+}
+.mound-grid {
+    width: 100% !important; height: 90px !important;
+    background-size: cover !important; background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: #f4ebe0 !important;
+    background-image: url('https://nublium.github.io/liodencsshymnshark/placeholder-mound.svg') !important;
+    border: 1px solid rgba(229, 184, 196, 0.45) !important;
+    box-sizing: border-box !important; display: block !important;
+}
+/* The three "organisation" banners at the top of the cave list */
+a[href*="unsorted.php"]    .cave-grid { background-image: url('https://nublium.github.io/liodencsshymnshark/placeholder-unsorted.svg') !important; }
+a[href*="nesting.php"]     .cave-grid,
+a[href*="nestingoverview"] .cave-grid { background-image: url('https://nublium.github.io/liodencsshymnshark/placeholder-nesting.svg') !important; }
+a[href*="prideoverview"]   .cave-grid,
+a[href*="pride_overview"]  .cave-grid { background-image: url('https://nublium.github.io/liodencsshymnshark/placeholder-pride.svg') !important; }
+
+
+/* ============================================================
+   [7] CHATBOX — Lioden's sidebar chat (BEM .s-chat-* selectors)
+       Ported and re-coloured to the misty-pastel palette.
+       This makes chat messages readable and toggle-buttons work.
+   ============================================================ */
+
+/* The chat header bar (the h3 with toggle + chat link) */
+h3[style*="position: relative"] {
+    display: flex !important; align-items: center !important;
+    justify-content: flex-start !important; flex-wrap: nowrap !important;
+    gap: 6px !important; padding: 8px 12px !important;
+    margin: 14px 0 0 !important;
+    background: linear-gradient(180deg, rgba(255, 220, 200, 0.85), rgba(229, 184, 196, 0.85)) !important;
+    border: none !important;
+    border-radius: 10px 10px 0 0 !important;
+    font-family: "Cinzel", serif !important;
+    font-size: 13px !important; letter-spacing: 2px !important;
+    color: #8a6478 !important;
+    text-transform: uppercase !important;
+    line-height: 1.4 !important;
+    overflow: visible !important;
+}
+h3[style*="position: relative"] > div[style*="display: inline-block"] {
+    margin: 0 0 0 auto !important; flex-shrink: 0 !important; line-height: inherit !important;
+}
+h3[style*="position: relative"] > div[style*="position: absolute"] {
+    position: static !important; margin: 0 !important;
+    line-height: inherit !important; flex-shrink: 0 !important;
+}
+
+#btnToggleSidebarChat {
+    background: rgba(255, 248, 244, 0.85) !important;
+    border: 1px solid rgba(229, 184, 196, 0.65) !important;
+    color: #8a6478 !important;
+    font-family: "Cinzel", serif !important;
+    font-size: 9px !important; letter-spacing: 1px !important;
+    padding: 3px 8px !important; margin: 0 !important;
+    text-transform: uppercase !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    line-height: 1.4 !important; vertical-align: middle !important;
+    transition: all 0.3s ease !important;
+}
+#btnToggleSidebarChat:hover {
+    background: rgba(255, 220, 200, 0.90) !important;
+    border-color: rgba(240, 184, 147, 0.85) !important;
+    color: #6e5e6e !important;
+    box-shadow: 0 0 6px rgba(240, 184, 147, 0.55) !important;
+}
+
+h3 a[href="./chat.php"], h3 a[href*="chat.php"] {
+    color: #8a6478 !important;
+    font-size: 10px !important; letter-spacing: 1px !important;
+    font-family: "Cinzel", serif !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    padding: 3px 7px !important;
+    border: 1px solid rgba(229, 184, 196, 0.65) !important;
+    background: rgba(255, 248, 244, 0.75) !important;
+    border-radius: 10px !important;
+    line-height: 1.4 !important; white-space: nowrap !important;
+    transition: all 0.3s ease !important;
+}
+h3 a[href="./chat.php"]:hover, h3 a[href*="chat.php"]:hover {
+    color: #6e5e6e !important;
+    border-color: rgba(240, 184, 147, 0.85) !important;
+    background: rgba(255, 220, 200, 0.85) !important;
+    text-shadow: none !important;
+}
+
+#fraSidebarChat {
+    background: rgba(248, 240, 232, 0.92) !important;
+    border: none !important; margin: 0 0 14px !important;
+    padding: 0 !important; box-shadow: none !important;
+    border-radius: 0 0 10px 10px !important;
+}
+#fraSidebarChat iframe {
+    background: rgba(248, 240, 232, 0.92) !important;
+    border: none !important; outline: none !important;
+    width: 100% !important; display: block !important;
+    box-shadow: none !important;
+}
+#fraSidebarChat.hidden { display: none !important; }
+
+/* Chat iframe content (the chat itself renders inside an iframe) */
+html.nolayout, html.nolayout body, body.nolayout {
+    margin: 0 !important; padding: 0 !important;
+    border: none !important;
+    background: rgba(248, 240, 232, 0.96) !important;
+    box-shadow: none !important;
+}
+
+.s-chat-sidebar, #fra_chatContainer, #fra_chatContainer.s-chat-sidebar {
+    background: rgba(248, 240, 232, 0.96) !important;
+    color: #5a4a5a !important;
+    font-family: "Quicksand", Georgia, serif !important;
+    border: none !important; box-shadow: none !important; margin: 0 !important;
+}
+
+.channelMenu {
+    background: linear-gradient(180deg, rgba(255, 220, 200, 0.92), rgba(229, 184, 196, 0.88)) !important;
+    border-bottom: 1px solid rgba(229, 184, 196, 0.65) !important;
+    color: #8a6478 !important;
+}
+.chatMenu-container {
+    background: rgba(248, 240, 232, 0.96) !important;
+    border: 1px solid rgba(229, 184, 196, 0.65) !important;
+    color: #5a4a5a !important;
+    border-radius: 10px !important;
+}
+.channelSwitcher, .chatMenu-option {
+    background: rgba(255, 220, 200, 0.70) !important;
+    border: 1px solid rgba(229, 184, 196, 0.55) !important;
+    color: #8a6478 !important;
+    font-family: "Cinzel", serif !important;
+    text-transform: uppercase !important;
+    font-size: 10px !important; letter-spacing: 1px !important;
+    text-shadow: none !important;
+    padding: 4px 8px !important;
+    border-radius: 10px !important;
+}
+.channelSwitcher.active {
+    background: linear-gradient(180deg, rgba(240, 184, 147, 0.55), rgba(229, 184, 196, 0.65)) !important;
+    color: #6e5e6e !important;
+    border-color: rgba(240, 184, 147, 0.85) !important;
+}
+.channelSwitcher:hover, .chatMenu-option:hover {
+    background: rgba(255, 220, 200, 0.92) !important;
+    color: #6e5e6e !important;
+    border-color: rgba(240, 184, 147, 0.85) !important;
+}
+
+#btnLoadNewMessages {
+    background: rgba(255, 220, 200, 0.88) !important;
+    border: 1px solid rgba(240, 184, 147, 0.75) !important;
+    color: #8a6478 !important;
+    font-family: "Cinzel", serif !important;
+    text-transform: uppercase !important;
+    border-radius: 10px !important;
+}
+
+#chatMessagePinned, .s-chat-message__pinned {
+    background: linear-gradient(180deg, rgba(255, 220, 200, 0.85), rgba(229, 184, 196, 0.70)) !important;
+    border: 1px solid rgba(229, 184, 196, 0.65) !important;
+    color: #5a4a5a !important;
+    text-shadow: none !important;
+    padding: 6px 10px !important;
+    font-family: "Quicksand", serif !important;
+    border-radius: 8px !important;
+}
+#chatMessagePinned a, .s-chat-message__pinned a { color: #d99878 !important; text-shadow: none !important; }
+#chatMessagePinned a:hover, .s-chat-message__pinned a:hover { color: #f0b893 !important; }
+
+#chatMessageList { background: transparent !important; color: #5a4a5a !important; }
+
+.s-chat-message {
+    background: rgba(255, 248, 244, 0.85) !important;
+    border-bottom: 1px solid rgba(229, 184, 196, 0.28) !important;
+    color: #5a4a5a !important;
+    text-shadow: none !important;
+    padding: 6px 30px 8px 10px !important;
+    margin: 0 !important;
+    position: relative !important;
+}
+.s-chat-message > div:first-child { display: block !important; margin-bottom: 2px !important; }
+.s-chat-message:nth-of-type(odd)  { background: rgba(255, 248, 244, 0.92) !important; }
+.s-chat-message:nth-of-type(even) { background: rgba(248, 240, 232, 0.78) !important; }
+.s-chat-message:hover             { background: rgba(255, 220, 200, 0.55) !important; }
+
+.s-chat__username, .s-chat-message a.s-chat__username {
+    color: #8a6478 !important;
+    font-weight: 600 !important;
+    text-shadow: none !important;
+    text-decoration: none !important;
+}
+.s-chat__username:hover { color: #d99878 !important; text-shadow: none !important; }
+.s-chat__username[data-type="donator"]   { color: #d99878 !important; }
+.s-chat__username[data-type="new"]       { color: #a89098 !important; }
+.s-chat__username[data-type="staff"],
+.s-chat__username[data-type="moderator"] { color: #b06870 !important; }
+
+/* Chat message body — readable mauve text on cream */
+.s-chat-message_content,
+.s-chat-message_content * {
+    color: #5a4a5a !important;
+    text-shadow: none !important;
+    background: transparent !important;
+}
+.s-chat-message_content {
+    display: block !important;
+    margin: 2px 0 !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    line-height: 1.5 !important;
+}
+.s-chat-message_content b { color: #8a6478 !important; }
+.s-chat-message_content a.s-chat__username { color: #8a6478 !important; background: transparent !important; }
+
+.s-chat-message_timestamp {
+    display: block !important;
+    color: #a89098 !important;
+    font-size: 10px !important;
+    font-style: italic !important;
+    font-family: "Cormorant Garamond", serif !important;
+    text-shadow: none !important;
+    margin-top: 3px !important;
+    line-height: 1.2 !important;
+    clear: both !important;
+}
+
+.s-chat-message_menu {
+    position: absolute !important;
+    top: 6px !important; right: 6px !important;
+    background: rgba(229, 184, 196, 0.50) !important;
+    border: 1px solid rgba(229, 184, 196, 0.65) !important;
+    opacity: 0.55 !important;
+    transition: all 0.3s ease !important;
+    border-radius: 6px !important;
+}
+.s-chat-message:hover .s-chat-message_menu { opacity: 1 !important; }
+.s-chat-message_menu a, .s-chat-message_menu button {
+    color: #8a6478 !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 2px 5px !important;
+}
+
+#chatMessageList .input-group, .s-chat__input-group {
+    background: rgba(255, 248, 244, 0.92) !important;
+    border-top: 1px solid rgba(229, 184, 196, 0.50) !important;
+}
+#chatMessage, .s-chat__input {
+    background: rgba(255, 248, 244, 0.98) !important;
+    border: 1px solid rgba(229, 184, 196, 0.50) !important;
+    color: #5a4a5a !important;
+    font-family: "Quicksand", sans-serif !important;
+    border-radius: 8px !important;
+}
+
+
+/* ============================================================
+   [8] TERRITORY DESCRIPTION (.hof-*)
+       === THIS IS THE PART YOU EDIT IN THE HTML ===
+       Class names use the .hof- prefix to avoid collisions with
+       Lioden's globals. Every element here is wrapped in
+       <div class="hof-territory">…</div> in the HTML.
+   ============================================================ */
+
+/* === ROOT WRAPPER === */
+.hof-territory {
+    width: 720px;
+    margin: 16px auto;
+    font-family: "Quicksand", "Cormorant Garamond", Georgia, serif;
+    color: #5a4a5a;
+    line-height: 1.7;
+    position: relative;
+    padding: 16px 8px 20px;
+    /* A misty backdrop ONLY inside the description — subtle
+       diagonal mist hint so the box feels atmospheric without
+       competing with the page chrome. */
+    background-image:
+        radial-gradient(ellipse at 25% 18%, rgba(240, 184, 147, 0.12) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 80%, rgba(197, 179, 200, 0.18) 0%, transparent 60%);
+}
+
+/* KILL LIODEN'S AUTO-INJECTED <br>s.
+   Lioden's territory editor inserts a <br><br> for every newline you
+   type. We hide them and restore them only inside text containers. */
+.hof-territory br { display: none !important; }
+.hof-text br, .hof-quote br, .hof-subtitle br, .hof-list br,
+.hof-text-sm br, .hof-motto br, .hof-gal-desc br {
+    display: inline !important;
+}
+.hof-territory > p { margin: 0 !important; }
+
+/* Outer top/bottom misty light-strands — soft horizontal glow */
+.hof-territory::before, .hof-territory::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(229, 184, 196, 0.45) 15%,
+        rgba(240, 184, 147, 0.75) 50%,
+        rgba(229, 184, 196, 0.45) 85%,
+        transparent 100%);
+    pointer-events: none;
+}
+.hof-territory::before { top: 0;    box-shadow: 0 4px 0 -3px rgba(229, 184, 196, 0.45); }
+.hof-territory::after  { bottom: 0; box-shadow: 0 -4px 0 -3px rgba(229, 184, 196, 0.45); }
+
+
+/* === TOP ORNAMENT ROW (small dotted row above the title) === */
+.hof-ornament-row {
+    display: flex; justify-content: center; align-items: center;
+    gap: 14px; margin: 6px 0 -2px;
+    color: rgba(240, 184, 147, 0.75);
+    font-size: 16px; letter-spacing: 12px;
+    font-family: "Italiana", serif;
+}
+.hof-ornament-row .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ffd5b8 0%, #f0b893 60%, #d99878 100%);
+    box-shadow: 0 0 8px rgba(240, 184, 147, 0.65);
+    vertical-align: middle;
+}
+
+
+/* === GRAND TITLE — "Heaven's On Fire" ===
+   Big, ethereal, ultra-soft glow. Uses Italiana for high-fashion
+   editorial vibe — not cartoony, not gothic. */
+.hof-title {
+    text-align: center;
+    padding: 6px 10px 4px;
+    margin: 0;
+    font-family: "Italiana", "Cinzel", serif;
+    font-size: 64px;
+    font-weight: 400;
+    color: #8a6478;
+    letter-spacing: 6px;
+    line-height: 1.05;
+    text-transform: uppercase;
+    text-shadow:
+        0 0 22px rgba(240, 184, 147, 0.55),
+        0 0 50px rgba(229, 184, 196, 0.40),
+        0 0 8px rgba(255, 220, 195, 0.45),
+        0 2px 4px rgba(138, 117, 133, 0.30);
+    animation: hof-dawn-glow 8s ease-in-out infinite;
+    position: relative;
+    /* Flex layout so the ✦ ornaments truly center with the text
+       — otherwise letter-spacing trails offset the centring. */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    text-indent: 6px;       /* compensates for trailing letter-spacing */
+}
+/* Ornaments on either side of the title — small pastel suns */
+.hof-title::before, .hof-title::after {
+    content: "✦";
+    color: #f0b893;
+    font-family: "Italiana", serif;
+    font-size: 26px;
+    letter-spacing: 0 !important;
+    margin: 0 !important;
+    text-shadow:
+        0 0 14px rgba(240, 184, 147, 0.85),
+        0 0 28px rgba(255, 220, 195, 0.55);
+    display: inline-block;
+    animation: hof-pulse-soft 5s ease-in-out infinite;
+}
+
+
+/* === SUBTITLE (italic script under the title) === */
+.hof-subtitle {
+    text-align: center;
+    font-family: "Italianno", "Cormorant Garamond", cursive;
+    font-style: normal;
+    font-size: 36px;
+    color: #b07c95;
+    letter-spacing: 1px;
+    margin: -4px 30px 4px;
+    line-height: 1.2;
+    text-shadow: 0 0 12px rgba(229, 184, 196, 0.45);
+}
+
+
+/* === MOTTO (tiny uppercase tagline) === */
+.hof-motto {
+    text-align: center;
+    font-family: "Cinzel", serif;
+    font-size: 10px;
+    color: rgba(138, 117, 133, 0.85);
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin: 10px 0 4px;
+    text-shadow: 0 0 6px rgba(240, 184, 147, 0.45);
+}
+
+
+/* === DIVIDERS === */
+/* Short centred divider with a sun-dot in the middle */
+.hof-divider {
+    width: 55%;
+    margin: 14px auto;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(229, 184, 196, 0.30) 20%,
+        rgba(240, 184, 147, 0.75) 50%,
+        rgba(229, 184, 196, 0.30) 80%,
+        transparent 100%);
+    border: none;
+    position: relative;
+}
+.hof-divider::before {
+    content: "✦";
+    position: absolute; top: -10px; left: 50%;
+    transform: translateX(-50%);
+    color: #f0b893;
+    font-size: 14px;
+    background: #f4ebe0;
+    padding: 0 8px;
+    text-shadow: 0 0 8px rgba(240, 184, 147, 0.75);
+}
+
+/* Full-width divider with optional label in the middle */
+.hof-divider-full {
+    width: 100%;
+    margin: 0;
+    height: 18px;
+    display: flex; align-items: center; gap: 12px;
+    border: none;
+}
+.hof-divider-full::before, .hof-divider-full::after {
+    content: ""; flex: 1; height: 1px;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(229, 184, 196, 0.45),
+        rgba(240, 184, 147, 0.65),
+        rgba(229, 184, 196, 0.45),
+        transparent);
+}
+.hof-divider-mark {
+    font-family: "Cinzel", serif;
+    font-size: 10px;
+    color: #8a6478;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-shadow: 0 0 6px rgba(240, 184, 147, 0.45);
+}
+.hof-divider-mark .star {
+    color: #f0b893;
+    font-size: 13px;
+    margin: 0 6px;
+    vertical-align: -1px;
+    text-shadow: 0 0 10px rgba(240, 184, 147, 0.85);
+}
+
+
+/* === SECTION HEADER — pastel sun-dot medallion + label === */
+.hof-section {
+    text-align: center;
+    margin: 24px 0 16px;
+}
+.hof-section-label {
+    text-align: center;
+    font-family: "Cinzel", serif;
+    font-size: 9px;
+    color: rgba(138, 117, 133, 0.85);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0 0 6px;
+}
+.hof-sun-divider {
+    text-align: center;
+    margin: 0;
+    position: relative;
+    height: 52px;
+    line-height: 52px;
+}
+.hof-sun-divider::before, .hof-sun-divider::after {
+    content: "";
+    position: absolute; top: 50%;
+    width: 38%; height: 1px;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(229, 184, 196, 0.55),
+        rgba(240, 184, 147, 0.75),
+        rgba(229, 184, 196, 0.55),
+        transparent);
+}
+.hof-sun-divider::before { left: 0; }
+.hof-sun-divider::after  { right: 0; }
+.hof-sun-medallion {
+    display: inline-block;
+    position: relative;
+    width: 42px; height: 42px; line-height: 42px;
+    text-align: center;
+    color: #8a6478;
+    font-family: "Italiana", serif;
+    font-size: 20px;
+    border: 1px solid rgba(240, 184, 147, 0.75);
+    background:
+        radial-gradient(circle at 50% 35%, rgba(255, 220, 195, 0.45) 0%, rgba(248, 240, 232, 0.95) 75%);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 3px rgba(248, 240, 232, 0.95),
+        0 0 0 4px rgba(229, 184, 196, 0.55),
+        0 0 14px rgba(240, 184, 147, 0.55);
+    vertical-align: middle;
+}
+.hof-sun-medallion span {
+    display: inline-block;
+    text-shadow: 0 0 8px rgba(240, 184, 147, 0.55);
+}
+.hof-section .hof-divider-full { margin: 10px 0 0; }
+
+
+/* === TAGS ROW — pastel pill chips === */
+.hof-tags-row { text-align: center; margin: 14px 0 8px; }
+
+.hof-tag, .hof-tag-bright, .hof-tag-sun {
+    display: inline-block;
+    font-family: "Cinzel", serif;
+    font-size: 10px; letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px; margin: 3px;
+    position: relative;
+    border: 1px solid rgba(229, 184, 196, 0.65);
+    border-radius: 14px;
+    background:
+        radial-gradient(ellipse at 30% 25%, rgba(255, 220, 195, 0.45) 0%, transparent 55%),
+        linear-gradient(135deg, rgba(255, 248, 244, 0.85) 0%, rgba(248, 224, 224, 0.85) 100%);
+    color: #8a6478;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        inset 0 -1px 2px rgba(138, 117, 133, 0.15),
+        0 1px 3px rgba(138, 117, 133, 0.18);
+}
+.hof-tag-bright {
+    color: #6e5e6e;
+    border-color: rgba(240, 184, 147, 0.85);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.55),
+        inset 0 -1px 2px rgba(138, 117, 133, 0.15),
+        0 0 10px rgba(240, 184, 147, 0.42);
+}
+.hof-tag-sun {
+    color: #8a4f3f;
+    border-color: rgba(240, 184, 147, 0.95);
+    background:
+        radial-gradient(ellipse at 30% 25%, rgba(255, 220, 195, 0.65) 0%, transparent 55%),
+        linear-gradient(135deg, rgba(255, 220, 195, 0.92) 0%, rgba(240, 184, 147, 0.85) 100%);
+}
+
+
+/* ============================================================
+   ROW + BOXES — the two-column / one-column content panels
+   ============================================================ */
+.hof-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 4px 0 18px;
+}
+
+.hof-box {
+    background:
+        linear-gradient(180deg, rgba(255, 248, 244, 0.92) 0%, rgba(248, 232, 232, 0.88) 100%);
+    border: 1px solid rgba(229, 184, 196, 0.55);
+    padding: 20px 22px 18px;
+    border-radius: 14px;
+    box-shadow:
+        inset 0 0 30px rgba(255, 240, 232, 0.50),
+        0 4px 18px rgba(138, 117, 133, 0.22);
+    position: relative;
+    transition: all 0.4s ease;
+}
+/* Inner thin frame for depth (whispery pastel inset) */
+.hof-box::before {
+    content: "";
+    position: absolute;
+    top: 5px; left: 5px; right: 5px; bottom: 5px;
+    border: 1px solid rgba(229, 184, 196, 0.30);
+    border-radius: 10px;
+    pointer-events: none;
+}
+/* Top highlight band — gives a "lit from above" feel */
+.hof-box::after {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 220, 195, 0.85), transparent);
+    border-radius: 14px 14px 0 0;
+}
+
+/* Decorative pastel corners (placed via empty <span class="hof-box-corner ...">) */
+.hof-box-corner {
+    position: absolute; width: 18px; height: 18px;
+    border: 1px solid rgba(240, 184, 147, 0.85);
+    pointer-events: none;
+}
+.hof-box-corner.hof-tl { top: -1px; left: -1px;  border-right: none; border-bottom: none; border-radius: 14px 0 0 0; }
+.hof-box-corner.hof-tr { top: -1px; right: -1px; border-left:  none; border-bottom: none; border-radius: 0 14px 0 0; }
+.hof-box-corner.hof-bl { bottom: -1px; left: -1px;  border-right: none; border-top: none; border-radius: 0 0 0 14px; }
+.hof-box-corner.hof-br { bottom: -1px; right: -1px; border-left:  none; border-top: none; border-radius: 0 0 14px 0; }
+
+.hof-box:hover {
+    border-color: rgba(240, 184, 147, 0.85);
+    box-shadow:
+        inset 0 0 30px rgba(255, 220, 195, 0.55),
+        0 6px 26px rgba(240, 184, 147, 0.32);
+    transform: translateY(-2px);
+}
+.hof-box:hover::after { background: linear-gradient(90deg, transparent, rgba(255, 230, 200, 0.95), transparent); }
+
+/* Box size modifiers — apply IN ADDITION TO .hof-box */
+.hof-box-half    { width: 348px; min-height: 280px; }
+.hof-box-tall    { min-height: 320px; }
+.hof-box-full    { width: 100%; min-height: 80px; }
+.hof-box-compact { width: 100%; text-align: center; }
+
+
+/* === BOX HEADER === */
+.hof-box-numeral {
+    text-align: center;
+    font-family: "Italiana", serif;
+    font-size: 11px;
+    color: rgba(176, 124, 149, 0.75);
+    letter-spacing: 4px;
+    margin-bottom: 2px;
+}
+.hof-box-header {
+    font-family: "Italiana", "Cinzel", serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #8a6478;
+    text-transform: uppercase;
+    letter-spacing: 3.5px;
+    text-align: center;
+    margin: 0 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(229, 184, 196, 0.55);
+    text-shadow:
+        0 1px 4px rgba(255, 220, 195, 0.55),
+        0 0 12px rgba(240, 184, 147, 0.35);
+    position: relative;
+}
+.hof-box-header .sym {
+    display: inline-block;
+    margin: 0 10px;
+    color: #f0b893;
+    font-size: 14px;
+    vertical-align: -1px;
+    text-shadow: 0 0 8px rgba(240, 184, 147, 0.85);
+}
+.hof-box-header::after {
+    content: "";
+    display: block;
+    width: 32px; height: 1px;
+    background: rgba(240, 184, 147, 0.85);
+    margin: 8px auto 0;
+}
+
+
+/* === DROP-CAP — soft illuminated first letter === */
+.hof-dropcap {
+    float: left;
+    font-family: "Italiana", "Cinzel", serif;
+    font-size: 54px; line-height: 0.85;
+    color: #8a6478;
+    margin: 4px 12px 0 0;
+    padding: 6px 10px 4px;
+    text-shadow:
+        0 0 12px rgba(240, 184, 147, 0.55),
+        0 0 6px rgba(255, 220, 195, 0.45),
+        0 2px 4px rgba(138, 117, 133, 0.30);
+    border: 1px solid rgba(229, 184, 196, 0.65);
+    border-radius: 8px;
+    background:
+        radial-gradient(ellipse at 50% 30%, rgba(255, 220, 195, 0.55) 0%, transparent 65%),
+        linear-gradient(135deg, rgba(255, 248, 244, 0.85) 0%, rgba(248, 224, 224, 0.85) 100%);
+    box-shadow: inset 0 0 14px rgba(240, 184, 147, 0.22);
+}
+
+
+/* === TEXT STYLES === */
+.hof-text          { font-size: 14px; color: #5a4a5a; line-height: 1.78; }
+.hof-text b,
+.hof-text strong   { color: #8a6478; font-weight: 600; }
+.hof-text-sm       { font-size: 12px; color: #8a7585; line-height: 1.65; }
+.hof-text-italic   { font-style: italic; color: #8a6478; font-family: "Cormorant Garamond", serif; }
+.hof-text-accent   { color: #d99878; font-weight: 600; }
+.hof-text-bright   { color: #8a6478; font-weight: 600; text-shadow: 0 0 6px rgba(240, 184, 147, 0.42); }
+.hof-text-sun      { color: #b06870; font-weight: 600; text-shadow: 0 0 6px rgba(229, 184, 196, 0.55); }
+.hof-text-muted    { color: #a89098; font-size: 12px; }
+.hof-text-center   { text-align: center; }
+
+/* Clearfix so a floated dropcap doesn't bleed into info-rows below */
+.hof-text::after { content: ""; display: block; clear: both; }
+
+.hof-pilcrow {
+    color: rgba(229, 184, 196, 0.85);
+    font-family: "Italiana", serif;
+    margin-right: 4px;
+}
+
+
+/* === LIST — auto-rotates through five pastel glyphs === */
+.hof-list {
+    list-style: none;
+    padding: 0; margin: 6px 0;
+}
+.hof-list li {
+    padding: 6px 0 6px 26px;
+    position: relative;
+    font-size: 13.5px;
+    color: #5a4a5a;
+    line-height: 1.65;
+}
+.hof-list li::before {
+    position: absolute; left: 0; top: 7px;
+    color: #f0b893;
+    font-family: "Italiana", serif;
+    font-size: 12px;
+    text-shadow: 0 0 5px rgba(240, 184, 147, 0.75);
+}
+.hof-list li:nth-child(5n+1)::before { content: "✦"; }
+.hof-list li:nth-child(5n+2)::before { content: "❀"; }
+.hof-list li:nth-child(5n+3)::before { content: "❖"; }
+.hof-list li:nth-child(5n+4)::before { content: "✿"; }
+.hof-list li:nth-child(5n)::before   { content: "❦"; }
+
+/* If you forget and use a plain <ul> inside .hof-text, it still styles */
+.hof-text ul          { list-style: none; padding: 0; margin: 6px 0; }
+.hof-text ul li       {
+    padding: 6px 0 6px 26px;
+    position: relative;
+    font-size: 13.5px;
+    color: #5a4a5a;
+}
+.hof-text ul li::before {
+    content: "✦";
+    position: absolute; left: 0; top: 7px;
+    color: #f0b893;
+    font-family: "Italiana", serif;
+    font-size: 11px;
+    text-shadow: 0 0 5px rgba(240, 184, 147, 0.75);
+}
+
+
+/* === PULL-QUOTE === */
+.hof-quote {
+    border-left: 2px solid rgba(240, 184, 147, 0.85);
+    border-right: 2px solid rgba(229, 184, 196, 0.65);
+    padding: 14px 24px 14px 30px;
+    margin: 14px 6px;
+    background:
+        linear-gradient(180deg, rgba(255, 220, 195, 0.18) 0%, rgba(229, 184, 196, 0.20) 100%);
+    border-radius: 8px;
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    color: #6e5e6e;
+    font-size: 15px;
+    line-height: 1.75;
+    position: relative;
+    text-align: center;
+}
+.hof-quote::before {
+    content: "\201C";
+    position: absolute; top: -2px; left: 6px;
+    font-size: 42px;
+    color: rgba(240, 184, 147, 0.75);
+    font-style: normal;
+    font-family: "Italiana", serif;
+    line-height: 1;
+}
+.hof-quote::after {
+    content: "\201D";
+    position: absolute; bottom: -18px; right: 8px;
+    font-size: 42px;
+    color: rgba(240, 184, 147, 0.75);
+    font-style: normal;
+    font-family: "Italiana", serif;
+    line-height: 1;
+}
+.hof-quote .attrib {
+    display: block;
+    margin-top: 10px;
+    font-style: normal;
+    font-family: "Cinzel", serif;
+    font-size: 9.5px;
+    color: rgba(138, 117, 133, 0.85);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+
+/* === INFO ROW — key/value pair (e.g. "Age: 24") ===
+   Uses flex so the label sits left in a fixed column and the
+   value right-aligns. Clear:both keeps it free of dropcap floats. */
+.hof-info-row {
+    clear: both;
+    display: flex;
+    align-items: baseline;
+    padding: 4px 0;
+    border-bottom: 1px dotted rgba(229, 184, 196, 0.45);
+    font-size: 13.5px;
+}
+.hof-info-row:last-child { border-bottom: none; }
+.hof-info-label {
+    flex: 0 0 110px;
+    text-align: left;
+    font-family: "Cinzel", serif;
+    font-size: 11px;
+    color: #8a6478;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+.hof-info-value {
+    flex: 1 1 auto;
+    text-align: right;
+    color: #5a4a5a;
+    min-width: 0;
+}
+
+
+/* === MICRO-ACCENT GLYPHS === */
+.hof-glyph    { color: #f0b893; text-shadow: 0 0 6px rgba(240, 184, 147, 0.65); }
+.hof-glyph-sm { color: rgba(229, 184, 196, 0.85); font-size: 10px; }
+
+
+/* ============================================================
+   [9] GALLERY — character introduction cards
+       Customer asked for "the type of gallery you have on your
+       own den page." Implemented here as a flexible grid of
+       small character cards, each with image + name + tagline.
+   ============================================================ */
+.hof-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 14px;
+    margin: 10px 4px 0;
+}
+
+/* Single character card */
+.hof-gal-card {
+    background:
+        linear-gradient(180deg, rgba(255, 248, 244, 0.95) 0%, rgba(248, 232, 232, 0.92) 100%);
+    border: 1px solid rgba(229, 184, 196, 0.55);
+    border-radius: 12px;
+    padding: 10px 8px 12px;
+    text-align: center;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(138, 117, 133, 0.15);
+}
+.hof-gal-card::before {
+    /* Subtle peach corner glow on each card */
+    content: "";
+    position: absolute;
+    top: -10px; right: -10px;
+    width: 60px; height: 60px;
+    background: radial-gradient(circle, rgba(240, 184, 147, 0.35) 0%, transparent 70%);
+    pointer-events: none;
+}
+.hof-gal-card:hover {
+    border-color: rgba(240, 184, 147, 0.85);
+    box-shadow:
+        0 6px 22px rgba(240, 184, 147, 0.32),
+        inset 0 0 18px rgba(255, 220, 195, 0.35);
+    transform: translateY(-3px);
+}
+
+/* Image inside card — square thumb with rounded mask */
+.hof-gal-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid rgba(229, 184, 196, 0.65);
+    background:
+        radial-gradient(circle at 50% 35%, rgba(255, 220, 195, 0.35) 0%, rgba(248, 240, 232, 0.85) 75%);
+    margin: 0 0 8px;
+    transition: filter 0.3s ease;
+}
+.hof-gal-card:hover .hof-gal-img {
+    filter: saturate(1.1) contrast(1.05);
+    border-color: rgba(240, 184, 147, 0.85);
+}
+
+/* Character name — Italiana for elegant feel */
+.hof-gal-name {
+    font-family: "Italiana", "Cinzel", serif;
+    font-size: 15px;
+    color: #8a6478;
+    letter-spacing: 1.5px;
+    margin: 2px 0 4px;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+/* Short descriptor — "vampire", "open for rp", etc. */
+.hof-gal-desc {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 12px;
+    color: #b07c95;
+    line-height: 1.3;
+    margin: 0;
+    min-height: 16px;
+}
+
+/* Status badge variants — drop one of these classes onto .hof-gal-desc
+   to give a coloured pill instead of plain italic text */
+.hof-gal-desc.hof-status-open {
+    display: inline-block;
+    background: rgba(240, 184, 147, 0.32);
+    border: 1px solid rgba(240, 184, 147, 0.75);
+    color: #8a4f3f;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-style: normal;
+    font-family: "Cinzel", serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+.hof-gal-desc.hof-status-closed {
+    display: inline-block;
+    background: rgba(197, 179, 200, 0.28);
+    border: 1px solid rgba(197, 179, 200, 0.65);
+    color: #6e5e7e;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-style: normal;
+    font-family: "Cinzel", serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+.hof-gal-desc.hof-status-rose {
+    display: inline-block;
+    background: rgba(229, 184, 196, 0.32);
+    border: 1px solid rgba(229, 184, 196, 0.75);
+    color: #8a4f63;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-style: normal;
+    font-family: "Cinzel", serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+
+/* ============================================================
+   [10] KING ANIMATION — mist halo + illusion orbs
+        Replaces the static placeholder avatar with the LIVE king
+        image from Lioden's About table (#lion_image).
+        Adds a slowly drifting pastel mist halo + a counter-rotating
+        ring of tiny illusion orbs (matches "where illusions follow
+        your wake").
+   ============================================================ */
+
+/* Hide any static avatar block inside the description — the live
+   king image lives in Lioden's About table instead. */
+.hof-territory .hof-avatar-wrap { display: none !important; }
+
+/* Style Lioden's About table as a themed hero card */
+table#about {
+    background:
+        linear-gradient(180deg, rgba(255, 248, 244, 0.88) 0%, rgba(248, 232, 232, 0.85) 100%) !important;
+    border: 1px solid rgba(229, 184, 196, 0.65) !important;
+    border-radius: 14px !important;
+    box-shadow:
+        0 4px 20px rgba(138, 117, 133, 0.25),
+        inset 0 0 28px rgba(255, 220, 195, 0.30) !important;
+    width: 720px !important;
+    margin: 16px auto !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+/* The top row — king name banner */
+table#about > tbody > tr:first-child > td {
+    text-align: center !important;
+    padding: 18px 10px 8px !important;
+    border: none !important;
+}
+table#about .xlarge, table#about .xlarge a {
+    font-family: "Italiana", "Cinzel", serif !important;
+    font-size: 26px !important;
+    color: #8a6478 !important;
+    letter-spacing: 4px !important;
+    text-transform: uppercase !important;
+    text-shadow: 0 0 12px rgba(240, 184, 147, 0.45) !important;
+    font-weight: 400 !important;
+}
+
+/* The CROWN floating above the king (uses ::after on the cell) */
+table#about > tbody > tr.right > td:first-child {
+    position: relative !important;
+    width: 280px !important;
+    padding: 50px 20px 30px !important;
+    text-align: center !important;
+    overflow: visible !important;
+}
+table#about > tbody > tr.right > td:first-child::after {
+    content: "♕" !important;
+    position: absolute !important;
+    top: 10px !important;
+    left: 0 !important;
+    width: 100% !important;
+    text-align: center !important;
+    transform: none !important;
+    color: #d99878 !important;
+    font-size: 32px !important;
+    line-height: 1 !important;
+    text-shadow:
+        0 0 12px rgba(240, 184, 147, 0.75),
+        0 0 26px rgba(229, 184, 196, 0.55),
+        0 2px 4px rgba(138, 117, 133, 0.35) !important;
+    z-index: 3 !important;
+    pointer-events: none !important;
+    animation: hof-pulse-soft 6s ease-in-out infinite !important;
+}
+
+/* THE MIST HALO — a soft drifting pastel ring behind the king
+   (uses ::before on the cell, masked to a doughnut shape).
+   Reads as breathing mist rather than spinning rays. */
+table#about > tbody > tr.right > td:first-child::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 50%; left: 50%;
+    width: 280px; height: 280px;
+    transform: translate(-50%, -50%);
+    pointer-events: none !important;
+    /* Stacked radial gradients = soft cloudy mist with peach + lavender tints */
+    background:
+        radial-gradient(circle at 28% 32%, rgba(240, 184, 147, 0.40) 0%, transparent 35%),
+        radial-gradient(circle at 72% 28%, rgba(229, 184, 196, 0.38) 0%, transparent 38%),
+        radial-gradient(circle at 18% 78%, rgba(197, 179, 200, 0.42) 0%, transparent 36%),
+        radial-gradient(circle at 82% 78%, rgba(255, 220, 195, 0.40) 0%, transparent 36%),
+        radial-gradient(circle at 50% 50%, transparent 32%, rgba(255, 240, 232, 0.18) 50%, transparent 70%) !important;
+    border-radius: 50% !important;
+    -webkit-mask-image: radial-gradient(circle, transparent 38%, black 56%, transparent 70%) !important;
+    mask-image: radial-gradient(circle, transparent 38%, black 56%, transparent 70%) !important;
+    filter: blur(8px) !important;
+    animation: hof-mist-drift 80s linear infinite !important;
+    z-index: 0 !important;
+}
+
+/* THE ILLUSION ORBS — a counter-rotating ring of tiny pastel dots
+   (uses ::after on #lion_image's parent anchor). The orbs orbit
+   slightly OUTSIDE the king image, suggesting "illusions follow
+   your wake" without ever crossing the king itself. */
+table#about > tbody > tr.right > td:first-child > a {
+    position: relative !important;
+    display: inline-block !important;
+    z-index: 2 !important;
+}
+table#about > tbody > tr.right > td:first-child > a::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 50%; left: 50%;
+    width: 240px; height: 240px;
+    transform: translate(-50%, -50%);
+    pointer-events: none !important;
+    border-radius: 50% !important;
+    /* Eight tiny dots evenly spaced around the ring via
+       repeating-conic-gradient (3deg ON, 42deg OFF). */
+    background: repeating-conic-gradient(from 0deg,
+        rgba(240, 184, 147, 0.0) 0deg 1deg,
+        rgba(240, 184, 147, 0.85) 1deg 3deg,
+        transparent 3deg 45deg) !important;
+    /* Doughnut mask keeps the orbs in a thin ring */
+    -webkit-mask-image: radial-gradient(circle, transparent 45%, black 47%, black 49%, transparent 51%) !important;
+    mask-image: radial-gradient(circle, transparent 45%, black 47%, black 49%, transparent 51%) !important;
+    filter: drop-shadow(0 0 4px rgba(240, 184, 147, 0.75));
+    animation: hof-orb-spin 45s linear infinite !important;
+    z-index: 1 !important;
+}
+/* A second, lavender, faster-counter-rotating orb ring for depth */
+table#about > tbody > tr.right > td:first-child > a::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 50%; left: 50%;
+    width: 260px; height: 260px;
+    transform: translate(-50%, -50%);
+    pointer-events: none !important;
+    border-radius: 50% !important;
+    background: repeating-conic-gradient(from 15deg,
+        rgba(197, 179, 200, 0.0) 0deg 1deg,
+        rgba(197, 179, 200, 0.75) 1deg 2.5deg,
+        transparent 2.5deg 60deg) !important;
+    -webkit-mask-image: radial-gradient(circle, transparent 47%, black 49%, black 51%, transparent 53%) !important;
+    mask-image: radial-gradient(circle, transparent 47%, black 49%, black 51%, transparent 53%) !important;
+    filter: drop-shadow(0 0 3px rgba(197, 179, 200, 0.75));
+    animation: hof-mist-drift 65s linear infinite !important;
+    z-index: 1 !important;
+}
+
+/* THE LIVE KING — Lioden's #lion_image rendered as a circle */
+#lion_image {
+    width: 200px !important;
+    height: 200px !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    position: relative !important;
+    margin: 0 auto !important;
+    display: inline-block !important;
+    background:
+        radial-gradient(circle at 50% 30%, rgba(255, 220, 195, 0.45) 0%, transparent 65%),
+        linear-gradient(135deg, rgba(229, 184, 196, 0.35) 0%, rgba(197, 179, 200, 0.55) 100%) !important;
+    border: 2px solid rgba(240, 184, 147, 0.85) !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 248, 244, 0.95),
+        0 0 0 3px rgba(229, 184, 196, 0.65),
+        0 4px 24px rgba(138, 117, 133, 0.32),
+        inset 0 0 22px rgba(255, 220, 195, 0.32) !important;
+    transition: all 0.4s ease !important;
+    z-index: 2 !important;
+}
+#lion_image:hover {
+    border-color: rgba(240, 184, 147, 1.0) !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 248, 244, 0.95),
+        0 0 0 3px rgba(240, 184, 147, 0.85),
+        0 6px 32px rgba(240, 184, 147, 0.55),
+        inset 0 0 28px rgba(255, 220, 195, 0.45) !important;
+}
+#lion_image > div, #lion_image .lion-image-block {
+    width: 200px !important;
+    height: 200px !important;
+    position: relative !important;
+}
+
+/* The right cell — info table styled to match */
+table#about > tbody > tr.right > td.right {
+    padding: 20px 24px !important;
+    text-align: left !important;
+    background: transparent !important;
+}
+table#about .inner-table td {
+    padding: 6px 8px !important;
+    font-family: "Quicksand", sans-serif !important;
+    font-size: 13px !important;
+    color: #5a4a5a !important;
+}
+table#about .inner-table td.left b {
+    font-family: "Cinzel", serif !important;
+    font-size: 11px !important;
+    color: #8a6478 !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+}
+table#about .inner-table td.right a {
+    color: #d99878 !important;
+    font-weight: 500 !important;
+}
+
+/* The bottom rows of the About table (mood/hunger bars etc.) */
+table#about > tbody > tr:not(:first-child):not(.right) > td {
+    padding: 8px 14px !important;
+    border-top: 1px dotted rgba(229, 184, 196, 0.45) !important;
+    color: #5a4a5a !important;
+}
+
+/* Round Player avatar (the smaller image in table#player) */
+table#player img[style*="max-width: 150px"],
+table#player img[style*="max-width:150px"] {
+    width: 140px !important;
+    height: 140px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 2px solid rgba(229, 184, 196, 0.85) !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 248, 244, 0.95),
+        0 0 0 3px rgba(240, 184, 147, 0.45),
+        0 3px 14px rgba(138, 117, 133, 0.25) !important;
+}
+
+/* Style the Player table the same way as the About table */
+table#player {
+    background:
+        linear-gradient(180deg, rgba(255, 248, 244, 0.88) 0%, rgba(248, 232, 232, 0.85) 100%) !important;
+    border: 1px solid rgba(229, 184, 196, 0.65) !important;
+    border-radius: 14px !important;
+    box-shadow:
+        0 4px 20px rgba(138, 117, 133, 0.25),
+        inset 0 0 28px rgba(255, 220, 195, 0.30) !important;
+    width: 720px !important;
+    margin: 16px auto !important;
+    overflow: hidden !important;
+}
+
+
+/* === FOOTER === */
+.hof-footer {
+    text-align: center;
+    margin: 22px 0 6px;
+    padding: 14px 10px 8px;
+    border-top: 1px solid rgba(229, 184, 196, 0.45);
+    position: relative;
+}
+.hof-footer::before {
+    content: "✦";
+    position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+    color: #f0b893;
+    background: #f4ebe0;
+    font-size: 14px;
+    padding: 0 8px;
+    text-shadow: 0 0 8px rgba(240, 184, 147, 0.75);
+}
+.hof-footer-line {
+    font-family: "Cinzel", serif;
+    font-size: 9px;
+    color: rgba(138, 117, 133, 0.75);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 4px 0;
+}
+.hof-footer-line .star {
+    color: #f0b893;
+    margin: 0 6px;
+    text-shadow: 0 0 6px rgba(240, 184, 147, 0.75);
+}
+.hof-footer-credit {
+    font-family: "Italianno", cursive;
+    font-size: 20px;
+    color: rgba(176, 124, 149, 0.85);
+    margin: 6px 0 0;
+}
+.hof-footer-credit a {
+    color: rgba(176, 124, 149, 0.95) !important;
+    border-bottom: 1px dotted rgba(229, 184, 196, 0.55);
+}
+
+
+/* ============================================================
+   [11] RESPONSIVE — small-screen tweaks
+   ============================================================ */
+@media (max-width: 760px) {
+    .hof-territory { width: 100%; padding: 12px 6px 16px; }
+    table#about, table#player { width: 100% !important; }
+    .hof-title { font-size: 44px; letter-spacing: 4px; gap: 14px; }
+    .hof-title::before, .hof-title::after { font-size: 20px; }
+    .hof-subtitle { font-size: 28px; }
+    .hof-row { flex-direction: column; align-items: center; }
+    .hof-box-half { width: 100%; }
+    .hof-gallery { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
+    /* Shrink the king animation on phones so it fits */
+    table#about > tbody > tr.right > td:first-child { width: 100% !important; }
+    table#about > tbody > tr.right > td:first-child::before { width: 240px; height: 240px; }
+    table#about > tbody > tr.right > td:first-child > a::before { width: 220px; height: 220px; }
+    table#about > tbody > tr.right > td:first-child > a::after  { width: 240px; height: 240px; }
+}
