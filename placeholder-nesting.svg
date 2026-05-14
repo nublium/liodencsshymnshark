@@ -20,14 +20,7 @@
 
     <circle cx="130" cy="92" r="70" fill="url(#nstGlow)"/>
 
-    <!-- Title -->
-    <text x="130" y="56" text-anchor="middle"
-          font-family="'Italiana', 'Cinzel', serif" font-size="20" letter-spacing="5"
-          fill="#8a4f63" opacity="0.95">EXPECTING</text>
-    <line x1="60" y1="65" x2="200" y2="65" stroke="#e5b8c4" stroke-width="0.8" opacity="0.85"/>
-    <text x="130" y="79" text-anchor="middle"
-          font-family="'Cinzel', serif" font-size="9" letter-spacing="4"
-          fill="#b07c95" opacity="0.95">♡  LIONESSES  ♡</text>
+    <!-- (No text labels — Lioden injects its own caption on top.) -->
 
     <!-- A soft cluster of pastel-pink eggs/cubs as overlapping circles -->
     <g>

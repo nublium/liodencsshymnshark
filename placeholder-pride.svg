@@ -39,11 +39,7 @@
     <circle cx="130" cy="88" r="16" fill="#ffe5c8" opacity="0.95"/>
     <circle cx="130" cy="88" r="9" fill="#fff5e8"/>
 
-    <!-- Title -->
-    <text x="130" y="40" text-anchor="middle"
-          font-family="'Italiana', 'Cinzel', serif" font-size="20" letter-spacing="6"
-          fill="#8a6478" opacity="0.95">THE PRIDE</text>
-    <line x1="60" y1="49" x2="200" y2="49" stroke="#f0b893" stroke-width="0.8" opacity="0.85"/>
+    <!-- (No text labels — Lioden injects its own caption on top.) -->
 
     <!-- Three small lion-silhouette dots at the base -->
     <g fill="#2a1d2a" opacity="0.65">

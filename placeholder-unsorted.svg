@@ -19,14 +19,8 @@
 
     <circle cx="130" cy="85" r="65" fill="url(#usSun)"/>
 
-    <!-- Title -->
-    <text x="130" y="55" text-anchor="middle"
-          font-family="'Italiana', 'Cinzel', serif" font-size="20" letter-spacing="6"
-          fill="#8a6478" opacity="0.95">UNSORTED</text>
-    <line x1="60" y1="64" x2="200" y2="64" stroke="#f0b893" stroke-width="0.8" opacity="0.75"/>
-    <text x="130" y="78" text-anchor="middle"
-          font-family="'Cinzel', serif" font-size="9" letter-spacing="4"
-          fill="#b07c95" opacity="0.85">✦  LIONS  ✦</text>
+    <!-- (No text labels — Lioden injects its own "Unsorted Lions"
+         caption on top of this SVG, so we leave room for it.) -->
 
     <!-- Scattered pastel orbs (representing unsorted lions) -->
     <g>

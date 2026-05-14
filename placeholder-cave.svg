@@ -68,8 +68,5 @@
         <circle cx="234" cy="80"  r="1.8" fill="#c5b3c8" opacity="0.85"/>
     </g>
 
-    <!-- Small "cave-slot" text on bottom -->
-    <text x="130" y="158" text-anchor="middle"
-          font-family="'Cinzel', serif" font-size="8" letter-spacing="3"
-          fill="#8a6478" opacity="0.65">CAVE</text>
+    <!-- (No text label — Lioden injects its own cave name on top.) -->
 </svg>
