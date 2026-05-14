@@ -814,19 +814,24 @@ html.nolayout, html.nolayout body, body.nolayout {
 
 /* === ROOT WRAPPER === */
 .hof-territory {
-    width: 720px;
-    margin: 16px auto;
-    font-family: "Quicksand", "Cormorant Garamond", Georgia, serif;
-    color: #5a4a5a;
-    line-height: 1.7;
-    position: relative;
-    padding: 16px 8px 20px;
+    width: 720px !important;
+    max-width: 100% !important;
+    margin: 16px auto !important;
+    font-family: "Quicksand", "Cormorant Garamond", Georgia, serif !important;
+    color: #5a4a5a !important;
+    line-height: 1.55 !important;
+    position: relative !important;
+    padding: 16px 8px 20px !important;
+    box-sizing: border-box !important;
     /* A misty backdrop ONLY inside the description — subtle
        diagonal mist hint so the box feels atmospheric without
        competing with the page chrome. */
     background-image:
         radial-gradient(ellipse at 25% 18%, rgba(240, 184, 147, 0.12) 0%, transparent 55%),
-        radial-gradient(ellipse at 75% 80%, rgba(197, 179, 200, 0.18) 0%, transparent 60%);
+        radial-gradient(ellipse at 75% 80%, rgba(197, 179, 200, 0.18) 0%, transparent 60%) !important;
+    background-color: transparent !important;
+    border: none !important;
+    text-align: left !important;
 }
 
 /* KILL LIODEN'S AUTO-INJECTED <br>s.
@@ -858,155 +863,176 @@ html.nolayout, html.nolayout body, body.nolayout {
 
 
 /* === TITLE BLOCK — the entire framed banner with flourishes ===
-   The whole title sits inside a .hof-title-block wrapper that
-   gives it a decorative top + bottom crest, so the title feels
-   like a properly framed heraldic banner rather than a bare line
-   of text. */
-.hof-title-block {
-    position: relative;
-    margin: 14px 4px 10px;
-    padding: 10px 24px 18px;
+   Heavy !important armour: Lioden ships global h1/h2 rules that
+   load with !important, so without ours the browser default
+   wins. Every property the title relies on uses !important and
+   is qualified with .hof-territory for higher specificity. */
+.hof-territory .hof-title-block {
+    position: relative !important;
+    margin: 14px 4px 10px !important;
+    padding: 10px 24px 18px !important;
+    background: none !important;
+    border: none !important;
 }
-/* The ornate top + bottom crest — a centered flourish flanked
-   by tapering pastel rules. Two heavy ❦ marks bracket a string
-   of small ornaments. */
-.hof-title-flourish {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin: 0;
-    font-family: "Italiana", serif;
-    color: #d99878;
-    line-height: 1;
+.hof-territory .hof-title-flourish {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: "Italiana", serif !important;
+    color: #d99878 !important;
+    line-height: 1 !important;
 }
-.hof-title-flourish > .endcap {
-    font-size: 22px;
-    color: #b07c95;
+.hof-territory .hof-title-flourish > .endcap {
+    font-size: 22px !important;
+    color: #b07c95 !important;
     text-shadow:
         0 0 12px rgba(229, 184, 196, 0.75),
-        0 0 22px rgba(240, 184, 147, 0.45);
-    flex: 0 0 auto;
-    animation: hof-pulse-soft 7s ease-in-out infinite;
+        0 0 22px rgba(240, 184, 147, 0.45) !important;
+    flex: 0 0 auto !important;
+    animation: hof-pulse-soft 7s ease-in-out infinite !important;
 }
-.hof-title-flourish > .line {
-    flex: 0 1 110px;
-    height: 1px;
+.hof-territory .hof-title-flourish > .line {
+    flex: 0 1 110px !important;
+    height: 1px !important;
     background: linear-gradient(90deg,
         transparent,
         rgba(229, 184, 196, 0.65),
         rgba(240, 184, 147, 0.85),
         rgba(229, 184, 196, 0.65),
-        transparent);
-    opacity: 0.85;
+        transparent) !important;
+    opacity: 0.85 !important;
 }
-.hof-title-flourish > .center {
-    flex: 0 0 auto;
-    font-size: 16px;
-    letter-spacing: 8px;
-    color: #f0b893;
+.hof-territory .hof-title-flourish > .center {
+    flex: 0 0 auto !important;
+    font-size: 16px !important;
+    letter-spacing: 8px !important;
+    color: #f0b893 !important;
     text-shadow:
         0 0 10px rgba(240, 184, 147, 0.85),
-        0 0 22px rgba(255, 220, 195, 0.55);
+        0 0 22px rgba(255, 220, 195, 0.55) !important;
 }
 
-/* Tiny decorative scroll-flourishes ABOVE the top crest and
-   BELOW the bottom crest — adds a final layer of ornament. */
-.hof-title-scroll {
-    text-align: center;
-    font-family: "Italiana", serif;
-    color: rgba(176, 124, 149, 0.65);
-    font-size: 13px;
-    letter-spacing: 14px;
-    line-height: 1;
-    margin: 0;
-    text-shadow: 0 0 8px rgba(240, 184, 147, 0.35);
+/* Tiny decorative scroll-flourishes above + below the crest */
+.hof-territory .hof-title-scroll {
+    text-align: center !important;
+    font-family: "Italiana", serif !important;
+    color: rgba(176, 124, 149, 0.65) !important;
+    font-size: 13px !important;
+    letter-spacing: 14px !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-shadow: 0 0 8px rgba(240, 184, 147, 0.35) !important;
 }
 
 
 /* === GRAND TITLE — "Heaven's On Fire" ===
-   Big, ethereal, ultra-soft glow. Uses Italiana for high-fashion
-   editorial vibe — not cartoony, not gothic. */
-.hof-title {
-    text-align: center;
-    padding: 14px 10px 12px;
-    margin: 8px 0 4px;
-    font-family: "Italiana", "Cinzel", serif;
-    font-size: 64px;
-    font-weight: 400;
-    color: #8a6478;
-    letter-spacing: 6px;
-    line-height: 1.05;
-    text-transform: uppercase;
+   This is the rule that was being overridden by Lioden's global
+   h1. Every property is now !important + scoped to .hof-territory
+   so it always wins. */
+.hof-territory .hof-title,
+.hof-territory h1.hof-title {
+    text-align: center !important;
+    padding: 14px 10px 12px !important;
+    margin: 8px 0 4px !important;
+    font-family: "Italiana", "Cinzel", "Cormorant Garamond", serif !important;
+    font-size: 64px !important;
+    font-weight: 400 !important;
+    color: #8a6478 !important;
+    letter-spacing: 6px !important;
+    line-height: 1.05 !important;
+    text-transform: uppercase !important;
     text-shadow:
         0 0 22px rgba(240, 184, 147, 0.55),
         0 0 50px rgba(229, 184, 196, 0.40),
         0 0 8px rgba(255, 220, 195, 0.45),
-        0 2px 4px rgba(138, 117, 133, 0.30);
-    animation: hof-dawn-glow 8s ease-in-out infinite;
-    position: relative;
+        0 2px 4px rgba(138, 117, 133, 0.30) !important;
+    animation: hof-dawn-glow 8s ease-in-out infinite !important;
+    position: relative !important;
     /* Flex layout so the ornament glyphs truly center with the text
        — otherwise letter-spacing trails offset the centring. */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 26px;
-    text-indent: 6px;       /* compensates for trailing letter-spacing */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 26px !important;
+    text-indent: 6px !important;
+    border: none !important;
+    background: none !important;
+    text-decoration: none !important;
+    white-space: normal !important;
 }
 /* Compound ornaments on either side of the title — large flourishes
    that wrap the title like the side-pieces of a heraldic crest. */
-.hof-title::before {
-    content: "❦";
-    color: #d99878;
-    font-family: "Italiana", serif;
-    font-size: 32px;
+.hof-territory .hof-title::before,
+.hof-territory h1.hof-title::before {
+    content: "❦" !important;
+    color: #d99878 !important;
+    font-family: "Italiana", serif !important;
+    font-size: 32px !important;
     letter-spacing: 0 !important;
     margin: 0 !important;
+    padding: 0 !important;
     text-shadow:
         0 0 16px rgba(240, 184, 147, 0.95),
-        0 0 32px rgba(255, 220, 195, 0.55);
-    display: inline-block;
-    animation: hof-pulse-soft 5s ease-in-out infinite;
+        0 0 32px rgba(255, 220, 195, 0.55) !important;
+    display: inline-block !important;
+    animation: hof-pulse-soft 5s ease-in-out infinite !important;
+    text-transform: none !important;
 }
-.hof-title::after {
-    content: "❦";
-    color: #d99878;
-    font-family: "Italiana", serif;
-    font-size: 32px;
+.hof-territory .hof-title::after,
+.hof-territory h1.hof-title::after {
+    content: "❦" !important;
+    color: #d99878 !important;
+    font-family: "Italiana", serif !important;
+    font-size: 32px !important;
     letter-spacing: 0 !important;
     margin: 0 !important;
+    padding: 0 !important;
     text-shadow:
         0 0 16px rgba(240, 184, 147, 0.95),
-        0 0 32px rgba(255, 220, 195, 0.55);
-    display: inline-block;
-    animation: hof-pulse-soft 5s ease-in-out infinite reverse;
+        0 0 32px rgba(255, 220, 195, 0.55) !important;
+    display: inline-block !important;
+    animation: hof-pulse-soft 5s ease-in-out infinite reverse !important;
+    text-transform: none !important;
 }
 
 
 /* === SUBTITLE (italic script under the title) === */
-.hof-subtitle {
-    text-align: center;
-    font-family: "Italianno", "Cormorant Garamond", cursive;
-    font-style: normal;
-    font-size: 36px;
-    color: #b07c95;
-    letter-spacing: 1px;
-    margin: -4px 30px 4px;
-    line-height: 1.2;
-    text-shadow: 0 0 12px rgba(229, 184, 196, 0.45);
+.hof-territory .hof-subtitle,
+.hof-territory p.hof-subtitle {
+    text-align: center !important;
+    font-family: "Italianno", "Cormorant Garamond", cursive !important;
+    font-style: normal !important;
+    font-size: 36px !important;
+    color: #b07c95 !important;
+    letter-spacing: 1px !important;
+    margin: -4px 30px 4px !important;
+    padding: 0 !important;
+    line-height: 1.2 !important;
+    text-shadow: 0 0 12px rgba(229, 184, 196, 0.45) !important;
+    text-transform: none !important;
+    font-weight: 400 !important;
 }
 
 
 /* === MOTTO (tiny uppercase tagline) === */
-.hof-motto {
-    text-align: center;
-    font-family: "Cinzel", serif;
-    font-size: 10px;
-    color: rgba(138, 117, 133, 0.85);
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    margin: 10px 0 4px;
-    text-shadow: 0 0 6px rgba(240, 184, 147, 0.45);
+.hof-territory .hof-motto,
+.hof-territory p.hof-motto {
+    text-align: center !important;
+    font-family: "Cinzel", serif !important;
+    font-size: 10px !important;
+    color: rgba(138, 117, 133, 0.85) !important;
+    letter-spacing: 8px !important;
+    text-transform: uppercase !important;
+    margin: 10px 0 4px !important;
+    padding: 0 !important;
+    line-height: 1.4 !important;
+    text-shadow: 0 0 6px rgba(240, 184, 147, 0.45) !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
 }
 
 
@@ -1171,24 +1197,33 @@ html.nolayout, html.nolayout body, body.nolayout {
 /* ============================================================
    ROW + BOXES — the two-column / one-column content panels
    ============================================================ */
-.hof-row {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin: 4px 0 18px;
+.hof-territory .hof-row {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: stretch !important;     /* both half-boxes same height */
+    gap: 12px !important;
+    margin: 4px 0 18px !important;
+    padding: 0 !important;
+    width: 100% !important;
+    flex-wrap: nowrap !important;
 }
 
-.hof-box {
-    background:
-        linear-gradient(180deg, rgba(255, 248, 244, 0.92) 0%, rgba(248, 232, 232, 0.88) 100%);
-    border: 1px solid rgba(229, 184, 196, 0.55);
-    padding: 20px 22px 18px;
-    border-radius: 14px;
+.hof-territory .hof-box {
+    /* SOLID base colour first so Lioden's body gradient can't
+       bleed through translucent boxes (the symptom: left box
+       peachy, right box lavender). Subtle gradient sits on top
+       as a colour wash, NOT as the only background. */
+    background-color: #faeee4 !important;
+    background-image:
+        linear-gradient(180deg, rgba(255, 248, 244, 0.55) 0%, rgba(248, 224, 224, 0.45) 100%) !important;
+    border: 1px solid rgba(229, 184, 196, 0.65) !important;
+    padding: 18px 20px 16px !important;
+    border-radius: 14px !important;
     box-shadow:
         inset 0 0 30px rgba(255, 240, 232, 0.50),
-        0 4px 18px rgba(138, 117, 133, 0.22);
-    position: relative;
-    transition: all 0.4s ease;
+        0 4px 18px rgba(138, 117, 133, 0.22) !important;
+    position: relative !important;
+    transition: all 0.4s ease !important;
 }
 /* Inner thin frame for depth (whispery pastel inset) */
 .hof-box::before {
@@ -1228,52 +1263,63 @@ html.nolayout, html.nolayout body, body.nolayout {
 }
 .hof-box:hover::after { background: linear-gradient(90deg, transparent, rgba(255, 230, 200, 0.95), transparent); }
 
-/* Box size modifiers — apply IN ADDITION TO .hof-box */
-.hof-box-half    { width: 348px; min-height: 280px; }
-.hof-box-tall    { min-height: 320px; }
-.hof-box-full    { width: 100%; min-height: 80px; }
-.hof-box-compact { width: 100%; text-align: center; }
+/* Box size modifiers — apply IN ADDITION TO .hof-box.
+   No min-height: boxes size to their content so they stay
+   compact. The .hof-row's flex layout still makes the two
+   half-boxes match each other's heights. */
+.hof-territory .hof-box-half    { width: 348px !important; min-height: 0 !important; }
+.hof-territory .hof-box-tall    { min-height: 0 !important; }
+.hof-territory .hof-box-full    { width: 100% !important; min-height: 0 !important; }
+.hof-territory .hof-box-compact { width: 100% !important; text-align: center !important; }
 
 
 /* === BOX HEADER === */
-.hof-box-numeral {
-    text-align: center;
-    font-family: "Italiana", serif;
-    font-size: 11px;
-    color: rgba(176, 124, 149, 0.75);
-    letter-spacing: 4px;
-    margin-bottom: 2px;
+.hof-territory .hof-box-numeral {
+    text-align: center !important;
+    font-family: "Italiana", serif !important;
+    font-size: 11px !important;
+    color: rgba(176, 124, 149, 0.75) !important;
+    letter-spacing: 4px !important;
+    margin: 0 0 2px !important;
+    padding: 0 !important;
+    line-height: 1.2 !important;
+    text-transform: none !important;
 }
-.hof-box-header {
-    font-family: "Italiana", "Cinzel", serif;
-    font-size: 18px;
-    font-weight: 400;
-    color: #8a6478;
-    text-transform: uppercase;
-    letter-spacing: 3.5px;
-    text-align: center;
-    margin: 0 0 14px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(229, 184, 196, 0.55);
+.hof-territory .hof-box-header,
+.hof-territory h2.hof-box-header {
+    font-family: "Italiana", "Cinzel", serif !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    color: #8a6478 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 3.5px !important;
+    text-align: center !important;
+    margin: 0 0 14px !important;
+    padding: 0 0 10px !important;
+    border-bottom: 1px solid rgba(229, 184, 196, 0.55) !important;
     text-shadow:
         0 1px 4px rgba(255, 220, 195, 0.55),
-        0 0 12px rgba(240, 184, 147, 0.35);
-    position: relative;
+        0 0 12px rgba(240, 184, 147, 0.35) !important;
+    position: relative !important;
+    line-height: 1.3 !important;
+    background: none !important;
 }
-.hof-box-header .sym {
-    display: inline-block;
-    margin: 0 10px;
-    color: #f0b893;
-    font-size: 14px;
-    vertical-align: -1px;
-    text-shadow: 0 0 8px rgba(240, 184, 147, 0.85);
+.hof-territory .hof-box-header .sym {
+    display: inline-block !important;
+    margin: 0 10px !important;
+    color: #f0b893 !important;
+    font-size: 14px !important;
+    vertical-align: -1px !important;
+    text-shadow: 0 0 8px rgba(240, 184, 147, 0.85) !important;
+    letter-spacing: 0 !important;
 }
-.hof-box-header::after {
-    content: "";
-    display: block;
-    width: 32px; height: 1px;
-    background: rgba(240, 184, 147, 0.85);
-    margin: 8px auto 0;
+.hof-territory .hof-box-header::after {
+    content: "" !important;
+    display: block !important;
+    width: 32px !important; height: 1px !important;
+    background: rgba(240, 184, 147, 0.85) !important;
+    margin: 8px auto 0 !important;
+    position: static !important;
 }
 
 
@@ -1281,53 +1327,77 @@ html.nolayout, html.nolayout body, body.nolayout {
    Wrapped in `<div class="hof-text hof-text-dropcapped">` so the
    ::first-line treatment kicks in for the surrounding paragraph.
    Sized so 3 body lines wrap snugly beside it. */
-.hof-dropcap {
-    float: left;
-    font-family: "Italiana", "Cinzel", serif;
-    font-size: 58px;
-    line-height: 0.82;
-    color: #8a6478;
-    margin: 4px 14px -4px 0;     /* slight negative bottom pulls the next paragraph up */
-    padding: 8px 12px 6px;
+.hof-territory .hof-dropcap {
+    float: left !important;
+    font-family: "Italiana", "Cinzel", serif !important;
+    font-size: 58px !important;
+    line-height: 0.82 !important;
+    color: #8a6478 !important;
+    margin: 4px 14px -4px 0 !important;     /* slight negative bottom pulls next paragraph up */
+    padding: 8px 12px 6px !important;
     text-shadow:
         0 0 12px rgba(240, 184, 147, 0.55),
         0 0 6px rgba(255, 220, 195, 0.45),
-        0 2px 4px rgba(138, 117, 133, 0.30);
-    border: 1px solid rgba(229, 184, 196, 0.75);
-    border-radius: 10px;
+        0 2px 4px rgba(138, 117, 133, 0.30) !important;
+    border: 1px solid rgba(229, 184, 196, 0.75) !important;
+    border-radius: 10px !important;
     background:
         radial-gradient(ellipse at 50% 30%, rgba(255, 220, 195, 0.65) 0%, transparent 65%),
-        linear-gradient(135deg, rgba(255, 248, 244, 0.95) 0%, rgba(248, 224, 224, 0.92) 100%);
+        linear-gradient(135deg, rgba(255, 248, 244, 0.95) 0%, rgba(248, 224, 224, 0.92) 100%) !important;
+    background-color: #faeee4 !important;       /* solid fallback */
     box-shadow:
         inset 0 0 18px rgba(240, 184, 147, 0.28),
-        0 2px 8px rgba(229, 184, 196, 0.35);
+        0 2px 8px rgba(229, 184, 196, 0.35) !important;
+    font-weight: 400 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
 }
 
 /* When a text block has `.hof-text-dropcapped`, the first line of
    the FIRST paragraph gets a small-caps editorial treatment so the
    prose feels visually tied to the dropcap above it. */
-.hof-text-dropcapped > p:first-of-type {
+.hof-territory .hof-text-dropcapped > p:first-of-type {
     margin-top: 0 !important;
 }
-.hof-text-dropcapped > p:first-of-type::first-line {
-    font-variant: small-caps;
-    letter-spacing: 2px;
-    color: #8a6478;
-    font-weight: 500;
+.hof-territory .hof-text-dropcapped > p:first-of-type::first-line {
+    font-variant: small-caps !important;
+    letter-spacing: 2px !important;
+    color: #8a6478 !important;
+    font-weight: 500 !important;
 }
 
 
-/* === TEXT STYLES === */
-.hof-text          { font-size: 14px; color: #5a4a5a; line-height: 1.78; }
-.hof-text b,
-.hof-text strong   { color: #8a6478; font-weight: 600; }
-.hof-text-sm       { font-size: 12px; color: #8a7585; line-height: 1.65; }
-.hof-text-italic   { font-style: italic; color: #8a6478; font-family: "Cormorant Garamond", serif; }
-.hof-text-accent   { color: #d99878; font-weight: 600; }
-.hof-text-bright   { color: #8a6478; font-weight: 600; text-shadow: 0 0 6px rgba(240, 184, 147, 0.42); }
-.hof-text-sun      { color: #b06870; font-weight: 600; text-shadow: 0 0 6px rgba(229, 184, 196, 0.55); }
-.hof-text-muted    { color: #a89098; font-size: 12px; }
-.hof-text-center   { text-align: center; }
+/* === TEXT STYLES ===
+   `line-height` and paragraph margins are tightened compared to
+   the original draft so the lore box feels compact on Lioden.
+   All armoured with !important so Lioden's globals can't bloat
+   them back out. */
+.hof-territory .hof-text {
+    font-size: 14px !important;
+    color: #5a4a5a !important;
+    line-height: 1.55 !important;
+    font-family: "Quicksand", "Cormorant Garamond", Georgia, serif !important;
+}
+/* Paragraphs inside .hof-text — kill default <p> margins so
+   spacing comes from the inline style="margin:0 0 10px;" only */
+.hof-territory .hof-text > p {
+    margin: 0 0 10px !important;
+    padding: 0 !important;
+    line-height: 1.55 !important;
+    font-size: 14px !important;
+    color: #5a4a5a !important;
+}
+.hof-territory .hof-text > p:last-child { margin-bottom: 0 !important; }
+
+.hof-territory .hof-text b,
+.hof-territory .hof-text strong   { color: #8a6478 !important; font-weight: 600 !important; }
+.hof-territory .hof-text-sm       { font-size: 12px !important; color: #8a7585 !important; line-height: 1.5 !important; }
+.hof-territory .hof-text-italic   { font-style: italic !important; color: #8a6478 !important; font-family: "Cormorant Garamond", serif !important; }
+.hof-territory .hof-text-accent   { color: #d99878 !important; font-weight: 600 !important; }
+.hof-territory .hof-text-bright   { color: #8a6478 !important; font-weight: 600 !important; text-shadow: 0 0 6px rgba(240, 184, 147, 0.42) !important; }
+.hof-territory .hof-text-sun      { color: #b06870 !important; font-weight: 600 !important; text-shadow: 0 0 6px rgba(229, 184, 196, 0.55) !important; }
+.hof-territory .hof-text-muted    { color: #a89098 !important; font-size: 12px !important; }
+.hof-territory .hof-text-center   { text-align: center !important; }
 
 /* Clearfix so a floated dropcap doesn't bleed into info-rows below */
 .hof-text::after { content: ""; display: block; clear: both; }
@@ -1340,48 +1410,56 @@ html.nolayout, html.nolayout body, body.nolayout {
 
 
 /* === LIST — auto-rotates through five pastel glyphs ===
-   Tightened so bullets sit close together (looks denser, less
-   "drift"). Increase `padding-block` here if you want it airier. */
-.hof-list {
-    list-style: none;
-    padding: 0; margin: 4px 0;
+   Tightened so bullets sit close together (denser layout). */
+.hof-territory .hof-list,
+.hof-territory ul.hof-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 4px 0 !important;
 }
-.hof-list li {
-    padding: 2px 0 2px 24px;     /* was 6px 0 6px 26px — tighter */
-    position: relative;
-    font-size: 13.5px;
-    color: #5a4a5a;
-    line-height: 1.45;           /* was 1.65 — tighter */
+.hof-territory .hof-list li {
+    padding: 2px 0 2px 24px !important;
+    margin: 0 !important;
+    position: relative !important;
+    font-size: 13.5px !important;
+    color: #5a4a5a !important;
+    line-height: 1.45 !important;
+    font-family: "Quicksand", sans-serif !important;
+    background: none !important;
+    border: none !important;
 }
-.hof-list li::before {
-    position: absolute; left: 0; top: 4px;
-    color: #f0b893;
-    font-family: "Italiana", serif;
-    font-size: 12px;
-    text-shadow: 0 0 5px rgba(240, 184, 147, 0.75);
+.hof-territory .hof-list li::before {
+    position: absolute !important;
+    left: 0 !important; top: 4px !important;
+    color: #f0b893 !important;
+    font-family: "Italiana", serif !important;
+    font-size: 12px !important;
+    text-shadow: 0 0 5px rgba(240, 184, 147, 0.75) !important;
 }
-.hof-list li:nth-child(5n+1)::before { content: "✦"; }
-.hof-list li:nth-child(5n+2)::before { content: "❀"; }
-.hof-list li:nth-child(5n+3)::before { content: "❖"; }
-.hof-list li:nth-child(5n+4)::before { content: "✿"; }
-.hof-list li:nth-child(5n)::before   { content: "❦"; }
+.hof-territory .hof-list li:nth-child(5n+1)::before { content: "✦" !important; }
+.hof-territory .hof-list li:nth-child(5n+2)::before { content: "❀" !important; }
+.hof-territory .hof-list li:nth-child(5n+3)::before { content: "❖" !important; }
+.hof-territory .hof-list li:nth-child(5n+4)::before { content: "✿" !important; }
+.hof-territory .hof-list li:nth-child(5n)::before   { content: "❦" !important; }
 
 /* If you forget and use a plain <ul> inside .hof-text, it still styles */
-.hof-text ul          { list-style: none; padding: 0; margin: 4px 0; }
-.hof-text ul li       {
-    padding: 2px 0 2px 24px;
-    position: relative;
-    font-size: 13.5px;
-    color: #5a4a5a;
-    line-height: 1.45;
+.hof-territory .hof-text ul          { list-style: none !important; padding: 0 !important; margin: 4px 0 !important; }
+.hof-territory .hof-text ul li       {
+    padding: 2px 0 2px 24px !important;
+    margin: 0 !important;
+    position: relative !important;
+    font-size: 13.5px !important;
+    color: #5a4a5a !important;
+    line-height: 1.45 !important;
 }
-.hof-text ul li::before {
-    content: "✦";
-    position: absolute; left: 0; top: 4px;
-    color: #f0b893;
-    font-family: "Italiana", serif;
-    font-size: 11px;
-    text-shadow: 0 0 5px rgba(240, 184, 147, 0.75);
+.hof-territory .hof-text ul li::before {
+    content: "✦" !important;
+    position: absolute !important;
+    left: 0 !important; top: 4px !important;
+    color: #f0b893 !important;
+    font-family: "Italiana", serif !important;
+    font-size: 11px !important;
+    text-shadow: 0 0 5px rgba(240, 184, 147, 0.75) !important;
 }
 
 
@@ -1396,116 +1474,150 @@ html.nolayout, html.nolayout body, body.nolayout {
          <span class="attrib">— attribution</span>
      </blockquote>
 */
-.hof-quote {
+.hof-territory .hof-quote,
+.hof-territory blockquote.hof-quote {
     /* Heavier double-border feel */
-    border-left: 3px solid rgba(240, 184, 147, 0.95);
-    border-right: 3px solid rgba(229, 184, 196, 0.85);
-    border-top: 1px solid rgba(229, 184, 196, 0.55);
-    border-bottom: 1px solid rgba(229, 184, 196, 0.55);
-    padding: 28px 38px 30px 38px;
-    margin: 26px 4px 32px;       /* extra room so the top/bottom ornaments don't clip */
-    background:
+    border-left: 3px solid rgba(240, 184, 147, 0.95) !important;
+    border-right: 3px solid rgba(229, 184, 196, 0.85) !important;
+    border-top: 1px solid rgba(229, 184, 196, 0.55) !important;
+    border-bottom: 1px solid rgba(229, 184, 196, 0.55) !important;
+    padding: 28px 38px 30px 38px !important;
+    margin: 26px 4px 32px !important;     /* room so the medallions don't clip */
+    /* Solid base + gradient overlay so Lioden body can't bleed through */
+    background-color: #fdf2e8 !important;
+    background-image:
         radial-gradient(ellipse at 50% 0%, rgba(255, 220, 195, 0.55) 0%, transparent 60%),
         radial-gradient(ellipse at 50% 100%, rgba(229, 184, 196, 0.45) 0%, transparent 60%),
-        linear-gradient(180deg, rgba(255, 240, 232, 0.85) 0%, rgba(248, 224, 224, 0.85) 100%);
-    border-radius: 10px;
-    font-family: "Cormorant Garamond", serif;
-    font-style: italic;
-    color: #6e5e6e;
-    font-size: 17px;
-    line-height: 1.75;
-    position: relative;
-    text-align: center;
+        linear-gradient(180deg, rgba(255, 240, 232, 0.45) 0%, rgba(248, 224, 224, 0.45) 100%) !important;
+    border-radius: 10px !important;
+    font-family: "Cormorant Garamond", "Georgia", serif !important;
+    font-style: italic !important;
+    color: #6e5e6e !important;
+    font-size: 17px !important;
+    line-height: 1.75 !important;
+    position: relative !important;
+    text-align: center !important;
+    font-weight: 400 !important;
     box-shadow:
         inset 0 0 28px rgba(255, 240, 232, 0.65),
-        0 6px 22px rgba(240, 184, 147, 0.32);
+        0 6px 22px rgba(240, 184, 147, 0.32) !important;
 }
 /* Ornate top medallion — a heavy ❦ on a pastel disc */
-.hof-quote::before {
-    content: "❦";
-    position: absolute;
-    top: -16px; left: 50%;
-    transform: translateX(-50%);
-    width: 36px; height: 32px;
-    line-height: 30px;
-    text-align: center;
-    font-size: 22px;
-    color: #d99878;
-    font-family: "Italiana", serif;
-    font-style: normal;
+.hof-territory .hof-quote::before,
+.hof-territory blockquote.hof-quote::before {
+    content: "❦" !important;
+    position: absolute !important;
+    top: -16px !important; left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 36px !important; height: 32px !important;
+    line-height: 30px !important;
+    text-align: center !important;
+    font-size: 22px !important;
+    color: #d99878 !important;
+    font-family: "Italiana", serif !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
     background:
-        radial-gradient(circle, rgba(255, 240, 232, 1) 0%, rgba(255, 220, 195, 0.95) 70%);
-    border: 1px solid rgba(240, 184, 147, 0.85);
-    border-radius: 50%;
+        radial-gradient(circle, rgba(255, 240, 232, 1) 0%, rgba(255, 220, 195, 0.95) 70%) !important;
+    background-color: #fdf2e8 !important;
+    border: 1px solid rgba(240, 184, 147, 0.85) !important;
+    border-radius: 50% !important;
     box-shadow:
         0 0 0 3px rgba(248, 232, 224, 0.95),
-        0 0 12px rgba(240, 184, 147, 0.65);
-    text-shadow: 0 0 8px rgba(240, 184, 147, 0.55);
+        0 0 12px rgba(240, 184, 147, 0.65) !important;
+    text-shadow: 0 0 8px rgba(240, 184, 147, 0.55) !important;
 }
 /* Mirrored ornate bottom medallion */
-.hof-quote::after {
-    content: "❦";
-    position: absolute;
-    bottom: -16px; left: 50%;
-    transform: translateX(-50%);
-    width: 36px; height: 32px;
-    line-height: 30px;
-    text-align: center;
-    font-size: 22px;
-    color: #b07c95;
-    font-family: "Italiana", serif;
-    font-style: normal;
+.hof-territory .hof-quote::after,
+.hof-territory blockquote.hof-quote::after {
+    content: "❦" !important;
+    position: absolute !important;
+    bottom: -16px !important; left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 36px !important; height: 32px !important;
+    line-height: 30px !important;
+    text-align: center !important;
+    font-size: 22px !important;
+    color: #b07c95 !important;
+    font-family: "Italiana", serif !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
     background:
-        radial-gradient(circle, rgba(255, 240, 232, 1) 0%, rgba(229, 184, 196, 0.95) 70%);
-    border: 1px solid rgba(229, 184, 196, 0.85);
-    border-radius: 50%;
+        radial-gradient(circle, rgba(255, 240, 232, 1) 0%, rgba(229, 184, 196, 0.95) 70%) !important;
+    background-color: #fde0e6 !important;
+    border: 1px solid rgba(229, 184, 196, 0.85) !important;
+    border-radius: 50% !important;
     box-shadow:
         0 0 0 3px rgba(248, 232, 224, 0.95),
-        0 0 12px rgba(229, 184, 196, 0.65);
-    text-shadow: 0 0 8px rgba(229, 184, 196, 0.55);
+        0 0 12px rgba(229, 184, 196, 0.65) !important;
+    text-shadow: 0 0 8px rgba(229, 184, 196, 0.55) !important;
 }
 /* Attribution line at the bottom of the quote */
-.hof-quote .attrib {
-    display: block;
-    margin-top: 14px;
-    padding-top: 12px;
-    border-top: 1px dotted rgba(229, 184, 196, 0.55);
-    font-style: normal;
-    font-family: "Cinzel", serif;
-    font-size: 10px;
-    color: rgba(176, 124, 149, 0.95);
-    letter-spacing: 5px;
-    text-transform: uppercase;
+.hof-territory .hof-quote .attrib {
+    display: block !important;
+    margin: 14px 0 0 !important;
+    padding: 12px 0 0 !important;
+    border-top: 1px dotted rgba(229, 184, 196, 0.55) !important;
+    font-style: normal !important;
+    font-family: "Cinzel", serif !important;
+    font-size: 10px !important;
+    color: rgba(176, 124, 149, 0.95) !important;
+    letter-spacing: 5px !important;
+    text-transform: uppercase !important;
+    font-weight: 400 !important;
+    line-height: 1.4 !important;
 }
 
 
 /* === INFO ROW — key/value pair (e.g. "Age: 24") ===
    Uses flex so the label sits left in a fixed column and the
    value right-aligns. Clear:both keeps it free of dropcap floats. */
-.hof-info-row {
-    clear: both;
-    display: flex;
-    align-items: baseline;
-    padding: 4px 0;
-    border-bottom: 1px dotted rgba(229, 184, 196, 0.45);
-    font-size: 13.5px;
+.hof-territory .hof-info-row {
+    clear: both !important;
+    display: flex !important;
+    align-items: baseline !important;
+    padding: 4px 0 !important;
+    margin: 0 !important;
+    border-bottom: 1px dotted rgba(229, 184, 196, 0.45) !important;
+    border-top: none !important;
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+    background: none !important;
+    width: auto !important;
 }
-.hof-info-row:last-child { border-bottom: none; }
-.hof-info-label {
-    flex: 0 0 110px;
-    text-align: left;
-    font-family: "Cinzel", serif;
-    font-size: 11px;
-    color: #8a6478;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-weight: 600;
+.hof-territory .hof-info-row:last-child { border-bottom: none !important; }
+.hof-territory .hof-info-label {
+    flex: 0 0 110px !important;
+    text-align: left !important;
+    font-family: "Cinzel", serif !important;
+    font-size: 11px !important;
+    color: #8a6478 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: none !important;
 }
-.hof-info-value {
-    flex: 1 1 auto;
-    text-align: right;
-    color: #5a4a5a;
-    min-width: 0;
+.hof-territory .hof-info-value {
+    flex: 1 1 auto !important;
+    text-align: right !important;
+    color: #5a4a5a !important;
+    font-family: "Quicksand", sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    line-height: 1.4 !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: none !important;
 }
 
 
