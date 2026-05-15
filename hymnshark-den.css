@@ -98,28 +98,96 @@
        Misty cream backdrop · NO large dark areas (customer req).
    ============================================================ */
 body {
-    /* Layered backdrop:
-       • warm peach glow top-left  (soft sunrise hint),
-       • deep blue-lavender bottom-right (the "bluish" the customer loves),
-       • periwinkle drift center,
-       • cool lavender-dusk base.
-       No background-attachment:fixed → consistent across Chrome/Firefox/Opera/Safari. */
-    background:
-        radial-gradient(ellipse at 22% 18%, rgba(230, 190, 160, 0.35) 0%, transparent 52%),
-        radial-gradient(ellipse at 78% 82%, rgba(140, 150, 210, 0.50) 0%, transparent 58%),
-        radial-gradient(ellipse at 50% 50%, rgba(180, 170, 220, 0.22) 0%, transparent 68%),
-        linear-gradient(160deg, #ece8f4 0%, #d8d2e8 45%, #c4bedd 100%) !important;
+    /* Layered backdrop — bluer family of pastels.
+       • warm peach hint top-left   (single sunrise nod, kept small),
+       • deeper steel-blue bottom-right,
+       • soft periwinkle drift centre,
+       • cool blue-lavender base gradient.
+       NO background-attachment:fixed → consistent across all browsers.
+       The seasonal Lioden CSS sets `background: <color> url(...) fixed` on
+       body — we use both `background-color` AND `background-image` longhand
+       (each !important) so neither half can leak through. */
+    background-color: #b8c4d8 !important;
+    background-image:
+        radial-gradient(ellipse at 22% 18%, rgba(230, 190, 160, 0.28) 0%, transparent 50%),
+        radial-gradient(ellipse at 78% 82%, rgba(120, 140, 200, 0.55) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 50%, rgba(160, 170, 215, 0.22) 0%, transparent 68%),
+        linear-gradient(160deg, #e6ecf4 0%, #cdd6e4 45%, #b8c4d8 100%) !important;
+    background-repeat: no-repeat !important;
+    background-attachment: scroll !important;
     color: #5a4a5a !important;
     font-family: "Quicksand", "Cormorant Garamond", Georgia, serif !important;
 }
 
-/* Main container — solid cool lavender so it looks identical in every browser.
-   Was semi-transparent before → body gradient bled through differently per engine.
-   Now anchored to a specific colour: no bleed-through, no variation. */
+/* ────────────────────────────────────────────────────────────
+   LIODEN LAYOUT OVERRIDES — fix cross-browser/cross-season colour drift.
+
+   Lioden serves a different seasonal CSS file (desert.css, night.css,
+   wet.css …) depending on in-game time. Each one paints `.main` and
+   `.col-md-9` (the page frame and the content column) in different
+   colours — that's why the same page looks tan in desert hours, sage
+   at night, and so on. Without a hard override, the customer sees a
+   moving target.
+
+   Here we pin all the structural Lioden wrappers to the SAME bluish-grey
+   palette, no matter what season the server thinks it is.
+   ──────────────────────────────────────────────────────────── */
+
+/* The outermost Bootstrap container wrapper (topbar + main).
+   We keep a single fallback colour so the chrome around the page is
+   always the same dusky blue-grey. */
 .container, .container-fluid {
-    background: #e2dff0 !important;          /* cool periwinkle-lavender, fully opaque */
-    box-shadow: 0 4px 28px rgba(100, 90, 140, 0.22) !important;
-    border: 1px solid rgba(180, 170, 220, 0.40) !important;
+    background: #bcc8de !important;          /* outer frame: deeper periwinkle */
+    box-shadow: 0 4px 28px rgba(80, 92, 130, 0.28) !important;
+    border: 1px solid rgba(140, 155, 195, 0.45) !important;
+}
+
+/* `.container.main` — Lioden's primary content wrapper.
+   Sits between the topbar and the footer. */
+.main,
+.container.main {
+    background: #bcc8de !important;          /* matches .container — single continuous frame */
+    margin-top: 60px !important;
+    border: 0 !important;
+    box-shadow: 0 4px 28px rgba(80, 92, 130, 0.28) !important;
+}
+
+/* `.col-md-9` — the wide content column where the den description box lives.
+   Slightly LIGHTER than .main so the content area feels "lifted". */
+.col-md-9 {
+    background: #c8d2e4 !important;          /* bluish-grey, the main visible surface */
+    min-height: 800px !important;
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+}
+
+/* `.col-md-3` — the right sidebar column.
+   No background of its own → inherits .main's #bcc8de. */
+.col-md-3 {
+    background: transparent !important;
+}
+
+/* `.col-md-3 .panel` — the boxed widgets inside the sidebar
+   (Achievements, Bookmarks, Chat Box, Game Stats, Help).
+   A touch lighter than the content column for soft contrast. */
+.col-md-3 .panel {
+    background: #d8e0ec !important;          /* pale steel-blue panel face */
+    border: 1px solid rgba(140, 155, 195, 0.45) !important;
+    box-shadow: 1px 1px 6px rgba(80, 92, 130, 0.18) !important;
+    border-radius: 10px !important;
+}
+
+/* Make sure the panel body inherits the panel face cleanly. */
+.col-md-3 .panel-body {
+    background: transparent !important;
+    padding: 12px 14px !important;
+}
+
+/* Reset Lioden's `--bg-container-color` CSS variable so any rule that
+   uses `var(--bg-container-color)` (e.g. .hr-label) also picks up the
+   new bluish palette instead of the seasonal tan/sage. */
+:root {
+    --bg-container-color: #c8d2e4 !important;
 }
 
 /* Navbar — pastel-mist top bar */
@@ -185,28 +253,31 @@ a:active { color: #ffc89e !important; }
 
 /* ============================================================
    [4] SIDEBAR + PANELS (Lioden's right rail)
+   Shifted from warm cream/peach → cool blue-grey to match the
+   bluish theme. Coral text accents stay for a hint of dawn warmth.
    ============================================================ */
 .sidebar, .panel, .panel-default {
-    background: rgba(248, 240, 232, 0.85) !important;
-    border: 1px solid rgba(229, 184, 196, 0.45) !important;
+    background: #d8e0ec !important;          /* pale steel-blue, fully opaque */
+    border: 1px solid rgba(140, 155, 195, 0.45) !important;
     border-radius: 10px !important;
     box-shadow:
-        0 2px 14px rgba(138, 117, 133, 0.18),
-        inset 0 0 22px rgba(255, 240, 232, 0.45) !important;
-    color: #5a4a5a !important;
+        0 2px 14px rgba(80, 92, 130, 0.18),
+        inset 0 0 22px rgba(225, 232, 244, 0.55) !important;
+    color: #4a5470 !important;
 }
 .panel-heading, .panel-default > .panel-heading {
-    background: linear-gradient(180deg, rgba(255, 220, 200, 0.78) 0%, rgba(229, 184, 196, 0.72) 100%) !important;
-    border-bottom: 1px solid rgba(229, 184, 196, 0.65) !important;
+    /* periwinkle → soft slate gradient — still warm enough to glow on hover */
+    background: linear-gradient(180deg, rgba(200, 212, 234, 0.92) 0%, rgba(170, 185, 215, 0.92) 100%) !important;
+    border-bottom: 1px solid rgba(140, 155, 195, 0.55) !important;
     border-radius: 10px 10px 0 0 !important;
-    color: #8a6478 !important;
+    color: #4a5470 !important;
     font-family: "Cinzel", serif !important;
     text-transform: uppercase !important;
     font-size: 12px !important;
     letter-spacing: 1.5px !important;
     text-align: center !important;
 }
-.panel-body { background: transparent !important; color: #5a4a5a !important; }
+.panel-body { background: transparent !important; color: #4a5470 !important; }
 
 
 /* ============================================================
