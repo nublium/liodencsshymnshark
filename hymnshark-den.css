@@ -99,15 +99,16 @@
    ============================================================ */
 body {
     /* Layered backdrop:
-       • peach sun glow top-left,
-       • lavender mist bottom-right,
-       • subtle cream base — feels like the inspo photos. */
+       • warm peach glow top-left  (soft sunrise hint),
+       • deep blue-lavender bottom-right (the "bluish" the customer loves),
+       • periwinkle drift center,
+       • cool lavender-dusk base.
+       No background-attachment:fixed → consistent across Chrome/Firefox/Opera/Safari. */
     background:
-        radial-gradient(ellipse at 22% 18%, rgba(240, 184, 147, 0.42) 0%, transparent 55%),
-        radial-gradient(ellipse at 78% 82%, rgba(197, 179, 200, 0.45) 0%, transparent 55%),
-        radial-gradient(ellipse at 50% 50%, rgba(229, 184, 196, 0.18) 0%, transparent 70%),
-        linear-gradient(180deg, #f4ebe0 0%, #e8d9d6 60%, #d8c8d4 100%) !important;
-    background-attachment: fixed !important;
+        radial-gradient(ellipse at 22% 18%, rgba(230, 190, 160, 0.35) 0%, transparent 52%),
+        radial-gradient(ellipse at 78% 82%, rgba(140, 150, 210, 0.50) 0%, transparent 58%),
+        radial-gradient(ellipse at 50% 50%, rgba(180, 170, 220, 0.22) 0%, transparent 68%),
+        linear-gradient(160deg, #ece8f4 0%, #d8d2e8 45%, #c4bedd 100%) !important;
     color: #5a4a5a !important;
     font-family: "Quicksand", "Cormorant Garamond", Georgia, serif !important;
 }
@@ -2316,18 +2317,20 @@ table#player {
 
 
 /* ─── [12.3] BODY AURORA DRIFT ────────────────────────────────
-   The pastel sun + lavender + rose gradients on body slowly
-   migrate, so the page feels like dawn shifting through the
-   morning. 90s cycle so it never feels jittery. */
+   The warm-peach and blue-lavender gradient orbs gently migrate
+   across the page — sunrise easing into a cool dusk.
+   90s cycle so it never feels jittery. Works without
+   background-attachment:fixed → same result in all browsers. */
 @keyframes hof-aurora-drift {
     0%, 100% { background-position: 22% 18%, 78% 82%, 50% 50%, 50% 50%; }
-    50%      { background-position: 30% 35%, 70% 65%, 55% 45%, 50% 50%; }
+    33%      { background-position: 15% 28%, 82% 70%, 45% 55%, 50% 50%; }
+    66%      { background-position: 30% 12%, 72% 88%, 58% 42%, 50% 50%; }
 }
 body {
     background-size:
-        140% 140%,
-        140% 140%,
-        140% 140%,
+        150% 150%,
+        150% 150%,
+        160% 160%,
         100% 100% !important;
     animation: hof-aurora-drift 90s ease-in-out infinite !important;
 }
