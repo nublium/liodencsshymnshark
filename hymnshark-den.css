@@ -113,11 +113,13 @@ body {
     font-family: "Quicksand", "Cormorant Garamond", Georgia, serif !important;
 }
 
-/* Main container — soft mist-glass card */
+/* Main container — solid cool lavender so it looks identical in every browser.
+   Was semi-transparent before → body gradient bled through differently per engine.
+   Now anchored to a specific colour: no bleed-through, no variation. */
 .container, .container-fluid {
-    background: rgba(248, 240, 232, 0.55) !important;
-    box-shadow: 0 4px 28px rgba(138, 117, 133, 0.25) !important;
-    border: 1px solid rgba(229, 184, 196, 0.35) !important;
+    background: #e2dff0 !important;          /* cool periwinkle-lavender, fully opaque */
+    box-shadow: 0 4px 28px rgba(100, 90, 140, 0.22) !important;
+    border: 1px solid rgba(180, 170, 220, 0.40) !important;
 }
 
 /* Navbar — pastel-mist top bar */
