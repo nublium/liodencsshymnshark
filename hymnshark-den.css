@@ -824,16 +824,21 @@ html.nolayout, html.nolayout body, body.nolayout {
     color: #5a4a5a !important;
     line-height: 1.55 !important;
     position: relative !important;
-    padding: 4px 8px 20px !important;
+    padding: 12px 16px 24px !important;
     box-sizing: border-box !important;
-    /* A misty backdrop ONLY inside the description — subtle
-       diagonal mist hint so the box feels atmospheric without
-       competing with the page chrome. */
+    /* SOLID warm cream BACKDROP CARD — this is the single biggest
+       legibility fix on top of the aurora-bluish body gradient.
+       Delicate peach text needs a known light backdrop or it
+       washes out. Set to ≈80% so the aurora still reads through. */
+    background-color: rgba(255, 246, 234, 0.78) !important;
     background-image:
-        radial-gradient(ellipse at 25% 18%, rgba(240, 184, 147, 0.12) 0%, transparent 55%),
-        radial-gradient(ellipse at 75% 80%, rgba(197, 179, 200, 0.18) 0%, transparent 60%) !important;
-    background-color: transparent !important;
-    border: none !important;
+        radial-gradient(ellipse at 25% 18%, rgba(240, 184, 147, 0.20) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 82%, rgba(229, 184, 196, 0.22) 0%, transparent 60%) !important;
+    border: 1px solid rgba(229, 184, 196, 0.45) !important;
+    border-radius: 16px !important;
+    box-shadow:
+        0 6px 28px rgba(138, 117, 133, 0.22),
+        inset 0 0 38px rgba(255, 240, 232, 0.55) !important;
     text-align: left !important;
 }
 
@@ -890,9 +895,10 @@ html.nolayout, html.nolayout body, body.nolayout {
     line-height: 1 !important;
 }
 .hof-territory .hof-title-flourish > .endcap {
-    font-size: 22px !important;
-    color: #b07c95 !important;
+    font-size: 24px !important;
+    color: #8a4f6a !important;                   /* DEEPER rose */
     text-shadow:
+        0 0 1px  rgba(90, 63, 85, 0.65),         /* dark stroke for definition */
         0 0 12px rgba(229, 184, 196, 0.75),
         0 0 22px rgba(240, 184, 147, 0.45) !important;
     flex: 0 0 auto !important;
@@ -901,35 +907,39 @@ html.nolayout, html.nolayout body, body.nolayout {
 .hof-territory .hof-title-flourish > .line {
     flex: 0 1 110px !important;
     height: 1px !important;
+    /* Deeper gradient endpoints so the line shows on any backdrop */
     background: linear-gradient(90deg,
         transparent,
-        rgba(229, 184, 196, 0.65),
-        rgba(240, 184, 147, 0.85),
-        rgba(229, 184, 196, 0.65),
+        rgba(184, 98, 60, 0.55),
+        rgba(184, 98, 60, 0.95),
+        rgba(184, 98, 60, 0.55),
         transparent) !important;
-    opacity: 0.85 !important;
+    opacity: 0.92 !important;
 }
 .hof-territory .hof-title-flourish > .center {
     flex: 0 0 auto !important;
     font-size: 16px !important;
     letter-spacing: 8px !important;
-    color: #f0b893 !important;
+    color: #b8623c !important;                   /* DEEPER coral (was #f0b893) */
     text-shadow:
-        0 0 10px rgba(240, 184, 147, 0.85),
-        0 0 22px rgba(255, 220, 195, 0.55) !important;
+        0 0 1px  rgba(90, 63, 85, 0.65),
+        0 0 10px rgba(255, 220, 195, 0.85),
+        0 0 22px rgba(240, 184, 147, 0.65) !important;
 }
 
 /* Tiny decorative scroll-flourishes above + below the crest */
 .hof-territory .hof-title-scroll {
     text-align: center !important;
     font-family: "Italiana", serif !important;
-    color: rgba(176, 124, 149, 0.65) !important;
+    color: #8a4f6a !important;                   /* DEEPER rose (was rgba 0.65) */
     font-size: 13px !important;
     letter-spacing: 14px !important;
     line-height: 1 !important;
     margin: 0 !important;
     padding: 0 !important;
-    text-shadow: 0 0 8px rgba(240, 184, 147, 0.35) !important;
+    text-shadow:
+        0 0 1px rgba(90, 63, 85, 0.45),
+        0 0 8px rgba(240, 184, 147, 0.55) !important;
 }
 
 
@@ -940,17 +950,21 @@ html.nolayout, html.nolayout body, body.nolayout {
     padding: 4px 10px 8px !important;
     margin: 4px 0 4px !important;
     font-family: "Italiana", "Cinzel", "Cormorant Garamond", serif !important;
-    font-size: 64px !important;
+    font-size: 72px !important;                  /* was 64 — bigger for punch */
     font-weight: 400 !important;
-    color: #8a6478 !important;
+    color: #5a3f55 !important;                   /* DEEPER mauve (was #8a6478) — readable on cool/bluish bg */
     letter-spacing: 6px !important;
     line-height: 1.05 !important;
     text-transform: uppercase !important;
+    /* Layered shadow: tight dark stroke for definition + warm
+       inner halo + outer rose+peach glow + drop shadow that
+       grounds the title against the cream backdrop. */
     text-shadow:
-        0 0 22px rgba(240, 184, 147, 0.55),
-        0 0 50px rgba(229, 184, 196, 0.40),
-        0 0 8px rgba(255, 220, 195, 0.45),
-        0 2px 4px rgba(138, 117, 133, 0.30) !important;
+        0 0 1px  rgba(90, 63, 85, 0.95),
+        0 0 18px rgba(255, 220, 195, 0.85),
+        0 0 36px rgba(240, 184, 147, 0.65),
+        0 0 60px rgba(229, 184, 196, 0.55),
+        0 2px 6px rgba(110, 78, 96, 0.55) !important;
     animation: hof-dawn-glow 8s ease-in-out infinite !important;
     position: relative !important;
     /* Flex layout so the ornament glyphs truly center with the text
@@ -965,36 +979,29 @@ html.nolayout, html.nolayout body, body.nolayout {
     text-decoration: none !important;
     white-space: normal !important;
 }
-/* Large compound ornaments on either side of the title */
-.hof-territory .hof-title::before {
-    content: "❦" !important;
-    color: #d99878 !important;
-    font-family: "Italiana", serif !important;
-    font-size: 36px !important;
-    letter-spacing: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    text-shadow:
-        0 0 16px rgba(240, 184, 147, 0.95),
-        0 0 32px rgba(255, 220, 195, 0.55) !important;
-    display: inline-block !important;
-    animation: hof-pulse-soft 5s ease-in-out infinite !important;
-    text-transform: none !important;
-}
+/* Large compound ornaments on either side of the title.
+   Deeper coral + tight dark stroke so they pop on any background. */
+.hof-territory .hof-title::before,
 .hof-territory .hof-title::after {
     content: "❦" !important;
-    color: #d99878 !important;
+    color: #b8623c !important;                   /* DEEPER coral (was #d99878) */
     font-family: "Italiana", serif !important;
-    font-size: 36px !important;
+    font-size: 38px !important;
     letter-spacing: 0 !important;
     margin: 0 !important;
     padding: 0 !important;
     text-shadow:
-        0 0 16px rgba(240, 184, 147, 0.95),
-        0 0 32px rgba(255, 220, 195, 0.55) !important;
+        0 0 1px  rgba(90, 63, 85, 0.85),         /* dark stroke for definition */
+        0 0 14px rgba(240, 184, 147, 0.95),
+        0 0 28px rgba(255, 220, 195, 0.65) !important;
     display: inline-block !important;
-    animation: hof-pulse-soft 5s ease-in-out infinite reverse !important;
     text-transform: none !important;
+}
+.hof-territory .hof-title::before {
+    animation: hof-pulse-soft 5s ease-in-out infinite !important;
+}
+.hof-territory .hof-title::after {
+    animation: hof-pulse-soft 5s ease-in-out infinite reverse !important;
 }
 
 
@@ -1003,13 +1010,16 @@ html.nolayout, html.nolayout body, body.nolayout {
     text-align: center !important;
     font-family: "Italianno", "Cormorant Garamond", cursive !important;
     font-style: normal !important;
-    font-size: 36px !important;
-    color: #b07c95 !important;
+    font-size: 38px !important;
+    color: #8a4f6a !important;                   /* DEEPER rose (was #b07c95) */
     letter-spacing: 1px !important;
     margin: -2px 30px 4px !important;
     padding: 0 !important;
     line-height: 1.2 !important;
-    text-shadow: 0 0 12px rgba(229, 184, 196, 0.45) !important;
+    text-shadow:
+        0 0 1px  rgba(90, 63, 85, 0.55),
+        0 0 14px rgba(255, 220, 195, 0.65),
+        0 0 22px rgba(229, 184, 196, 0.45) !important;
     text-transform: none !important;
     font-weight: 400 !important;
 }
@@ -1019,15 +1029,17 @@ html.nolayout, html.nolayout body, body.nolayout {
 .hof-territory .hof-motto {
     text-align: center !important;
     font-family: "Cinzel", serif !important;
-    font-size: 10px !important;
-    color: rgba(138, 117, 133, 0.85) !important;
+    font-size: 11px !important;
+    color: #6e4862 !important;                   /* DEEPER mauve (was rgba 0.85) */
     letter-spacing: 8px !important;
     text-transform: uppercase !important;
     margin: 6px 0 4px !important;
     padding: 0 !important;
     line-height: 1.4 !important;
-    text-shadow: 0 0 6px rgba(240, 184, 147, 0.45) !important;
-    font-weight: 400 !important;
+    text-shadow:
+        0 0 1px rgba(90, 63, 85, 0.35),
+        0 0 6px rgba(240, 184, 147, 0.55) !important;
+    font-weight: 500 !important;
     font-style: normal !important;
 }
 
@@ -1054,11 +1066,13 @@ html.nolayout, html.nolayout body, body.nolayout {
     top: -10px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    color: #f0b893 !important;
-    font-size: 14px !important;
-    background: #faeee4 !important;
+    color: #b8623c !important;                   /* DEEPER coral so it shows on cool bg */
+    font-size: 16px !important;
+    background: #fff5e8 !important;
     padding: 0 8px !important;
-    text-shadow: 0 0 8px rgba(240, 184, 147, 0.75) !important;
+    text-shadow:
+        0 0 1px rgba(90, 63, 85, 0.55),
+        0 0 8px rgba(240, 184, 147, 0.85) !important;
     line-height: 1 !important;
 }
 
@@ -1079,31 +1093,37 @@ html.nolayout, html.nolayout body, body.nolayout {
     content: "" !important;
     flex: 1 !important;
     height: 1px !important;
+    /* Deeper coral midpoints so the line is visible against the
+       cream backdrop (was pastel and washed out) */
     background: linear-gradient(90deg,
         transparent,
-        rgba(229, 184, 196, 0.55),
-        rgba(240, 184, 147, 0.85),
-        rgba(229, 184, 196, 0.55),
+        rgba(184, 98, 60, 0.45),
+        rgba(184, 98, 60, 0.95),
+        rgba(184, 98, 60, 0.45),
         transparent) !important;
 }
 .hof-territory .hof-divider-mark {
     font-family: "Cinzel", serif !important;
-    font-size: 10px !important;
-    color: #8a6478 !important;
+    font-size: 11px !important;
+    color: #5a3f55 !important;                   /* DEEPER mauve (was #8a6478) */
     letter-spacing: 5px !important;
     text-transform: uppercase !important;
     white-space: nowrap !important;
-    text-shadow: 0 0 6px rgba(240, 184, 147, 0.45) !important;
+    text-shadow:
+        0 0 1px rgba(90, 63, 85, 0.35),
+        0 0 6px rgba(255, 220, 195, 0.65) !important;
     line-height: 1.4 !important;
-    font-weight: 400 !important;
+    font-weight: 600 !important;
     padding: 0 4px !important;
 }
 .hof-territory .hof-divider-mark .star {
-    color: #f0b893 !important;
-    font-size: 13px !important;
+    color: #b8623c !important;                   /* DEEPER coral (was #f0b893) */
+    font-size: 14px !important;
     margin: 0 6px !important;
     vertical-align: -1px !important;
-    text-shadow: 0 0 10px rgba(240, 184, 147, 0.85) !important;
+    text-shadow:
+        0 0 1px rgba(90, 63, 85, 0.55),
+        0 0 10px rgba(240, 184, 147, 0.85) !important;
     letter-spacing: 0 !important;
 }
 
@@ -1129,14 +1149,17 @@ html.nolayout, html.nolayout body, body.nolayout {
 .hof-territory .hof-section-label {
     text-align: center !important;
     font-family: "Cinzel", serif !important;
-    font-size: 9px !important;
-    color: rgba(138, 117, 133, 0.85) !important;
-    letter-spacing: 4px !important;
+    font-size: 11px !important;                  /* was 9px — too tiny to read */
+    color: #5a3f55 !important;                   /* DEEPER mauve (was rgba 0.85) */
+    letter-spacing: 5px !important;
     text-transform: uppercase !important;
-    margin: 0 0 6px !important;
+    margin: 0 0 8px !important;
     padding: 0 !important;
     line-height: 1.4 !important;
-    font-weight: 400 !important;
+    font-weight: 600 !important;                 /* boost weight for legibility */
+    text-shadow:
+        0 0 1px rgba(90, 63, 85, 0.35),
+        0 0 6px rgba(255, 220, 195, 0.65) !important;
 }
 .hof-territory .hof-sun-divider {
     text-align: center !important;
@@ -1153,11 +1176,12 @@ html.nolayout, html.nolayout body, body.nolayout {
     top: 50% !important;
     width: 38% !important;
     height: 1px !important;
+    /* Deeper coral so the lines are visible on the cream backdrop */
     background: linear-gradient(90deg,
         transparent,
-        rgba(229, 184, 196, 0.55),
-        rgba(240, 184, 147, 0.85),
-        rgba(229, 184, 196, 0.55),
+        rgba(184, 98, 60, 0.55),
+        rgba(184, 98, 60, 0.95),
+        rgba(184, 98, 60, 0.55),
         transparent) !important;
 }
 .hof-territory .hof-sun-divider::before { left: 0 !important; }
@@ -1169,19 +1193,22 @@ html.nolayout, html.nolayout body, body.nolayout {
     height: 42px !important;
     line-height: 42px !important;
     text-align: center !important;
-    color: #8a6478 !important;
+    color: #b8623c !important;                   /* DEEPER coral for the inner ✦ */
     font-family: "Italiana", serif !important;
-    font-size: 20px !important;
-    border: 1px solid rgba(240, 184, 147, 0.85) !important;
+    font-size: 22px !important;
+    border: 1px solid rgba(184, 98, 60, 0.85) !important;
     background:
-        radial-gradient(circle at 50% 35%, rgba(255, 220, 195, 0.55) 0%, rgba(248, 240, 232, 0.95) 75%) !important;
-    background-color: #faeee4 !important;
+        radial-gradient(circle at 50% 35%, rgba(255, 220, 195, 0.65) 0%, rgba(255, 246, 234, 0.95) 75%) !important;
+    background-color: #fff5e8 !important;
     border-radius: 50% !important;
     box-shadow:
-        0 0 0 3px rgba(248, 240, 232, 0.95),
-        0 0 0 4px rgba(229, 184, 196, 0.65),
-        0 0 14px rgba(240, 184, 147, 0.55) !important;
+        0 0 0 3px rgba(255, 246, 234, 0.95),
+        0 0 0 4px rgba(184, 98, 60, 0.45),
+        0 0 16px rgba(240, 184, 147, 0.75) !important;
     vertical-align: middle !important;
+    text-shadow:
+        0 0 1px rgba(90, 63, 85, 0.45),
+        0 0 8px rgba(255, 220, 195, 0.85) !important;
 }
 .hof-territory .hof-sun-medallion span {
     display: inline-block !important;
@@ -1355,10 +1382,12 @@ html.nolayout, html.nolayout body, body.nolayout {
 .hof-territory .hof-box-header .sym {
     display: inline-block !important;
     margin: 0 10px !important;
-    color: #f0b893 !important;
-    font-size: 14px !important;
+    color: #b8623c !important;                   /* DEEPER coral (was #f0b893) */
+    font-size: 16px !important;
     vertical-align: -1px !important;
-    text-shadow: 0 0 8px rgba(240, 184, 147, 0.85) !important;
+    text-shadow:
+        0 0 1px rgba(90, 63, 85, 0.45),
+        0 0 8px rgba(240, 184, 147, 0.85) !important;
     letter-spacing: 0 !important;
 }
 .hof-territory .hof-box-header::after {
@@ -1479,10 +1508,12 @@ html.nolayout, html.nolayout body, body.nolayout {
 .hof-territory .hof-list li::before {
     position: absolute !important;
     left: 0 !important; top: 4px !important;
-    color: #f0b893 !important;
+    color: #b8623c !important;
     font-family: "Italiana", serif !important;
     font-size: 12px !important;
-    text-shadow: 0 0 5px rgba(240, 184, 147, 0.75) !important;
+    text-shadow:
+        0 0 1px rgba(90, 63, 85, 0.45),
+        0 0 5px rgba(240, 184, 147, 0.85) !important;
 }
 .hof-territory .hof-list li:nth-child(5n+1)::before { content: "✦" !important; }
 .hof-territory .hof-list li:nth-child(5n+2)::before { content: "❀" !important; }
@@ -1504,10 +1535,12 @@ html.nolayout, html.nolayout body, body.nolayout {
     content: "✦" !important;
     position: absolute !important;
     left: 0 !important; top: 4px !important;
-    color: #f0b893 !important;
+    color: #b8623c !important;
     font-family: "Italiana", serif !important;
     font-size: 11px !important;
-    text-shadow: 0 0 5px rgba(240, 184, 147, 0.75) !important;
+    text-shadow:
+        0 0 1px rgba(90, 63, 85, 0.45),
+        0 0 5px rgba(240, 184, 147, 0.85) !important;
 }
 
 
@@ -1666,9 +1699,17 @@ html.nolayout, html.nolayout body, body.nolayout {
 }
 
 
-/* === MICRO-ACCENT GLYPHS === */
-.hof-glyph    { color: #f0b893; text-shadow: 0 0 6px rgba(240, 184, 147, 0.65); }
-.hof-glyph-sm { color: rgba(229, 184, 196, 0.85); font-size: 10px; }
+/* === MICRO-ACCENT GLYPHS — deeper coral so they pop on cream === */
+.hof-territory .hof-glyph {
+    color: #b8623c !important;
+    text-shadow:
+        0 0 1px rgba(90, 63, 85, 0.45),
+        0 0 6px rgba(240, 184, 147, 0.85) !important;
+}
+.hof-territory .hof-glyph-sm {
+    color: #8a4f6a !important;
+    font-size: 10px !important;
+}
 
 
 /* ============================================================
